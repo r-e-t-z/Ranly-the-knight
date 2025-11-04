@@ -3,62 +3,49 @@ using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
-    [Header("Pause UI")]
-    public Canvas pauseCanvas;
-    public GameObject pausePanel;
+    [Header("Панели")]
+    public GameObject pausePanel;    // Панель паузы
+    public GameObject settingsPanel; // Панель настроек
 
-    [Header("Settings UI")]
-    public GameObject settingsPanel; // Панель настроек из главного меню
-
-    [Header("Buttons")]
-    public Button continueButton;
+    [Header("Кнопки паузы")]
     public Button settingsButton;
+    public Button continueButton;
     public Button menuButton;
 
-    [Header("Settings Buttons")]
-    public Button settingsBackButton; // Кнопка "Назад" в настройках
+    [Header("Кнопка назад в настройках")]
+    public Button backButton;
 
     private bool isPaused = false;
-    private bool inSettings = false;
 
     void Start()
     {
-        // Скрываем панели в начале
-        if (pauseCanvas != null)
-            pauseCanvas.enabled = false;
+        // ВСЕГДА скрываем обе панели в начале
+        pausePanel.SetActive(false);
+        settingsPanel.SetActive(false);
 
-        if (settingsPanel != null)
-            settingsPanel.SetActive(false);
-
-        // Настраиваем кнопки паузы
-        if (continueButton != null)
-            continueButton.onClick.AddListener(ContinueGame);
-
-        if (settingsButton != null)
-            settingsButton.onClick.AddListener(OpenSettings);
-
-        if (menuButton != null)
-            menuButton.onClick.AddListener(GoToMainMenu);
-
-        // Настраиваем кнопку назад в настройках
-        if (settingsBackButton != null)
-            settingsBackButton.onClick.AddListener(CloseSettings);
+        // Настраиваем кнопки
+        settingsButton.onClick.AddListener(OpenSettings);
+        continueButton.onClick.AddListener(ContinueGame);
+        menuButton.onClick.AddListener(GoToMainMenu);
+        backButton.onClick.AddListener(CloseSettings);
     }
 
     void Update()
     {
-        // Проверяем нажатие ESC
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (inSettings)
+            if (isPaused)
             {
                 // Если в настройках - закрываем их
-                CloseSettings();
-            }
-            else if (isPaused)
-            {
+                if (settingsPanel.activeSelf)
+                {
+                    CloseSettings();
+                }
                 // Если в паузе - продолжаем игру
-                ContinueGame();
+                else
+                {
+                    ContinueGame();
+                }
             }
             else
             {
@@ -68,86 +55,60 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void PauseGame()
+    void PauseGame()
     {
         isPaused = true;
-        inSettings = false;
+        Time.timeScale = 0f; // ОСТАНАВЛИВАЕМ время
 
-        // Останавливаем время игры
-        Time.timeScale = 0f;
+        // Показываем ТОЛЬКО панель паузы
+        pausePanel.SetActive(true);
+        settingsPanel.SetActive(false);
 
-        // Показываем панель паузы
-        if (pauseCanvas != null)
-            pauseCanvas.enabled = true;
-
-        // Скрываем настройки если были открыты
-        if (settingsPanel != null)
-            settingsPanel.SetActive(false);
-
-        // Делаем курсор видимым
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        Debug.Log("Игра на паузе");
     }
 
-    public void ContinueGame()
+    void ContinueGame()
     {
         isPaused = false;
-        inSettings = false;
+        Time.timeScale = 1f; // ВОЗОБНОВЛЯЕМ время
 
-        // Возобновляем время игры
-        Time.timeScale = 1f;
+        // Скрываем ВСЕ панели
+        pausePanel.SetActive(false);
+        settingsPanel.SetActive(false);
 
-        // Скрываем все UI
-        if (pauseCanvas != null)
-            pauseCanvas.enabled = false;
-
-        if (settingsPanel != null)
-            settingsPanel.SetActive(false);
-
-        // Возвращаем курсор (если нужно)
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Debug.Log("Игра продолжена");
     }
 
     void OpenSettings()
     {
-        inSettings = true;
+        // Скрываем паузу, показываем настройки
+        pausePanel.SetActive(false);
+        settingsPanel.SetActive(true);
 
-        // Скрываем панель паузы
-        if (pausePanel != null)
-            pausePanel.SetActive(false);
-
-        // Показываем настройки
-        if (settingsPanel != null)
-            settingsPanel.SetActive(true);
-        
+        Debug.Log("Открыты настройки");
     }
 
     void CloseSettings()
     {
-        inSettings = false;
-
-        // Показываем панель паузы
-        if (pausePanel != null)
-            pausePanel.SetActive(true);
+        Debug.Log("=== CloseSettings вызван ===");
+        Debug.Log("settingsPanel активна: " + settingsPanel.activeSelf);
+        Debug.Log("pausePanel активна: " + pausePanel.activeSelf);
 
         // Скрываем настройки
-        if (settingsPanel != null)
-            settingsPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        Debug.Log("settingsPanel скрыта");
+
+        // Показываем паузу
+        pausePanel.SetActive(true);
+        Debug.Log("pausePanel показана");
+
+        Debug.Log("pausePanel теперь активна: " + pausePanel.activeSelf);
     }
 
     void GoToMainMenu()
     {
-        // Возобновляем время перед загрузкой меню
-        Time.timeScale = 1f;
-
-        // Загружаем главное меню
+        Time.timeScale = 1f; // Восстанавливаем время перед загрузкой меню
+        Debug.Log("Выход в главное меню");
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-    }
-
-    // Для проверки состояния паузы из других скриптов
-    public bool IsGamePaused()
-    {
-        return isPaused;
     }
 }
