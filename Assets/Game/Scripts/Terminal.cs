@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Terminal : MonoBehaviour
 {
-    [Tooltip("Имя, которое будет показано в меню")]
+    [Tooltip("Имя")]
     public string terminalName = "Terminal";
 
     private bool playerInRange = false;
@@ -22,7 +22,6 @@ public class Terminal : MonoBehaviour
 
     private void Update()
     {
-        // Если игрок рядом и нажал E — открыть меню
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
             FastTravelUI.Instance.OpenMenu(this);

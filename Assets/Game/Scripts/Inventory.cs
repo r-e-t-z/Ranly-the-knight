@@ -1,18 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
     [Header("Настройки инвентаря")]
     public int maxSlots = 12;
 
-    [Header("Список предметов")]
-    public List<InventoryItem> items = new List<InventoryItem>();
-
-    [Header("UI элементы")]
+    [Header("UI элементы InventoryPanel")]
     public GameObject inventoryPanel;
-    public InventorySlotUI[] slots;
+
+    private List<InventoryItem> items = new List<InventoryItem>();
+    private InventorySlotUI[] slots;
 
     [System.Serializable]
     public class InventoryItem
@@ -23,28 +21,42 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        // Найти все слоты автоматически
-        slots = inventoryPanel.GetComponentsInChildren<InventorySlotUI>();
-
-        // Автоматически настроить все слоты
-        for (int i = 0; i < slots.Length; i++)
+        if (inventoryPanel != null)
         {
-            slots[i].index = i;
-            slots[i].inventory = this;
-        }
+            slots = inventoryPanel.GetComponentsInChildren<InventorySlotUI>();
 
-        inventoryPanel.SetActive(false);
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i] != null)
+                {
+                    slots[i].index = i;
+                    slots[i].inventory = this;
+                }
+            }
+
+            inventoryPanel.SetActive(false);
+        }
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+            ToggleInventory();
         }
     }
 
-    // Добавить предмет
+    void ToggleInventory()
+    {
+        if (inventoryPanel == null)
+        {
+            return;
+        }
+
+        bool newState = !inventoryPanel.activeSelf;
+        inventoryPanel.SetActive(newState);
+    }
+
     public void AddItem(string itemName, Sprite itemIcon = null)
     {
         if (items.Count < maxSlots)
@@ -53,28 +65,24 @@ public class Inventory : MonoBehaviour
             newItem.name = itemName;
             newItem.icon = itemIcon;
             items.Add(newItem);
+
             UpdateUI();
-            Debug.Log("Добавлен: " + itemName);
-        }
-        else
-        {
-            Debug.Log("Инвентарь полон!");
         }
     }
 
-    // Обновить UI
     void UpdateUI()
     {
-        // Очистить все слоты
+        if (slots == null) return;
+
         foreach (InventorySlotUI slot in slots)
         {
-            slot.ClearSlot();
+            if (slot != null)
+                slot.ClearSlot();
         }
 
-        // Заполнить слоты предметами
         for (int i = 0; i < items.Count; i++)
         {
-            if (i < slots.Length)
+            if (i < slots.Length && slots[i] != null)
             {
                 slots[i].SetItem(items[i]);
             }

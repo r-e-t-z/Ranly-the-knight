@@ -120,6 +120,7 @@ public class PauseManager : MonoBehaviour
         // Показываем настройки
         if (settingsPanel != null)
             settingsPanel.SetActive(true);
+        
     }
 
     void CloseSettings()

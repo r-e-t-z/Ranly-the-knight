@@ -4,27 +4,31 @@ using UnityEngine.EventSystems;
 
 public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
 {
+    [Header("UI элементы")]
     public Image itemIcon;
-    [HideInInspector] public int index;
-    [HideInInspector] public Inventory inventory;
+
+    [HideInInspector]
+    public int index;
+    [HideInInspector]
+    public Inventory inventory;
 
     void Start()
     {
-        // Создаем Image для иконки если его нет
         if (itemIcon == null)
         {
-            GameObject iconObject = new GameObject("ItemIcon");
-            iconObject.transform.SetParent(transform);
-            iconObject.transform.localPosition = Vector3.zero;
-            iconObject.transform.localScale = Vector3.one;
+            itemIcon = GetComponentInChildren<Image>();
 
-            itemIcon = iconObject.AddComponent<Image>();
-            itemIcon.rectTransform.sizeDelta = new Vector2(60, 60);
         }
     }
 
     public void SetItem(Inventory.InventoryItem item)
     {
+        if (itemIcon == null)
+        {
+            Debug.LogError("ItemIcon is null в слоте: " + gameObject.name);
+            return;
+        }
+
         if (item != null && item.icon != null)
         {
             itemIcon.sprite = item.icon;
@@ -38,15 +42,18 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
 
     public void ClearSlot()
     {
-        itemIcon.sprite = null;
-        itemIcon.enabled = false;
+        if (itemIcon != null)
+        {
+            itemIcon.sprite = null;
+            itemIcon.enabled = false;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Debug.Log("Использован предмет: " + index);
+            Debug.Log("Клик по слоту: " + index);
         }
     }
 }

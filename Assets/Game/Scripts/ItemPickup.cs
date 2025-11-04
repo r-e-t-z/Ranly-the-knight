@@ -4,7 +4,7 @@ public class ItemPickup : MonoBehaviour
 {
     [Header("Настройки предмета")]
     public string itemName;
-    public Sprite itemIcon; // Добавили иконку!
+    public Sprite itemIcon;
     public KeyCode pickupKey = KeyCode.E;
 
     [Header("Визуал")]
@@ -20,8 +20,11 @@ public class ItemPickup : MonoBehaviour
             pickupHint.SetActive(false);
 
         playerInventory = FindObjectOfType<Inventory>();
+        if (playerInventory == null)
+        {
+            Debug.LogError("Inventory не найден на сцене!");
+        }
 
-        // Автоматически назначить иконку из спрайта
         if (itemIcon == null && sprite != null)
         {
             itemIcon = sprite.sprite;
@@ -60,9 +63,12 @@ public class ItemPickup : MonoBehaviour
     {
         if (playerInventory != null)
         {
-            // Теперь передаем и иконку!
             playerInventory.AddItem(itemName, itemIcon);
             Destroy(gameObject);
+        }
+        else
+        {
+            Debug.LogError("Inventory не найден!");
         }
     }
 }
