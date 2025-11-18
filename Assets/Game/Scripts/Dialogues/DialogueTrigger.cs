@@ -12,12 +12,18 @@ public class DialogueTrigger : MonoBehaviour
     public string rightName;
     public Sprite rightPortrait;
 
+    [Header("Режим работы")]
+    public bool workOnlyOnce = false;
     public bool startOnEnter = false;
     public bool requirePressE = true;
+
     bool inRange = false;
+    bool alreadyUsed = false;
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (alreadyUsed && workOnlyOnce) return;
         if (other.CompareTag("Player"))
         {
             inRange = true;
@@ -46,6 +52,12 @@ public class DialogueTrigger : MonoBehaviour
 
     void StartDialogue()
     {
+        if (workOnlyOnce)
+        {
+            alreadyUsed = true;
+            inRange = false;
+        }
+
         DialogueManager.Instance.StartDialogue(
             inkJSON,
             leftName, leftPortrait,

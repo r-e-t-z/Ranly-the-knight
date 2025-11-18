@@ -25,12 +25,16 @@ public class DialogueManager : MonoBehaviour
     Story story;
     bool isPlaying = false;
 
+    private MonoBehaviour playerController;
+
     public static DialogueManager Instance;
 
     void Awake()
     {
         Instance = this;
         dialoguePanel.SetActive(false);
+        playerController = FindObjectOfType<PlayerMovement>();
+
     }
 
     void Update()
@@ -65,6 +69,9 @@ public class DialogueManager : MonoBehaviour
                               string rightCharName, Sprite rightCharPortrait)
     {
         Debug.Log("=== START DIALOGUE ===");
+
+        if (playerController != null)
+            playerController.enabled = false;
 
         story = new Story(inkJSON.text);
 
@@ -166,6 +173,7 @@ public class DialogueManager : MonoBehaviour
     void GenerateChoices()
     {
         Debug.Log("GenerateChoices: " + story.currentChoices.Count);
+        choicesContainer.gameObject.SetActive(true);
 
         int i = 0;
 
@@ -196,6 +204,8 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("=== END DIALOGUE ===");
         isPlaying = false;
         dialoguePanel.SetActive(false);
+        if (playerController != null)
+            playerController.enabled = true;
     }
 
     public bool IsPlaying() => isPlaying;
