@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 5ee9a37a0913310489097e358735a7fd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8209055871474671462
+    second: SpritesPlitki-Sheet_0
+  - first:
+      213: -7726169674676866549
+    second: SpritesPlitki-Sheet_1
+  - first:
+      213: -4780951403769572577
+    second: SpritesPlitki-Sheet_2
+  - first:
+      213: -3481241186574163040
+    second: SpritesPlitki-Sheet_3
+  - first:
+      213: -1622410548697345982
+    second: SpritesPlitki-Sheet_4
+  - first:
+      213: 6948063870558216777
+    second: SpritesPlitki-Sheet_5
+  - first:
+      213: 2029615115169169010
+    second: SpritesPlitki-Sheet_6
+  - first:
+      213: -3344347783302359073
+    second: SpritesPlitki-Sheet_7
+  - first:
+      213: 8716530179814989670
+    second: SpritesPlitki-Sheet_8
+  - first:
+      213: 5007084700410859773
+    second: SpritesPlitki-Sheet_9
+  - first:
+      213: -1756540050340674843
+    second: SpritesPlitki-Sheet_10
+  - first:
+      213: 6273320591992686411
+    second: SpritesPlitki-Sheet_11
+  - first:
+      213: -3162923681606105841
+    second: SpritesPlitki-Sheet_12
+  - first:
+      213: 8056622712395835395
+    second: SpritesPlitki-Sheet_13
+  - first:
+      213: 3356652952794306341
+    second: SpritesPlitki-Sheet_14
+  - first:
+      213: -1886695931809478893
+    second: SpritesPlitki-Sheet_15
+  - first:
+      213: 6961014880335051873
+    second: SpritesPlitki-Sheet_16
+  - first:
+      213: -9212173224454773394
+    second: SpritesPlitki-Sheet_17
+  - first:
+      213: 1873589647379971858
+    second: SpritesPlitki-Sheet_18
+  - first:
+      213: 5956100068156283618
+    second: SpritesPlitki-Sheet_19
+  - first:
+      213: 5093089678312618391
+    second: SpritesPlitki-Sheet_20
+  - first:
+      213: -2674962426460088665
+    second: SpritesPlitki-Sheet_21
+  - first:
+      213: 2140228377010291615
+    second: SpritesPlitki-Sheet_22
+  - first:
+      213: -8263875634411738372
+    second: SpritesPlitki-Sheet_23
+  - first:
+      213: -5610671611454213031
+    second: SpritesPlitki-Sheet_24
+  - first:
+      213: -8457742289074059530
+    second: SpritesPlitki-Sheet_25
+  - first:
+      213: 3477762756203393236
+    second: SpritesPlitki-Sheet_26
+  - first:
+      213: -5443594418926213223
+    second: SpritesPlitki-Sheet_27
+  - first:
+      213: 7013634838719130787
+    second: SpritesPlitki-Sheet_28
+  - first:
+      213: -2015969124247387088
+    second: SpritesPlitki-Sheet_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66f159852dc6ce170800000000000000
+      internalID: 8209055871474671462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b027d7aad9127c490800000000000000
+      internalID: -7726169674676866549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f13d8e16706a6adb0800000000000000
+      internalID: -4780951403769572577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a3a9c0d59520bfc0800000000000000
+      internalID: -3481241186574163040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2405c0da33a0c79e0800000000000000
+      internalID: -1622410548697345982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9422951274b7c6060800000000000000
+      internalID: 6948063870558216777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27efb62a134aa2c10800000000000000
+      internalID: 2029615115169169010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd7d5e2096d7691d0800000000000000
+      internalID: -3344347783302359073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 184
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66f18d1340657f870800000000000000
+      internalID: 8716530179814989670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 176
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df05840a10dbc7540800000000000000
+      internalID: 5007084700410859773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 184
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e282b971248f97e0800000000000000
+      internalID: -1756540050340674843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 176
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b470ed747df4f0750800000000000000
+      internalID: 6273320591992686411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 176
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0582326ba90b14d0800000000000000
+      internalID: -3162923681606105841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 308a2bdcbafdecf60800000000000000
+      internalID: 8056622712395835395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5271295831a359e20800000000000000
+      internalID: 3356652952794306341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 160
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3174251db0c11d5e0800000000000000
+      internalID: -1886695931809478893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 176
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16c3492172e7a9060800000000000000
+      internalID: 6961014880335051873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 165
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e652203b249c72080800000000000000
+      internalID: -9212173224454773394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21fbeea8bd3500a10800000000000000
+      internalID: 1873589647379971858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ea9229847158a250800000000000000
+      internalID: 5956100068156283618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 799380df31a4ea640800000000000000
+      internalID: 5093089678312618391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a6545f78df90ead0800000000000000
+      internalID: -2674962426460088665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 63
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f93c8e59e5e93bd10800000000000000
+      internalID: 2140228377010291615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 63
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfae1e6f4e0d05d80800000000000000
+      internalID: -8263875634411738372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 63
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95437ef55e3e222b0800000000000000
+      internalID: -5610671611454213031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 63
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f601f9f23010aa80800000000000000
+      internalID: -8457742289074059530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 15
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d036900dce734030800000000000000
+      internalID: 3477762756203393236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 15
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 997aa96a7b77474b0800000000000000
+      internalID: -5443594418926213223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 15
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ac682ad9bf655160800000000000000
+      internalID: 7013634838719130787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesPlitki-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 15
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 034441733c6d504e0800000000000000
+      internalID: -2015969124247387088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SpritesPlitki-Sheet_0: 8209055871474671462
+      SpritesPlitki-Sheet_1: -7726169674676866549
+      SpritesPlitki-Sheet_10: -1756540050340674843
+      SpritesPlitki-Sheet_11: 6273320591992686411
+      SpritesPlitki-Sheet_12: -3162923681606105841
+      SpritesPlitki-Sheet_13: 8056622712395835395
+      SpritesPlitki-Sheet_14: 3356652952794306341
+      SpritesPlitki-Sheet_15: -1886695931809478893
+      SpritesPlitki-Sheet_16: 6961014880335051873
+      SpritesPlitki-Sheet_17: -9212173224454773394
+      SpritesPlitki-Sheet_18: 1873589647379971858
+      SpritesPlitki-Sheet_19: 5956100068156283618
+      SpritesPlitki-Sheet_2: -4780951403769572577
+      SpritesPlitki-Sheet_20: 5093089678312618391
+      SpritesPlitki-Sheet_21: -2674962426460088665
+      SpritesPlitki-Sheet_22: 2140228377010291615
+      SpritesPlitki-Sheet_23: -8263875634411738372
+      SpritesPlitki-Sheet_24: -5610671611454213031
+      SpritesPlitki-Sheet_25: -8457742289074059530
+      SpritesPlitki-Sheet_26: 3477762756203393236
+      SpritesPlitki-Sheet_27: -5443594418926213223
+      SpritesPlitki-Sheet_28: 7013634838719130787
+      SpritesPlitki-Sheet_29: -2015969124247387088
+      SpritesPlitki-Sheet_3: -3481241186574163040
+      SpritesPlitki-Sheet_4: -1622410548697345982
+      SpritesPlitki-Sheet_5: 6948063870558216777
+      SpritesPlitki-Sheet_6: 2029615115169169010
+      SpritesPlitki-Sheet_7: -3344347783302359073
+      SpritesPlitki-Sheet_8: 8716530179814989670
+      SpritesPlitki-Sheet_9: 5007084700410859773
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

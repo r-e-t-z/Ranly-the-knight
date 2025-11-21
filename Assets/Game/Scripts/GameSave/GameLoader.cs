@@ -25,13 +25,11 @@ public class GameLoader : MonoBehaviour
 
         if (saveData != null && saveData.hasSaveData)
         {
-            // Загружаем позицию из сохранения
             spawnPosition = saveData.GetPlayerPosition();
             Debug.Log("Загрузка сохраненной позиции: " + spawnPosition);
         }
         else
         {
-            // Используем точку по умолчанию
             spawnPosition = defaultSpawnPoint != null ? defaultSpawnPoint.position : Vector3.zero;
             Debug.Log("Загрузка позиции по умолчанию");
         }

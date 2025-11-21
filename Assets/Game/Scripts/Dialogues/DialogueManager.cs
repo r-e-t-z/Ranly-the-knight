@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
-    [Header("Main UI")]
+    [Header("UI")]
     public GameObject dialoguePanel;
     public TMP_Text dialogueText;
 
@@ -41,21 +41,16 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isPlaying) return;
 
-        // --- ПЕРЕХОД ПО ЛКМ ---
         if (Input.GetMouseButtonDown(0))
         {
-            // Если клик по UI — кнопка должна работать, а диалог НЕ листается
             if (EventSystem.current.IsPointerOverGameObject())
             {
-                Debug.Log("LMB on UI → buttons work, dialogue NOT advancing");
                 return;
             }
 
-            Debug.Log("LMB → ContinueDialogue()");
             ContinueDialogue();
         }
 
-        // Переход по клавише E
         if (Input.GetKeyDown(KeyCode.E))
         {
             ContinueDialogue();
@@ -64,9 +59,7 @@ public class DialogueManager : MonoBehaviour
        
     }
 
-    public void StartDialogue(TextAsset inkJSON,
-                              string leftCharName, Sprite leftCharPortrait,
-                              string rightCharName, Sprite rightCharPortrait)
+    public void StartDialogue(TextAsset inkJSON)
     {
         Debug.Log("=== START DIALOGUE ===");
 
@@ -75,12 +68,6 @@ public class DialogueManager : MonoBehaviour
 
         story = new Story(inkJSON.text);
 
-        // Имена и портреты до тегов
-        nameLeft.text = leftCharName;
-        nameRight.text = rightCharName;
-
-        portraitLeft.sprite = leftCharPortrait;
-        portraitRight.sprite = rightCharPortrait;
 
         dialoguePanel.SetActive(true);
         isPlaying = true;
@@ -90,11 +77,9 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueDialogue()
     {
-        // Удаляем старые кнопки выбора
         foreach (Transform c in choicesContainer)
             Destroy(c.gameObject);
 
-        // Продолжаем текст
         if (story.canContinue)
         {
             string text = story.Continue().Trim();
@@ -105,15 +90,13 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        // Показать выборы
         if (story.currentChoices.Count > 0)
         {
-            Debug.Log("Create choices: " + story.currentChoices.Count);
+            Debug.Log("Количество выборов: " + story.currentChoices.Count);
             GenerateChoices();
             return;
         }
 
-        // Конец
         EndDialogue();
     }
 
@@ -140,7 +123,6 @@ public class DialogueManager : MonoBehaviour
                 nameRight.gameObject.SetActive(true);
             }
 
-            // Имя
             if (tag.StartsWith("speaker:"))
             {
                 string speakerName = tag.Substring("speaker:".Length).Trim();
@@ -152,7 +134,6 @@ public class DialogueManager : MonoBehaviour
                     nameRight.text = speakerName;
             }
 
-            // Портрет
             if (tag.StartsWith("portrait:"))
             {
                 string portraitName = tag.Substring("portrait:".Length).Trim();
@@ -172,7 +153,6 @@ public class DialogueManager : MonoBehaviour
 
     void GenerateChoices()
     {
-        Debug.Log("GenerateChoices: " + story.currentChoices.Count);
         choicesContainer.gameObject.SetActive(true);
 
         int i = 0;
@@ -190,7 +170,7 @@ public class DialogueManager : MonoBehaviour
 
             btn.onClick.AddListener(() =>
             {
-                Debug.Log("Choice CLICKED: " + choice.text);
+                Debug.Log("Клик был: " + choice.text);
                 story.ChooseChoiceIndex(choiceIndex);
                 ContinueDialogue();
             });

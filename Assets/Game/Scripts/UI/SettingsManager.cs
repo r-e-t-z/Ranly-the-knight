@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SimpleSettingsManager : MonoBehaviour
+public class SettingsManager : MonoBehaviour
 {
     [Header("Настройки звука")]
     public Slider volumeSlider;

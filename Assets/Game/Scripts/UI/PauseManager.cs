@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class PauseManager : MonoBehaviour
 {
     [Header("Панели")]
-    public GameObject pausePanel;    // Панель паузы
-    public GameObject settingsPanel; // Панель настроек
+    public GameObject pausePanel;
+    public GameObject settingsPanel;
 
     [Header("Кнопки паузы")]
     public Button settingsButton;
@@ -19,11 +19,9 @@ public class PauseManager : MonoBehaviour
 
     void Start()
     {
-        // ВСЕГДА скрываем обе панели в начале
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
 
-        // Настраиваем кнопки
         settingsButton.onClick.AddListener(OpenSettings);
         continueButton.onClick.AddListener(ContinueGame);
         menuButton.onClick.AddListener(GoToMainMenu);
@@ -36,12 +34,10 @@ public class PauseManager : MonoBehaviour
         {
             if (isPaused)
             {
-                // Если в настройках - закрываем их
                 if (settingsPanel.activeSelf)
                 {
                     CloseSettings();
                 }
-                // Если в паузе - продолжаем игру
                 else
                 {
                     ContinueGame();
@@ -49,7 +45,6 @@ public class PauseManager : MonoBehaviour
             }
             else
             {
-                // Если игра идет - ставим на паузу
                 PauseGame();
             }
         }
@@ -58,9 +53,8 @@ public class PauseManager : MonoBehaviour
     void PauseGame()
     {
         isPaused = true;
-        Time.timeScale = 0f; // ОСТАНАВЛИВАЕМ время
+        Time.timeScale = 0f;
 
-        // Показываем ТОЛЬКО панель паузы
         pausePanel.SetActive(true);
         settingsPanel.SetActive(false);
 
@@ -70,9 +64,8 @@ public class PauseManager : MonoBehaviour
     void ContinueGame()
     {
         isPaused = false;
-        Time.timeScale = 1f; // ВОЗОБНОВЛЯЕМ время
+        Time.timeScale = 1f;
 
-        // Скрываем ВСЕ панели
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
 
@@ -81,34 +74,19 @@ public class PauseManager : MonoBehaviour
 
     void OpenSettings()
     {
-        // Скрываем паузу, показываем настройки
         pausePanel.SetActive(false);
         settingsPanel.SetActive(true);
-
-        Debug.Log("Открыты настройки");
     }
 
     void CloseSettings()
     {
-        Debug.Log("=== CloseSettings вызван ===");
-        Debug.Log("settingsPanel активна: " + settingsPanel.activeSelf);
-        Debug.Log("pausePanel активна: " + pausePanel.activeSelf);
-
-        // Скрываем настройки
         settingsPanel.SetActive(false);
-        Debug.Log("settingsPanel скрыта");
-
-        // Показываем паузу
         pausePanel.SetActive(true);
-        Debug.Log("pausePanel показана");
-
-        Debug.Log("pausePanel теперь активна: " + pausePanel.activeSelf);
     }
 
     void GoToMainMenu()
     {
-        Time.timeScale = 1f; // Восстанавливаем время перед загрузкой меню
-        Debug.Log("Выход в главное меню");
+        Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }

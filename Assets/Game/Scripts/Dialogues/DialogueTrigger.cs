@@ -4,14 +4,6 @@ public class DialogueTrigger : MonoBehaviour
 {
     public TextAsset inkJSON;
 
-    [Header("Left Character")]
-    public string leftName;
-    public Sprite leftPortrait;
-
-    [Header("Right Character")]
-    public string rightName;
-    public Sprite rightPortrait;
-
     [Header("Режим работы")]
     public bool workOnlyOnce = false;
     public bool startOnEnter = false;
@@ -58,10 +50,6 @@ public class DialogueTrigger : MonoBehaviour
             inRange = false;
         }
 
-        DialogueManager.Instance.StartDialogue(
-            inkJSON,
-            leftName, leftPortrait,
-            rightName, rightPortrait
-        );
+        DialogueManager.Instance.StartDialogue(inkJSON);
     }
 }
