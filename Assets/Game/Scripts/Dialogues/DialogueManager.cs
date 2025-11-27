@@ -35,7 +35,9 @@ public class DialogueManager : MonoBehaviour
 
     void Awake()
     {
+
         Instance = this;
+        choicesContainer.gameObject.SetActive(false);
         dialoguePanel.SetActive(false);
         playerController = FindObjectOfType<PlayerMovement>();
     }
@@ -473,17 +475,17 @@ public class DialogueManager : MonoBehaviour
                 portraitRight.gameObject.SetActive(true);
                 nameRight.gameObject.SetActive(true);
             }
-            else if (tag.StartsWith("speaker:"))
+            else if (tag.StartsWith("speaker: "))
             {
-                string speakerName = tag.Substring("speaker:".Length);
+                string speakerName = tag.Substring("speaker: ".Length);
                 if (portraitLeft.gameObject.activeSelf)
                     nameLeft.text = speakerName;
                 if (portraitRight.gameObject.activeSelf)
                     nameRight.text = speakerName;
             }
-            else if (tag.StartsWith("portrait:"))
+            else if (tag.StartsWith("portrait: "))
             {
-                string portraitName = tag.Substring("portrait:".Length);
+                string portraitName = tag.Substring("portrait: ".Length);
                 Sprite sprite = Resources.Load<Sprite>("Portraits/" + portraitName);
                 if (sprite != null)
                 {
@@ -498,6 +500,7 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowChoices()
     {
+        choicesContainer.gameObject.SetActive(true);
         for (int i = 0; i < story.currentChoices.Count; i++)
         {
             Choice choice = story.currentChoices[i];
@@ -526,6 +529,7 @@ public class DialogueManager : MonoBehaviour
             playerController.enabled = true;
 
         currentNPC = null;
+        choicesContainer.gameObject.SetActive(false);
     }
 
     public bool IsPlaying() => isPlaying;

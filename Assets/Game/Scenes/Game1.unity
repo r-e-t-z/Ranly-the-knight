@@ -67506,8 +67506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c5ceef92a79ae4d91873a1392afa1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  npcData: {fileID: 0}
-  inkJSON: {fileID: 4900000, guid: 955a53790e9d8cd43974e4ee2933f414, type: 3}
+  npcData: {fileID: 11400000, guid: 2df492540d72eb741a004294be7ac229, type: 2}
   workOnlyOnce: 1
   startOnEnter: 1
   requirePressE: 0
@@ -69215,7 +69214,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1443898062}
   - component: {fileID: 1443898063}
-  - component: {fileID: 1443898064}
   m_Layer: 0
   m_Name: DialogueSystem
   m_TagString: Untagged
@@ -69239,18 +69237,6 @@ Transform:
   m_Father: {fileID: 1586588582}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1443898063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443898061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb8be3c26d46ec541a8d50dafd5c7044, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
---- !u!114 &1443898064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ef7b03af41f5340a500fd5904acf3e, type: 3}
+  m_Name: StartDialogue
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: 
+  portrait: {fileID: 0}
+  inkFile: {fileID: 4900000, guid: 955a53790e9d8cd43974e4ee2933f414, type: 3}
