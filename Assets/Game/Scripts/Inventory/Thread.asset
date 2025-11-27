@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032da92c9af93a247ae609e6b3cf7e52, type: 3}
+  m_Name: Thread
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemID: 2
+  itemName: Thread
+  description: 
+  icon: {fileID: 4267376707940855249, guid: c7df4db558110484c827254f371b9f01, type: 3}
+  type: 0
+  isStackable: 1
+  maxStackSize: 1
+  craftingRecipes: []

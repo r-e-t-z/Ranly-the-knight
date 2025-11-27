@@ -1,17 +1,19 @@
+﻿using Ink.Runtime;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public TextAsset inkJSON;
+    [Header("NPC Settings")]
+    public NPCData npcData;
 
-    [Header("����� ������")]
+    [Header("Trigger Settings")]
     public bool workOnlyOnce = false;
     public bool startOnEnter = false;
     public bool requirePressE = true;
 
-    bool inRange = false;
-    bool alreadyUsed = false;
-
+    private bool inRange = false;
+    private bool alreadyUsed = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,8 +21,10 @@ public class DialogueTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             inRange = true;
-            if (startOnEnter && !requirePressE) StartDialogue();
-            else if (requirePressE) UIInteractPrompt.Instance.Show("����� E");
+            if (startOnEnter && !requirePressE)
+                StartDialogue();
+            else if (requirePressE)
+                UIInteractPrompt.Instance.Show("Нажми E");
         }
     }
 
@@ -37,6 +41,12 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (inRange && requirePressE && Input.GetKeyDown(KeyCode.E))
         {
+            // Проверяем, не идет ли уже диалог
+            if (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying())
+            {
+                return;
+            }
+
             UIInteractPrompt.Instance.Hide();
             StartDialogue();
         }
@@ -50,6 +60,11 @@ public class DialogueTrigger : MonoBehaviour
             inRange = false;
         }
 
-        DialogueManager.Instance.StartDialogue(inkJSON);
+        DialogueManager.Instance.StartDialogue(npcData.inkFile, "start", npcData);
+    }
+
+    public void ResetMeeting()
+    {
+        alreadyUsed = false;
     }
 }

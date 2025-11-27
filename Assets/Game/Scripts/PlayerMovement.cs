@@ -30,20 +30,32 @@ public class PlayerMovement : MonoBehaviour
             spriterenderer.sprite = rightsprite;
 
         }
-        if (Input.GetKey(KeyCode.A))
+        else
         {
-            spriterenderer.sprite = leftsprite;
-        }
+            if (Input.GetKey(KeyCode.A))
+            {
+                spriterenderer.sprite = leftsprite;
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.W))
+                {
+                    spriterenderer.sprite = backsprite;
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            spriterenderer.sprite = backsprite;
+                }
+                else
+                {
+                    if (Input.GetKey(KeyCode.S))
+                    {
+                        spriterenderer.sprite = frontsprite;
+                    }
+                }
+            }
+        }
+        
 
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            spriterenderer.sprite = frontsprite;
-        }
+        
+        
 
         movement = movement.normalized;
     }

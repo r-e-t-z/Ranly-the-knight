@@ -1,9 +1,9 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    [Header("Номер Сцены")]
+    [Header("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
     public int sceneNumber;
     public void Transition()
     {

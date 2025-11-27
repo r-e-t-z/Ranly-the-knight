@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: f4d9c71289e2817499ea15c5d7a55e11
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -283679675476407096
+    second: SpritesCvetyGriby 1_0
+  - first:
+      213: 5378346517972192485
+    second: SpritesCvetyGriby 1_1
+  - first:
+      213: 6636124163133363594
+    second: SpritesCvetyGriby 1_2
+  - first:
+      213: 2748559112325191784
+    second: SpritesCvetyGriby 1_3
+  - first:
+      213: 3511303734381724891
+    second: SpritesCvetyGriby 1_4
+  - first:
+      213: 558971883946656912
+    second: SpritesCvetyGriby 1_5
+  - first:
+      213: 700973475105426534
+    second: SpritesCvetyGriby 1_6
+  - first:
+      213: 5728892208481878766
+    second: SpritesCvetyGriby 1_7
+  - first:
+      213: 3181406985888973308
+    second: SpritesCvetyGriby 1_8
+  - first:
+      213: -5774148907170424305
+    second: SpritesCvetyGriby 1_9
+  - first:
+      213: 3756079489793605009
+    second: SpritesCvetyGriby 1_10
+  - first:
+      213: -5605512089966470160
+    second: SpritesCvetyGriby 1_11
+  - first:
+      213: 3527363219770633482
+    second: SpritesCvetyGriby 1_12
+  - first:
+      213: 4933961216353079805
+    second: SpritesCvetyGriby 1_13
+  - first:
+      213: -3925917812398029378
+    second: SpritesCvetyGriby 1_14
+  - first:
+      213: 4269133960338423392
+    second: SpritesCvetyGriby 1_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 207
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cc0b3196da201cf0800000000000000
+      internalID: -283679675476407096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 207
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ec01b299a9b3aa40800000000000000
+      internalID: 5378346517972192485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_2
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 207
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8553f444cf381c50800000000000000
+      internalID: 6636124163133363594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_3
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 207
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8685e4e33f7d42620800000000000000
+      internalID: 2748559112325191784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_4
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 159
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd4435a8428aab030800000000000000
+      internalID: 3511303734381724891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_5
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 159
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 094421687fdd1c700800000000000000
+      internalID: 558971883946656912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_6
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 159
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c41a469ab5ab900800000000000000
+      internalID: 700973475105426534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_7
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 159
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee2c0135c1d118f40800000000000000
+      internalID: 5728892208481878766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_8
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf1cbdf3cc0a62c20800000000000000
+      internalID: 3181406985888973308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_9
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0a95e3692a1edfa0800000000000000
+      internalID: -5774148907170424305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_10
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d37493566402430800000000000000
+      internalID: 3756079489793605009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_11
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fb146514783532b0800000000000000
+      internalID: -5605512089966470160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_12
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 63
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0de43cd826b3f030800000000000000
+      internalID: 3527363219770633482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_13
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 63
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df19744c593f87440800000000000000
+      internalID: 4933961216353079805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_14
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 63
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb503aecc865489c0800000000000000
+      internalID: -3925917812398029378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesCvetyGriby 1_15
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 63
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06e3784d7b20f3b30800000000000000
+      internalID: 4269133960338423392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SpritesCvetyGriby 1_0: -283679675476407096
+      SpritesCvetyGriby 1_1: 5378346517972192485
+      SpritesCvetyGriby 1_10: 3756079489793605009
+      SpritesCvetyGriby 1_11: -5605512089966470160
+      SpritesCvetyGriby 1_12: 3527363219770633482
+      SpritesCvetyGriby 1_13: 4933961216353079805
+      SpritesCvetyGriby 1_14: -3925917812398029378
+      SpritesCvetyGriby 1_15: 4269133960338423392
+      SpritesCvetyGriby 1_2: 6636124163133363594
+      SpritesCvetyGriby 1_3: 2748559112325191784
+      SpritesCvetyGriby 1_4: 3511303734381724891
+      SpritesCvetyGriby 1_5: 558971883946656912
+      SpritesCvetyGriby 1_6: 700973475105426534
+      SpritesCvetyGriby 1_7: 5728892208481878766
+      SpritesCvetyGriby 1_8: 3181406985888973308
+      SpritesCvetyGriby 1_9: -5774148907170424305
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ef7b03af41f5340a500fd5904acf3e, type: 3}
+  m_Name: NPC_Fisherman
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: Fisherman
+  portrait: {fileID: 0}
+  startDialogue: {fileID: 4900000, guid: b8094135d1e11f44ab80bb02a24af94d, type: 3}
+  repeatDialogue: {fileID: 4900000, guid: 955a53790e9d8cd43974e4ee2933f414, type: 3}
+  itemDialogue: {fileID: 4900000, guid: e59512c394157eb4cadfee9c62067bc2, type: 3}
+  afterItemDialogue: {fileID: 4900000, guid: 0e09b8a95abbae4439a7201b7403a3f6, type: 3}
+  requiredItemID: 3
+  hasQuest: 1
