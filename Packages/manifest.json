@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.inkle.ink-unity-integration": "file:C:/Users/sdany/Downloads/ink-unity-integration-master/Packages/Ink",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.cinemachine": "3.1.5",

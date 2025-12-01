@@ -9,10 +9,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Objects
   - Water
   - UI
-  - 
+  - Characters
   - 
   - PostProcessing
   - 
@@ -42,13 +42,13 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Layer 1
+  - name: Ground
     uniqueID: 2425651459
     locked: 0
-  - name: Layer 2
+  - name: Objects and Characters
     uniqueID: 4250941897
     locked: 0
-  - name: Layer 3
+  - name: Other
     uniqueID: 4189426099
     locked: 0
   m_RenderingLayers:
