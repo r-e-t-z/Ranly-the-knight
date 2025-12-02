@@ -93,7 +93,6 @@ public static class SaveSystem
         if (File.Exists(savePath))
         {
             File.Delete(savePath);
-            Debug.Log("Сохранение удалено");
         }
     }
 }

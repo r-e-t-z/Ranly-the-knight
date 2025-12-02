@@ -3,7 +3,7 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour
 {
     [Header("Item Settings")]
-    public ItemData itemData; // Перетащи сюда ItemData из Project!
+    public ItemData itemData;
     public int amount = 1;
 
     [Header("Interaction Settings")]
@@ -13,7 +13,6 @@ public class ItemPickup : MonoBehaviour
 
     void Start()
     {
-        // Автоматически настраиваем спрайт, если он есть в ItemData
         if (itemData != null && itemData.icon != null)
         {
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
@@ -55,18 +54,12 @@ public class ItemPickup : MonoBehaviour
     {
         if (itemData == null)
         {
-            Debug.LogError("ItemData не назначен!");
             return;
         }
 
         if (InventoryManager.Instance.AddItem(itemData.itemID, amount))
         {
-            Debug.Log($"Подобран предмет: {itemData.itemName} x{amount}");
             Destroy(gameObject);
-        }
-        else
-        {
-            Debug.Log("Не удалось подобрать предмет - инвентарь полный!");
         }
     }
 }

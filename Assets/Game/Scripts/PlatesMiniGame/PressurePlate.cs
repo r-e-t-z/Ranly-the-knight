@@ -15,6 +15,13 @@ public class PressurePlate : MonoBehaviour
     private PressurePlatePuzzle puzzleController;
     private Animator animator;
 
+    public static PressurePlate Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
     public void Initialize(PressurePlatePuzzle controller)
     {
         puzzleController = controller;

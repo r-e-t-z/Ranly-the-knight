@@ -28,14 +28,12 @@ public class DialogueManager : MonoBehaviour
     private NPCData currentNPC;
     private MonoBehaviour playerController;
 
-    // Для сохранения переменных между диалогами
     private Dictionary<string, object> globalVariables = new Dictionary<string, object>();
 
     public static DialogueManager Instance;
 
     void Awake()
     {
-
         Instance = this;
         choicesContainer.gameObject.SetActive(false);
         dialoguePanel.SetActive(false);
@@ -68,19 +66,15 @@ public class DialogueManager : MonoBehaviour
         story = new Story(inkJSON.text);
         currentNPC = npcData;
 
-        // Восстанавливаем глобальные переменные
         RestoreGlobalVariables();
 
-        // ПЕРЕД началом диалога обновляем переменные состояния игрока
         UpdatePlayerStateVariables();
 
-        // Переходим на нужную ветку
         if (!string.IsNullOrEmpty(startKnot))
         {
             story.ChoosePathString(startKnot);
         }
 
-        // Настраиваем портрет если есть NPC
         if (npcData != null)
         {
             SetDefaultSpeaker(npcData);
@@ -92,45 +86,37 @@ public class DialogueManager : MonoBehaviour
         ContinueDialogue();
     }
 
-    // Универсальная система проверки предметов
     private void UpdatePlayerStateVariables()
     {
         if (story == null) return;
 
-        // Автоматически проверяем все переменные с префиксом has_item_
         CheckAllItemVariables();
     }
 
-    // Автоматически проверяет все переменные с префиксом has_item_
     private void CheckAllItemVariables()
     {
         if (story == null) return;
 
-        // Создаем копию списка переменных для безопасного перебора
         List<string> variableNames = new List<string>();
         foreach (string varName in story.variablesState)
         {
             variableNames.Add(varName);
         }
 
-        // Перебираем копию вместо оригинальной коллекции
         foreach (string varName in variableNames)
         {
             if (varName.StartsWith("has_item_"))
             {
-                // Парсим has_item_ID_AMOUNT
                 string[] parts = varName.Split('_');
                 if (parts.Length >= 4)
                 {
-                    string itemId = parts[2]; // ID предмета
+                    string itemId = parts[2];
                     if (int.TryParse(parts[3], out int requiredAmount))
                     {
                         try
                         {
-                            // ПРОВЕРЯЕМ ТОЛЬКО АКТИВНЫЙ СЛОТ!
                             bool hasItem = CheckActiveSlotForItem(itemId, requiredAmount);
                             story.variablesState[varName] = hasItem;
-                            Debug.Log($"🔄 Авто-обновлена {varName} = {hasItem} (item:{itemId}, need:{requiredAmount})");
                         }
                         catch (System.Exception e)
                         {
@@ -142,14 +128,12 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // Проверяет наличие предмета в АКТИВНОМ слоте
     private bool CheckActiveSlotForItem(string itemId, int requiredAmount)
     {
         if (InventoryManager.Instance == null) return false;
 
         var activeSlot = InventoryManager.Instance.activeItemSlot;
 
-        // Проверяем активный слот
         if (activeSlot.HasItem() && activeSlot.Item.data.itemID == itemId)
         {
             return activeSlot.Item.stackSize >= requiredAmount;
@@ -177,7 +161,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (story == null) return;
 
-        // Создаем копию для безопасного перебора
         List<string> variableNames = new List<string>();
         foreach (string variableName in story.variablesState)
         {
@@ -213,7 +196,6 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueDialogue()
     {
-        // Очищаем выборы
         foreach (Transform child in choicesContainer)
             Destroy(child.gameObject);
 
@@ -222,10 +204,8 @@ public class DialogueManager : MonoBehaviour
             string text = story.Continue();
             dialogueText.text = text.Trim();
 
-            // Обрабатываем ВСЕ теги
             ProcessAllTags();
 
-            // Обрабатываем визуальные теги
             ApplyVisualTags();
         }
         else if (story.currentChoices.Count > 0)
@@ -242,7 +222,6 @@ public class DialogueManager : MonoBehaviour
     {
         List<string> currentTags = story.currentTags;
 
-        // Группируем теги по действиям
         Dictionary<string, List<string>> actions = new Dictionary<string, List<string>>();
         string currentAction = "";
 
@@ -250,7 +229,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (tag.StartsWith("action:"))
             {
-                currentAction = tag.Substring(7); // убираем "action:"
+                currentAction = tag.Substring(7); 
                 actions[currentAction] = new List<string>();
             }
             else if (!string.IsNullOrEmpty(currentAction))
@@ -263,7 +242,6 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // Выполняем все действия
         foreach (var action in actions)
         {
             ExecuteAction(action.Key, action.Value);
@@ -272,7 +250,6 @@ public class DialogueManager : MonoBehaviour
 
     private void ExecuteAction(string actionType, List<string> parameters)
     {
-        Debug.Log($"🎯 Выполняем действие: {actionType} с параметрами: {string.Join(", ", parameters)}");
 
         switch (actionType)
         {
@@ -309,7 +286,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // Реализации конкретных действий
     private void GiveItemAction(List<string> parameters)
     {
         string itemId = GetParameterValue(parameters, "item_id");
@@ -318,7 +294,6 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(itemId))
         {
             InventoryManager.Instance.AddItem(itemId, amount);
-            Debug.Log($"🎁 Выдан предмет: {itemId} x{amount}");
         }
     }
 
@@ -330,14 +305,6 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(itemId))
         {
             bool success = InventoryManager.Instance.RemoveItemFromActiveSlot(itemId, amount);
-            if (success)
-            {
-                Debug.Log($"📦 Успешно забраны предметы: {itemId} x{amount}");
-            }
-            else
-            {
-                Debug.LogWarning($"❌ Не удалось забрать предметы: {itemId} x{amount}");
-            }
         }
     }
 
@@ -352,7 +319,6 @@ public class DialogueManager : MonoBehaviour
             {
                 Collider2D collider = trigger.GetComponent<Collider2D>();
                 if (collider != null) collider.enabled = true;
-                Debug.Log($"✅ Активирован триггер: {triggerName}");
             }
         }
     }
@@ -366,7 +332,6 @@ public class DialogueManager : MonoBehaviour
             if (obj != null)
             {
                 obj.SetActive(false);
-                Debug.Log($"🚫 Деактивирован объект: {objectName}");
             }
         }
     }
@@ -378,13 +343,11 @@ public class DialogueManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(animationNames))
         {
-            // Множественные анимации
             string[] names = animationNames.Split(',');
             AnimationManager.Instance.PlayMultipleAnimations(names);
         }
         else if (!string.IsNullOrEmpty(animationName))
         {
-            // Одиночная анимация
             AnimationManager.Instance.PlayAnimation(animationName);
         }
     }
@@ -392,32 +355,23 @@ public class DialogueManager : MonoBehaviour
     private void PlaySoundAction(List<string> parameters)
     {
         string soundId = GetParameterValue(parameters, "sound_id");
-        // Реализуй систему звуков
-        Debug.Log($"🔊 Воспроизведен звук: {soundId}");
     }
 
     private void ChangeSceneAction(List<string> parameters)
     {
         string sceneName = GetParameterValue(parameters, "scene_name");
-        // UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-        Debug.Log($"🌍 Смена сцены на: {sceneName}");
     }
 
     private void TeleportPlayerAction(List<string> parameters)
     {
         string location = GetParameterValue(parameters, "location");
-        // Реализуй телепортацию
-        Debug.Log($"✨ Телепортация в: {location}");
     }
 
     private void UnlockAbilityAction(List<string> parameters)
     {
         string ability = GetParameterValue(parameters, "ability");
-        // Реализуй систему способностей
-        Debug.Log($"🔓 Разблокирована способность: {ability}");
     }
 
-    // Вспомогательные методы для парсинга параметров
     private string GetParameterValue(List<string> parameters, string key)
     {
         foreach (string param in parameters)
@@ -441,7 +395,7 @@ public class DialogueManager : MonoBehaviour
         string[] parts = tag.Split(' ');
         if (parts.Length == 2)
         {
-            string varName = parts[0].Substring(4); // убираем "set_"
+            string varName = parts[0].Substring(4); 
             string value = parts[1].ToLower();
 
             if (value == "true" || value == "false")
@@ -457,7 +411,6 @@ public class DialogueManager : MonoBehaviour
 
     private void ApplyVisualTags()
     {
-        // Сбрасываем видимость
         portraitLeft.gameObject.SetActive(false);
         portraitRight.gameObject.SetActive(false);
         nameLeft.gameObject.SetActive(false);
@@ -519,7 +472,6 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        // Сохраняем глобальные переменные
         SaveGlobalVariables();
 
         isPlaying = false;

@@ -41,7 +41,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (inRange && requirePressE && Input.GetKeyDown(KeyCode.E))
         {
-            // Проверяем, не идет ли уже диалог
             if (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying())
             {
                 return;

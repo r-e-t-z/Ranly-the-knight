@@ -9,8 +9,9 @@ public class PlayerMovement : MonoBehaviour
     public Sprite leftsprite;
     public SpriteRenderer spriterenderer;
 
-
+    public float runSpeed = 10f;
     public float moveSpeed = 5f;
+
     private Rigidbody2D rb;
     private Vector2 movement;
 
@@ -52,16 +53,24 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        
-
-        
-        
 
         movement = movement.normalized;
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
+            return;
+        }
+        else
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
+
+            
+        
+            
     }
 }

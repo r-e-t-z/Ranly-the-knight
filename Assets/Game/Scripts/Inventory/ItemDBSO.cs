@@ -5,18 +5,15 @@ public class ItemDBSO : ScriptableObject
 {
     public ItemData[] allItems;
 
-    // Метод для поиска предмета по его ID.
     public ItemData GetItemByID(string id)
     {
         if (allItems == null)
         {
-            Debug.LogError("Item Database: allItems array is null!");
             return null;
         }
 
         if (string.IsNullOrEmpty(id))
         {
-            Debug.LogError("Item Database: itemID is null or empty!");
             return null;
         }
 
@@ -24,7 +21,6 @@ public class ItemDBSO : ScriptableObject
         {
             if (item == null)
             {
-                Debug.LogWarning("Item Database: found null item in allItems array");
                 continue;
             }
 
@@ -34,7 +30,6 @@ public class ItemDBSO : ScriptableObject
             }
         }
 
-        Debug.LogWarning($"Item with ID '{id}' not found in database!");
         return null;
     }
 }

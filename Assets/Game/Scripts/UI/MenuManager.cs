@@ -47,7 +47,6 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Нет сохранения для загрузки!");
             UpdateContinueButton();
         }
     }

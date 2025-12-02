@@ -18,16 +18,7 @@ public class TriggerManager : MonoBehaviour
 			if (collider != null) 
 			{
 				collider.enabled = true;
-				Debug.Log($"✅ Активирован триггер: {triggerName}");
 			}
-			else
-			{
-				Debug.LogWarning($"❌ У объекта {triggerName} нет коллайдера");
-			}
-		}
-		else
-		{
-			Debug.LogWarning($"❌ Не найден триггер: {triggerName}");
 		}
 	}
 
@@ -37,11 +28,6 @@ public class TriggerManager : MonoBehaviour
 		if (obj != null)
 		{
 			obj.SetActive(false);
-			Debug.Log($"🚫 Деактивирован объект: {objectName}");
-		}
-		else
-		{
-			Debug.LogWarning($"❌ Не найден объект: {objectName}");
 		}
 	}
 }

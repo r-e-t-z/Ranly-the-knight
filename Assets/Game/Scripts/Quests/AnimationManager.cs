@@ -20,7 +20,6 @@ public class AnimationManager : MonoBehaviour
 			{
 				animator.enabled = true;
 				animator.Play(animationName);
-				Debug.Log($"🎬 Проиграна анимация: {animationName}");
 			}
 		}
 	}
@@ -35,7 +34,7 @@ public class AnimationManager : MonoBehaviour
 		foreach (string animationName in animationNames)
 		{
 			PlayAnimation(animationName);
-			yield return new WaitForSeconds(0.1f); // Маленькая задержка между анимациями
+			yield return new WaitForSeconds(0.1f);
 		}
 	}
 }

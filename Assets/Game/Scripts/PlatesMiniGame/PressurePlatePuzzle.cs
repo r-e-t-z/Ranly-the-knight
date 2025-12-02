@@ -16,11 +16,29 @@ public class PressurePlatePuzzle : MonoBehaviour
     public GameObject falsePlatesParent;
     public List<FalsePlate> falsePlates = new List<FalsePlate>();
 
+    [Header("Camera Settings")]
+    public Transform puzzleCameraPosition; // Куда двигать камеру
+    public float cameraMoveSpeed = 5f;
+
+    private Camera mainCamera;
+    private MonoBehaviour cameraFollowScript;
+    private Vector3 cameraStartPosition;
+    private bool isCameraMovingToPuzzle = false;
+    private bool isCameraMovingBack = false;
+
     private bool isSequencePlaying = false;
     private bool isPuzzleActive = false;
     private int currentStep = 0;
     private PlayerMovement playerMovement;
     private Transform playerTransform;
+    private Coroutine cameraReturnCoroutine;
+
+    public static PressurePlatePuzzle Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -30,6 +48,13 @@ public class PressurePlatePuzzle : MonoBehaviour
         if (player != null)
         {
             playerTransform = player.transform;
+        }
+
+        // Находим камеру
+        mainCamera = Camera.main;
+        if (mainCamera != null)
+        {
+            cameraFollowScript = mainCamera.GetComponent<MonoBehaviour>();
         }
 
         foreach (PressurePlate plate in puzzlePlates)
@@ -54,6 +79,68 @@ public class PressurePlatePuzzle : MonoBehaviour
         {
             StartPuzzleSequence();
         }
+
+        // Движение камеры к пазлу
+        if (isCameraMovingToPuzzle && puzzleCameraPosition != null)
+        {
+            MoveCameraToPuzzle();
+        }
+
+        // Движение камеры обратно
+        if (isCameraMovingBack && playerTransform != null)
+        {
+            MoveCameraBackToPlayer();
+        }
+    }
+
+    void MoveCameraToPuzzle()
+    {
+        Vector3 targetPos = puzzleCameraPosition.position;
+        mainCamera.transform.position = Vector3.MoveTowards(
+            mainCamera.transform.position,
+            targetPos,
+            cameraMoveSpeed * Time.deltaTime
+        );
+
+        // Если камера достигла цели
+        if (Vector3.Distance(mainCamera.transform.position, targetPos) < 0.01f)
+        {
+            mainCamera.transform.position = targetPos;
+            isCameraMovingToPuzzle = false;
+
+            // Камера на месте - запускаем показ плит
+            StartCoroutine(PlayPlateSequence());
+        }
+    }
+
+    void MoveCameraBackToPlayer()
+    {
+        if (playerTransform == null) return;
+
+        // Целевая позиция - текущая позиция игрока
+        Vector3 targetPos = new Vector3(
+            playerTransform.position.x,
+            playerTransform.position.y,
+            mainCamera.transform.position.z
+        );
+
+        mainCamera.transform.position = Vector3.MoveTowards(
+            mainCamera.transform.position,
+            targetPos,
+            cameraMoveSpeed * Time.deltaTime
+        );
+
+        // Если камера достаточно близко к игроку
+        if (Vector3.Distance(mainCamera.transform.position, targetPos) < 0.01f)
+        {
+            isCameraMovingBack = false;
+
+            // Включаем скрипт следования камеры
+            if (cameraFollowScript != null)
+            {
+                cameraFollowScript.enabled = true;
+            }
+        }
     }
 
     private bool IsPlayerInTriggerZone()
@@ -72,7 +159,6 @@ public class PressurePlatePuzzle : MonoBehaviour
     {
         FalsePlate[] foundPlates = falsePlatesParent.GetComponentsInChildren<FalsePlate>();
         falsePlates.AddRange(foundPlates);
-        Debug.Log($"Found {falsePlates.Count} false plates automatically");
     }
 
     private void StartPuzzleSequence()
@@ -81,30 +167,30 @@ public class PressurePlatePuzzle : MonoBehaviour
         isPuzzleActive = true;
         currentStep = 0;
 
-        float totalBlockTime = sequenceDelay * puzzlePlates.Count;
+        // Сохраняем стартовую позицию камеры
+        cameraStartPosition = mainCamera.transform.position;
+
+        // Отключаем скрипт следования камеры
+        if (cameraFollowScript != null)
+        {
+            cameraFollowScript.enabled = false;
+        }
+
+        // Начинаем движение камеры к пазлу
+        isCameraMovingToPuzzle = true;
+        isCameraMovingBack = false;
+
+        // Отключаем управление игроком
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
-            StartCoroutine(EnablePlayerMovementAfterDelay(totalBlockTime));
         }
-
-        StartCoroutine(PlayPlateSequence());
-    }
-
-    private IEnumerator EnablePlayerMovementAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (playerMovement != null)
-        {
-            playerMovement.enabled = true;
-        }
-        isSequencePlaying = false;
-        Debug.Log("Player movement enabled - you can now step on plates");
     }
 
     private IEnumerator PlayPlateSequence()
     {
-        Debug.Log("Starting puzzle sequence...");
+        // Ждем немного перед показом плит
+        yield return new WaitForSeconds(0.5f);
 
         for (int i = 0; i < puzzlePlates.Count; i++)
         {
@@ -112,7 +198,18 @@ public class PressurePlatePuzzle : MonoBehaviour
             StartCoroutine(PlayPlateAnimationWithDelay(i, delayForThisPlate));
         }
 
-        yield return null;
+        // Ждем пока все плиты покажутся
+        float totalSequenceTime = sequenceDelay * puzzlePlates.Count;
+        yield return new WaitForSeconds(totalSequenceTime + 0.5f);
+
+        // Возвращаем управление игроку
+        StartCameraReturn();
+
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = true;
+        }
+        isSequencePlaying = false;
     }
 
     private IEnumerator PlayPlateAnimationWithDelay(int plateIndex, float delay)
@@ -125,16 +222,14 @@ public class PressurePlatePuzzle : MonoBehaviour
     {
         if (!isPuzzleActive)
         {
-            // Наступили на плиту ДО нажатия E - возвращаем в начало
             ReturnPlayerToStart();
             PlayAllWrongStepAnimations();
-            Debug.Log("Stepped on plate before starting puzzle. Returning to start.");
+            ResetPuzzle();
             return;
         }
 
         if (isSequencePlaying)
         {
-            Debug.Log("Sequence is still playing, ignoring step");
             return;
         }
 
@@ -144,7 +239,6 @@ public class PressurePlatePuzzle : MonoBehaviour
             {
                 puzzlePlates[plateIndex].PlayRightStepAnimation();
                 currentStep++;
-                Debug.Log($"Correct step! Current progress: {currentStep}/{puzzlePlates.Count}");
 
                 if (currentStep >= puzzlePlates.Count)
                 {
@@ -153,20 +247,16 @@ public class PressurePlatePuzzle : MonoBehaviour
             }
             else
             {
-                // Неправильный порядок - возвращаем в начало
                 ReturnPlayerToStart();
                 PlayAllWrongStepAnimations();
                 ResetPuzzle();
-                Debug.Log($"Wrong order! Expected {currentStep}, got {plateIndex}. Returning to start.");
             }
         }
         else
         {
-            // Наступили на ложную плиту - возвращаем в начало
             ReturnPlayerToStart();
             PlayAllWrongStepAnimations();
             ResetPuzzle();
-            Debug.Log("Stepped on false plate. Returning to start.");
         }
     }
 
@@ -175,8 +265,20 @@ public class PressurePlatePuzzle : MonoBehaviour
         if (playerTransform != null && playerStartPosition != null)
         {
             playerTransform.position = playerStartPosition.position;
-            Debug.Log("Player returned to start position");
         }
+    }
+
+    private void PuzzleCompleted()
+    {
+        isPuzzleActive = false;
+        // Ждем 1 секунду и возвращаем камеру к игроку
+        Invoke("StartCameraReturn", 1f);
+    }
+
+    private void StartCameraReturn()
+    {
+        isCameraMovingBack = true;
+        isCameraMovingToPuzzle = false;
     }
 
     private void PlayAllWrongStepAnimations()
@@ -187,25 +289,23 @@ public class PressurePlatePuzzle : MonoBehaviour
         }
     }
 
-    private void PuzzleCompleted()
-    {
-        Debug.Log("Puzzle Completed! Well done!");
-        isPuzzleActive = false;
-    }
-
     public void ResetPuzzle()
     {
+        PlayAllWrongStepAnimations();
         StopAllCoroutines();
-        isSequencePlaying = false;
-        isPuzzleActive = false;
-        currentStep = 0;
 
+        // Возвращаем камеру к игроку сразу
+        StartCameraReturn();
+
+        // Возвращаем управление
         if (playerMovement != null)
         {
             playerMovement.enabled = true;
         }
 
-        Debug.Log("Puzzle Reset - start over");
+        isSequencePlaying = false;
+        isPuzzleActive = false;
+        currentStep = 0;
     }
 
     public bool IsPuzzleActive()

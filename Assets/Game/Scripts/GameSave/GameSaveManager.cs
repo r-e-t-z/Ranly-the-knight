@@ -16,7 +16,6 @@ public class GameSaveManager : MonoBehaviour
         if (enableSaveButton)
         {
             SaveGame();
-            Debug.Log("Игра сохранена через кнопку!");
         }
     }
 

@@ -27,7 +27,6 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         else
         {
             assignedSlot = InventoryManager.Instance.activeItemSlot;
-            // Активный слот должен быть всегда видим, управляем через скрипт
             UpdateActiveSlotVisibility();
         }
         UpdateSlotDisplay();
@@ -72,17 +71,14 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         }
     }
 
-    // Управление видимостью активного слота
     private void UpdateActiveSlotVisibility()
     {
         if (isActiveItemSlot)
         {
-            // Делаем весь слот активным/неактивным в зависимости от наличия предмета
             gameObject.SetActive(assignedSlot.HasItem());
         }
     }
 
-    // Обработка двойного клика
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -91,15 +87,12 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 
             if (timeSinceLastClick <= doubleClickThreshold)
             {
-                // Двойной клик
                 if (!isActiveItemSlot && assignedSlot.HasItem())
                 {
-                    // Двойной клик по предмету в инвентаре - перемещаем в активный слот
                     InventoryManager.Instance.MoveToActiveSlot(SlotIndex);
                 }
                 else if (isActiveItemSlot && assignedSlot.HasItem())
                 {
-                    // Двойной клик по активному предмету - возвращаем в инвентарь
                     InventoryManager.Instance.MoveToInventoryFromActive();
                 }
             }
@@ -108,7 +101,6 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         }
     }
 
-    // Остальные методы перетаскивания остаются без изменений
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!assignedSlot.HasItem() || isActiveItemSlot) return;
