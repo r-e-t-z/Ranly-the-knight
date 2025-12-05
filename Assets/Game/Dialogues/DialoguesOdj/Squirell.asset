@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Squirrel
   portrait: {fileID: 0}
-  inkFile: {fileID: 4900000, guid: f1c6e4f56393f7343a947f23bc460ce9, type: 3}
+  inkFile: {fileID: 4900000, guid: 51d1565fc27a7264bb086c759f4a4c55, type: 3}

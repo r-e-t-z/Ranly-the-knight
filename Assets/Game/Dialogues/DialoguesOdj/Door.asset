@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Door
   portrait: {fileID: 0}
-  inkFile: {fileID: 4900000, guid: 1c760bcabf78fa949bb0a686f27debe0, type: 3}
+  inkFile: {fileID: 4900000, guid: aeb87ab86324fe24085b2b5cfeacd9a3, type: 3}

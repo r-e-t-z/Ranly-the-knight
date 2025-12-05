@@ -1,9 +1,10 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PanelController : MonoBehaviour
 {
     [Header("Панель")]
     public GameObject panel;
+    public string sceneName;
 
     [Header("Настройки триггера")]
     public bool workOnlyOnce = false;
@@ -11,6 +12,8 @@ public class PanelController : MonoBehaviour
 
     [Header("Управление игроком")]
     public bool disablePlayerControl = true;
+
+    public bool goToMenu = false;
 
     private PlayerMovement playerController;
     private bool alreadyTriggered = false;
@@ -33,8 +36,18 @@ public class PanelController : MonoBehaviour
             if (disablePlayerControl && playerController != null)
                 playerController.enabled = false;
 
+            if (goToMenu)
+            {
+                Invoke("LoadMenu", 5f);
+            }
+
             alreadyTriggered = true;
         }
+    }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public void HidePanel()

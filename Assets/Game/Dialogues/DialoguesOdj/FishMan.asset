@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: 
   portrait: {fileID: 0}
-  inkFile: {fileID: 0}
+  inkFile: {fileID: 4900000, guid: a121d3338ff62dc48bc026773c2a4beb, type: 3}

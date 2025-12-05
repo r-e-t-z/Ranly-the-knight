@@ -268,8 +268,8 @@ public class DialogueManager : MonoBehaviour
             case "start_animation":
                 StartAnimationAction(parameters);
                 break;
-            case "play_sound":
-                PlaySoundAction(parameters);
+            case "quest_text":
+                QuestTextAction(parameters);
                 break;
             case "change_scene":
                 ChangeSceneAction(parameters);
@@ -352,9 +352,12 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void PlaySoundAction(List<string> parameters)
+    private void QuestTextAction(List<string> parameters)
     {
-        string soundId = GetParameterValue(parameters, "sound_id");
+        Debug.Log($"3 - Это делается ");
+        string questText = GetParameterValue(parameters, "quest_text");
+        QuestsManager.Instance.AddQuestsTexts(questText);
+        Debug.Log($"12 - Это делается {questText}");
     }
 
     private void ChangeSceneAction(List<string> parameters)
