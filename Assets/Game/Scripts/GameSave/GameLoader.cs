@@ -17,7 +17,6 @@ public class GameLoader : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
-            Debug.LogWarning("Игрок не найден на сцене!");
             return;
         }
 
@@ -26,12 +25,10 @@ public class GameLoader : MonoBehaviour
         if (saveData != null && saveData.hasSaveData)
         {
             spawnPosition = saveData.GetPlayerPosition();
-            Debug.Log("Загрузка сохраненной позиции: " + spawnPosition);
         }
         else
         {
             spawnPosition = defaultSpawnPoint != null ? defaultSpawnPoint.position : Vector3.zero;
-            Debug.Log("Загрузка позиции по умолчанию");
         }
 
         player.transform.position = spawnPosition;

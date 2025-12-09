@@ -1,12 +1,88 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\sdany\\Ranly the knight\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\QuestsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\QuestsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\dialogues\\dialoguemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\dialogues\\dialoguemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\dialogues\\dialoguetrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\dialogues\\dialoguetrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DialogueTrigger.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T18:25:31.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DialogueManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
+              "ViewState": "AgIAAOMBAAAAAAAAAAAzwPEBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T18:25:27.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuestsManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\QuestsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\QuestsManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\QuestsManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\QuestsManager.cs",
+              "ViewState": "AgIAAOgAAAAAAAAAAAAAwAcBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T18:26:57.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InventoryManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
+              "ViewState": "AgIAAEUBAAAAAAAAAAAAwGQBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T19:25:12.336Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

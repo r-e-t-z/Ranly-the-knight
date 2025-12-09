@@ -5,21 +5,18 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
-    // События для уведомления UI об изменениях в инвентаре.
     public static event Action<InventorySlot[]> OnInventoryChanged;
     public static event Action<InventoryItem> OnActiveItemChanged;
 
-    // Основные данные инвентаря.
     [SerializeField] private int inventorySize = 9;
     public InventorySlot[] inventorySlots;
     public InventorySlot activeItemSlot;
 
-    // Ссылка на базу данных предметов.
     [SerializeField] private ItemDBSO itemDatabase;
 
     [Header("UI Settings")]
     public GameObject inventoryPanel;
-    public GameObject activeSlotUI; // Перетащи сюда активный слот из сцены!
+    public GameObject activeSlotUI; 
 
     private void Awake()
     {
@@ -39,7 +36,6 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        // Открытие/закрытие инвентаря по Tab
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             ToggleInventory();
@@ -57,7 +53,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Метод для открытия/закрытия инвентаря
     public void ToggleInventory()
     {
         if (inventoryPanel != null)
@@ -67,13 +62,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Методы для перемещения между инвентарем и активным слотом
     public void MoveToActiveSlot(int fromSlotIndex)
     {
         if (fromSlotIndex < 0 || fromSlotIndex >= inventorySlots.Length) return;
         if (!inventorySlots[fromSlotIndex].HasItem()) return;
 
-        // Если в активном слоте уже есть предмет - сначала перемещаем его обратно
         if (activeItemSlot.HasItem())
         {
             int emptySlot = FindEmptySlot();
@@ -84,16 +77,13 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Нет свободного места в инвентаре для активного предмета!");
                 return;
             }
         }
 
-        // Перемещаем новый предмет в активный слот
         activeItemSlot.SetItem(inventorySlots[fromSlotIndex].Item);
         inventorySlots[fromSlotIndex].ClearSlot();
 
-        // Обновляем UI
         OnInventoryChanged?.Invoke(inventorySlots);
         OnActiveItemChanged?.Invoke(activeItemSlot.Item);
     }
@@ -117,7 +107,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Вспомогательный метод для поиска пустого слота
     private int FindEmptySlot()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
@@ -130,13 +119,11 @@ public class InventoryManager : MonoBehaviour
         return -1;
     }
 
-    // Главный метод добавления предмета в инвентарь по его ID.
     public bool AddItem(string itemID, int amount = 1)
     {
         ItemData itemToAdd = itemDatabase.GetItemByID(itemID);
         if (itemToAdd == null) return false;
 
-        // Логика добавления в существующий стек (если предмет стакаемый)
         if (itemToAdd.isStackable)
         {
             for (int i = 0; i < inventorySlots.Length; i++)
@@ -152,7 +139,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // Логика поиска пустого слота для нового предмета
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             if (!inventorySlots[i].HasItem())
@@ -167,7 +153,6 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    // Метод для попытки скрафтить два предмета.
     public void TryCraftItems(int fromSlotIndex, int toSlotIndex)
     {
         InventoryItem itemA = inventorySlots[fromSlotIndex].Item;
@@ -194,7 +179,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Вспомогательный метод для поиска результата крафта.
     private ItemData FindCraftingResult(ItemData ingredient1, ItemData ingredient2)
     {
         foreach (ItemData potentialResult in itemDatabase.allItems)
@@ -212,8 +196,6 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log($"Рецепт не найден для: {ingredient1.itemName} + {ingredient2.itemName}");
         return null;
     }
 
@@ -229,38 +211,34 @@ public class InventoryManager : MonoBehaviour
                 {
                     activeSlot.ClearSlot();
                     ForceInventoryUpdate();
-                    Debug.Log($"?? Полностью забраны предметы из активного слота: {itemID} x{amount}");
+
                     return true;
                 }
                 else
                 {
                     activeSlot.Item.stackSize -= amount;
                     ForceInventoryUpdate();
-                    Debug.Log($"?? Частично забраны предметы из активного слота: {itemID} x{amount}. Осталось: {activeSlot.Item.stackSize}");
+
                     return true;
                 }
             }
         }
 
-        Debug.LogWarning($"? Не удалось забрать предмет {itemID} x{amount} из активного слота");
         return false;
     }
 
-    // Установить активный предмет
     public void SetActiveItem(InventoryItem item)
     {
         activeItemSlot.SetItem(item);
         OnActiveItemChanged?.Invoke(item);
     }
 
-    // Убрать активный предмет
     public void ClearActiveItem()
     {
         activeItemSlot.ClearSlot();
         OnActiveItemChanged?.Invoke(null);
     }
 
-    // Удалить предмет из определенного слота
     public void RemoveItemFromSlot(int slotIndex)
     {
         if (slotIndex >= 0 && slotIndex < inventorySlots.Length)
@@ -270,18 +248,15 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Добавь этот метод в класс InventoryManager
     public int GetItemCount(string itemID)
     {
         int totalCount = 0;
 
-        // Проверяем активный слот
         if (activeItemSlot.HasItem() && activeItemSlot.Item.data.itemID == itemID)
         {
             totalCount += activeItemSlot.Item.stackSize;
         }
 
-        // Проверяем обычные слоты инвентаря
         foreach (var slot in inventorySlots)
         {
             if (slot.HasItem() && slot.Item.data.itemID == itemID)
@@ -293,9 +268,17 @@ public class InventoryManager : MonoBehaviour
         return totalCount;
     }
 
+    public int GetActiveSlotItemCount(string itemID)
+    {
+        if (activeItemSlot.HasItem() && activeItemSlot.Item.data.itemID == itemID)
+        {
+            return activeItemSlot.Item.stackSize;
+        }
+        return 0;
+    }
+
     public void ForceInventoryUpdate()
     {
-        // Вызываем события для принудительного обновления UI
         OnInventoryChanged?.Invoke(inventorySlots);
 
         if (activeItemSlot.HasItem())
@@ -311,7 +294,6 @@ public class InventoryManager : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
-        // Вызываем события для обновления UI
         OnInventoryChanged?.Invoke(inventorySlots);
         if (activeItemSlot.HasItem())
         {
@@ -324,7 +306,6 @@ public class InventoryManager : MonoBehaviour
     }
 }
 
-// Класс, представляющий собой один слот инвентаря.
 [System.Serializable]
 public class InventorySlot
 {

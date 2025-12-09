@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager Instance;
+
     [Header("UI")]
     public GameObject dialoguePanel;
     public TMP_Text dialogueText;
@@ -30,13 +32,12 @@ public class DialogueManager : MonoBehaviour
 
     private Dictionary<string, object> globalVariables = new Dictionary<string, object>();
 
-    public static DialogueManager Instance;
-
     void Awake()
     {
         Instance = this;
-        choicesContainer.gameObject.SetActive(false);
-        dialoguePanel.SetActive(false);
+        if (choicesContainer != null) choicesContainer.gameObject.SetActive(false);
+        if (dialoguePanel != null) dialoguePanel.SetActive(false);
+
         playerController = FindObjectOfType<PlayerMovement>();
     }
 
@@ -44,24 +45,19 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isPlaying) return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
         {
             if (EventSystem.current.IsPointerOverGameObject()) return;
-            ContinueDialogue();
-        }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
             ContinueDialogue();
         }
     }
 
     public void StartDialogue(TextAsset inkJSON, string startKnot = null, NPCData npcData = null)
     {
-        if (DialogueManager.Instance.IsPlaying()) return;
+        if (isPlaying) return;
 
-        if (playerController != null)
-            playerController.enabled = false;
+        if (playerController != null) playerController.enabled = false;
 
         story = new Story(inkJSON.text);
         currentNPC = npcData;
@@ -90,13 +86,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (story == null) return;
 
-        CheckAllItemVariables();
-    }
-
-    private void CheckAllItemVariables()
-    {
-        if (story == null) return;
-
         List<string> variableNames = new List<string>();
         foreach (string varName in story.variablesState)
         {
@@ -113,15 +102,8 @@ public class DialogueManager : MonoBehaviour
                     string itemId = parts[2];
                     if (int.TryParse(parts[3], out int requiredAmount))
                     {
-                        try
-                        {
-                            bool hasItem = CheckActiveSlotForItem(itemId, requiredAmount);
-                            story.variablesState[varName] = hasItem;
-                        }
-                        catch (System.Exception e)
-                        {
-                            Debug.LogWarning($"Ошибка при обновлении {varName}: {e.Message}");
-                        }
+                        bool hasItem = CheckActiveSlotForItem(itemId, requiredAmount);
+                        story.variablesState[varName] = hasItem;
                     }
                 }
             }
@@ -132,27 +114,23 @@ public class DialogueManager : MonoBehaviour
     {
         if (InventoryManager.Instance == null) return false;
 
-        var activeSlot = InventoryManager.Instance.activeItemSlot;
-
-        if (activeSlot.HasItem() && activeSlot.Item.data.itemID == itemId)
-        {
-            return activeSlot.Item.stackSize >= requiredAmount;
-        }
-
-        return false;
+        int amountInHand = InventoryManager.Instance.GetActiveSlotItemCount(itemId);
+        return amountInHand >= requiredAmount;
     }
 
     private void RestoreGlobalVariables()
     {
         foreach (var variable in globalVariables)
         {
-            try
+            if (story.variablesState.Contains(variable.Key))
             {
-                story.variablesState[variable.Key] = variable.Value;
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogWarning($"Не удалось восстановить переменную {variable.Key}: {e.Message}");
+                try
+                {
+                    story.variablesState[variable.Key] = variable.Value;
+                }
+                catch
+                {
+                }
             }
         }
     }
@@ -169,35 +147,13 @@ public class DialogueManager : MonoBehaviour
 
         foreach (string variableName in variableNames)
         {
-            try
-            {
-                globalVariables[variableName] = story.variablesState[variableName];
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogWarning($"Не удалось сохранить переменную {variableName}: {e.Message}");
-            }
-        }
-    }
-
-    private void SetDefaultSpeaker(NPCData npcData)
-    {
-        if (npcData == null) return;
-
-        portraitLeft.gameObject.SetActive(true);
-        nameLeft.gameObject.SetActive(true);
-        nameLeft.text = npcData.npcName;
-
-        if (npcData.portrait != null)
-        {
-            portraitLeft.sprite = npcData.portrait;
+            globalVariables[variableName] = story.variablesState[variableName];
         }
     }
 
     public void ContinueDialogue()
     {
-        foreach (Transform child in choicesContainer)
-            Destroy(child.gameObject);
+        foreach (Transform child in choicesContainer) Destroy(child.gameObject);
 
         if (story.canContinue)
         {
@@ -205,7 +161,6 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text = text.Trim();
 
             ProcessAllTags();
-
             ApplyVisualTags();
         }
         else if (story.currentChoices.Count > 0)
@@ -221,7 +176,6 @@ public class DialogueManager : MonoBehaviour
     private void ProcessAllTags()
     {
         List<string> currentTags = story.currentTags;
-
         Dictionary<string, List<string>> actions = new Dictionary<string, List<string>>();
         string currentAction = "";
 
@@ -229,10 +183,10 @@ public class DialogueManager : MonoBehaviour
         {
             if (tag.StartsWith("action:"))
             {
-                currentAction = tag.Substring(7); 
+                currentAction = tag.Substring(7).Trim();
                 actions[currentAction] = new List<string>();
             }
-            else if (!string.IsNullOrEmpty(currentAction))
+            else if (!string.IsNullOrEmpty(currentAction) && tag.Contains(":"))
             {
                 actions[currentAction].Add(tag);
             }
@@ -250,7 +204,6 @@ public class DialogueManager : MonoBehaviour
 
     private void ExecuteAction(string actionType, List<string> parameters)
     {
-
         switch (actionType)
         {
             case "give_item":
@@ -258,6 +211,15 @@ public class DialogueManager : MonoBehaviour
                 break;
             case "take_item":
                 TakeItemAction(parameters);
+                break;
+            case "quest_add":
+                AddQuestAction(parameters);
+                break;
+            case "quest_add_item":
+                AddQuestItemAction(parameters);
+                break;
+            case "quest_complete":
+                CompleteQuestAction(parameters);
                 break;
             case "activate_trigger":
                 ActivateTriggerAction(parameters);
@@ -274,7 +236,7 @@ public class DialogueManager : MonoBehaviour
             case "change_scene":
                 ChangeSceneAction(parameters);
                 break;
-            case "teleport_player":
+            case "animation_name":
                 TeleportPlayerAction(parameters);
                 break;
             case "unlock_ability":
@@ -286,54 +248,65 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void AddQuestAction(List<string> parameters)
+    {
+        string id = GetParameterValue(parameters, "id");
+        string desc = GetParameterValue(parameters, "desc");
+
+        if (!string.IsNullOrEmpty(id) && QuestsManager.Instance != null)
+        {
+            QuestsManager.Instance.AddQuest(id, desc);
+        }
+    }
+
+    private void AddQuestItemAction(List<string> parameters)
+    {
+        string id = GetParameterValue(parameters, "id");
+        string desc = GetParameterValue(parameters, "desc");
+        string itemId = GetParameterValue(parameters, "item_id");
+        int amount = GetIntParameterValue(parameters, "amount", 1);
+
+        if (!string.IsNullOrEmpty(id) && QuestsManager.Instance != null)
+        {
+            QuestsManager.Instance.AddQuest(id, desc, itemId, amount);
+        }
+    }
+
+    private void CompleteQuestAction(List<string> parameters)
+    {
+        string id = GetParameterValue(parameters, "id");
+        if (!string.IsNullOrEmpty(id) && QuestsManager.Instance != null)
+        {
+            QuestsManager.Instance.CompleteQuest(id);
+        }
+    }
+
     private void GiveItemAction(List<string> parameters)
     {
         string itemId = GetParameterValue(parameters, "item_id");
         int amount = GetIntParameterValue(parameters, "amount", 1);
-
-        if (!string.IsNullOrEmpty(itemId))
-        {
-            InventoryManager.Instance.AddItem(itemId, amount);
-        }
+        if (!string.IsNullOrEmpty(itemId)) InventoryManager.Instance.AddItem(itemId, amount);
     }
 
     private void TakeItemAction(List<string> parameters)
     {
         string itemId = GetParameterValue(parameters, "item_id");
         int amount = GetIntParameterValue(parameters, "amount", 1);
-
-        if (!string.IsNullOrEmpty(itemId))
-        {
-            bool success = InventoryManager.Instance.RemoveItemFromActiveSlot(itemId, amount);
-        }
+        if (!string.IsNullOrEmpty(itemId)) InventoryManager.Instance.RemoveItemFromActiveSlot(itemId, amount);
     }
-
 
     private void ActivateTriggerAction(List<string> parameters)
     {
         string triggerName = GetParameterValue(parameters, "trigger_name");
-        if (!string.IsNullOrEmpty(triggerName))
-        {
-            GameObject trigger = GameObject.Find(triggerName);
-            if (trigger != null)
-            {
-                Collider2D collider = trigger.GetComponent<Collider2D>();
-                if (collider != null) collider.enabled = true;
-            }
-        }
+        GameObject trigger = GameObject.Find(triggerName);
+        if (trigger != null && trigger.GetComponent<Collider2D>()) trigger.GetComponent<Collider2D>().enabled = true;
     }
 
     private void DeactivateObjectAction(List<string> parameters)
     {
         string objectName = GetParameterValue(parameters, "object_name");
-        if (!string.IsNullOrEmpty(objectName))
-        {
-            GameObject obj = GameObject.Find(objectName);
-            if (obj != null)
-            {
-                obj.SetActive(false);
-            }
-        }
+        GameObject obj = GameObject.Find(objectName);
+        if (obj != null) obj.SetActive(false);
     }
 
     private void StartAnimationAction(List<string> parameters)
@@ -354,34 +327,29 @@ public class DialogueManager : MonoBehaviour
 
     private void QuestTextAction(List<string> parameters)
     {
-        Debug.Log($"3 - Это делается ");
-        string questText = GetParameterValue(parameters, "quest_text");
-        QuestsManager.Instance.AddQuestsTexts(questText);
-        Debug.Log($"12 - Это делается {questText}");
     }
 
     private void ChangeSceneAction(List<string> parameters)
     {
         string sceneName = GetParameterValue(parameters, "scene_name");
+        if (!string.IsNullOrEmpty(sceneName)) UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
     private void TeleportPlayerAction(List<string> parameters)
     {
-        string location = GetParameterValue(parameters, "location");
     }
 
     private void UnlockAbilityAction(List<string> parameters)
     {
-        string ability = GetParameterValue(parameters, "ability");
     }
 
     private string GetParameterValue(List<string> parameters, string key)
     {
         foreach (string param in parameters)
         {
-            if (param.StartsWith(key + ":"))
+            if (param.Trim().StartsWith(key + ":"))
             {
-                return param.Substring(key.Length + 1);
+                return param.Trim().Substring(key.Length + 1).Trim();
             }
         }
         return "";
@@ -398,17 +366,12 @@ public class DialogueManager : MonoBehaviour
         string[] parts = tag.Split(' ');
         if (parts.Length == 2)
         {
-            string varName = parts[0].Substring(4); 
+            string varName = parts[0].Substring(4);
             string value = parts[1].ToLower();
 
-            if (value == "true" || value == "false")
-            {
-                story.variablesState[varName] = value == "true";
-            }
-            else
-            {
-                story.variablesState[varName] = value;
-            }
+            if (value == "true") story.variablesState[varName] = true;
+            else if (value == "false") story.variablesState[varName] = false;
+            else story.variablesState[varName] = value;
         }
     }
 
@@ -431,27 +394,31 @@ public class DialogueManager : MonoBehaviour
                 portraitRight.gameObject.SetActive(true);
                 nameRight.gameObject.SetActive(true);
             }
-            else if (tag.StartsWith("speaker: "))
+            else if (tag.StartsWith("speaker:"))
             {
-                string speakerName = tag.Substring("speaker: ".Length);
-                if (portraitLeft.gameObject.activeSelf)
-                    nameLeft.text = speakerName;
-                if (portraitRight.gameObject.activeSelf)
-                    nameRight.text = speakerName;
+                string speakerName = tag.Substring(8).Trim();
+                if (portraitLeft.gameObject.activeSelf) nameLeft.text = speakerName;
+                if (portraitRight.gameObject.activeSelf) nameRight.text = speakerName;
             }
-            else if (tag.StartsWith("portrait: "))
+            else if (tag.StartsWith("portrait:"))
             {
-                string portraitName = tag.Substring("portrait: ".Length);
+                string portraitName = tag.Substring(9).Trim();
                 Sprite sprite = Resources.Load<Sprite>("Portraits/" + portraitName);
                 if (sprite != null)
                 {
-                    if (portraitLeft.gameObject.activeSelf)
-                        portraitLeft.sprite = sprite;
-                    if (portraitRight.gameObject.activeSelf)
-                        portraitRight.sprite = sprite;
+                    if (portraitLeft.gameObject.activeSelf) portraitLeft.sprite = sprite;
+                    if (portraitRight.gameObject.activeSelf) portraitRight.sprite = sprite;
                 }
             }
         }
+    }
+
+    private void SetDefaultSpeaker(NPCData npcData)
+    {
+        portraitLeft.gameObject.SetActive(true);
+        nameLeft.gameObject.SetActive(true);
+        nameLeft.text = npcData.npcName;
+        if (npcData.portrait != null) portraitLeft.sprite = npcData.portrait;
     }
 
     private void ShowChoices()
@@ -479,12 +446,10 @@ public class DialogueManager : MonoBehaviour
 
         isPlaying = false;
         dialoguePanel.SetActive(false);
-
-        if (playerController != null)
-            playerController.enabled = true;
-
-        currentNPC = null;
         choicesContainer.gameObject.SetActive(false);
+
+        if (playerController != null) playerController.enabled = true;
+        currentNPC = null;
     }
 
     public bool IsPlaying() => isPlaying;

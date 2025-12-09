@@ -42,7 +42,6 @@ public static class SaveSystem
         try
         {
             File.WriteAllText(savePath, json);
-            Debug.Log("Игра сохранена: " + savePath);
         }
         catch (System.Exception e)
         {
@@ -54,7 +53,6 @@ public static class SaveSystem
     {
         if (!File.Exists(savePath))
         {
-            Debug.Log("Сохранение не найдено");
             return null;
         }
 
@@ -62,12 +60,10 @@ public static class SaveSystem
         {
             string json = File.ReadAllText(savePath);
             SaveData saveData = JsonUtility.FromJson<SaveData>(json);
-            Debug.Log("Игра загружена");
             return saveData;
         }
         catch (System.Exception e)
         {
-            Debug.LogError("Ошибка загрузки: " + e.Message);
             return null;
         }
     }

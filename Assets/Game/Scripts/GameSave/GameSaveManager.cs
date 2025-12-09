@@ -22,7 +22,6 @@ public class GameSaveManager : MonoBehaviour
     public void QuickSave()
     {
         SaveGame();
-        Debug.Log("Быстрое сохранение выполнено!");
     }
 
     private void SaveGame()

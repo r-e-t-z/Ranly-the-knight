@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
             playerController.enabled = false;
         }
 
-        // Настраиваем кнопку сброса
         if (resetButton != null)
         {
             resetButton.onClick.AddListener(ResetGrid);
@@ -141,7 +140,6 @@ public class GameManager : MonoBehaviour
     public void ResetGrid()
     {
         SetupInitialValues();
-        Debug.Log("Таблица сброшена к начальным значениям!");
     }
 
     public void CheckSolution()

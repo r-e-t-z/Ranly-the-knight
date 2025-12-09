@@ -17,7 +17,7 @@ public class PressurePlatePuzzle : MonoBehaviour
     public List<FalsePlate> falsePlates = new List<FalsePlate>();
 
     [Header("Camera Settings")]
-    public Transform puzzleCameraPosition; // Куда двигать камеру
+    public Transform puzzleCameraPosition;
     public float cameraMoveSpeed = 5f;
 
     private Camera mainCamera;
@@ -50,7 +50,6 @@ public class PressurePlatePuzzle : MonoBehaviour
             playerTransform = player.transform;
         }
 
-        // Находим камеру
         mainCamera = Camera.main;
         if (mainCamera != null)
         {
@@ -80,13 +79,11 @@ public class PressurePlatePuzzle : MonoBehaviour
             StartPuzzleSequence();
         }
 
-        // Движение камеры к пазлу
         if (isCameraMovingToPuzzle && puzzleCameraPosition != null)
         {
             MoveCameraToPuzzle();
         }
 
-        // Движение камеры обратно
         if (isCameraMovingBack && playerTransform != null)
         {
             MoveCameraBackToPlayer();
@@ -102,13 +99,11 @@ public class PressurePlatePuzzle : MonoBehaviour
             cameraMoveSpeed * Time.deltaTime
         );
 
-        // Если камера достигла цели
         if (Vector3.Distance(mainCamera.transform.position, targetPos) < 0.01f)
         {
             mainCamera.transform.position = targetPos;
             isCameraMovingToPuzzle = false;
 
-            // Камера на месте - запускаем показ плит
             StartCoroutine(PlayPlateSequence());
         }
     }
@@ -117,7 +112,6 @@ public class PressurePlatePuzzle : MonoBehaviour
     {
         if (playerTransform == null) return;
 
-        // Целевая позиция - текущая позиция игрока
         Vector3 targetPos = new Vector3(
             playerTransform.position.x,
             playerTransform.position.y,
@@ -130,12 +124,10 @@ public class PressurePlatePuzzle : MonoBehaviour
             cameraMoveSpeed * Time.deltaTime
         );
 
-        // Если камера достаточно близко к игроку
         if (Vector3.Distance(mainCamera.transform.position, targetPos) < 0.01f)
         {
             isCameraMovingBack = false;
 
-            // Включаем скрипт следования камеры
             if (cameraFollowScript != null)
             {
                 cameraFollowScript.enabled = true;
@@ -167,20 +159,16 @@ public class PressurePlatePuzzle : MonoBehaviour
         isPuzzleActive = true;
         currentStep = 0;
 
-        // Сохраняем стартовую позицию камеры
         cameraStartPosition = mainCamera.transform.position;
 
-        // Отключаем скрипт следования камеры
         if (cameraFollowScript != null)
         {
             cameraFollowScript.enabled = false;
         }
 
-        // Начинаем движение камеры к пазлу
         isCameraMovingToPuzzle = true;
         isCameraMovingBack = false;
 
-        // Отключаем управление игроком
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
@@ -189,7 +177,6 @@ public class PressurePlatePuzzle : MonoBehaviour
 
     private IEnumerator PlayPlateSequence()
     {
-        // Ждем немного перед показом плит
         yield return new WaitForSeconds(0.5f);
 
         for (int i = 0; i < puzzlePlates.Count; i++)
@@ -198,11 +185,9 @@ public class PressurePlatePuzzle : MonoBehaviour
             StartCoroutine(PlayPlateAnimationWithDelay(i, delayForThisPlate));
         }
 
-        // Ждем пока все плиты покажутся
         float totalSequenceTime = sequenceDelay * puzzlePlates.Count;
         yield return new WaitForSeconds(totalSequenceTime + 0.5f);
 
-        // Возвращаем управление игроку
         StartCameraReturn();
 
         if (playerMovement != null)
@@ -271,7 +256,6 @@ public class PressurePlatePuzzle : MonoBehaviour
     private void PuzzleCompleted()
     {
         isPuzzleActive = false;
-        // Ждем 1 секунду и возвращаем камеру к игроку
         Invoke("StartCameraReturn", 1f);
     }
 
@@ -294,10 +278,8 @@ public class PressurePlatePuzzle : MonoBehaviour
         PlayAllWrongStepAnimations();
         StopAllCoroutines();
 
-        // Возвращаем камеру к игроку сразу
         StartCameraReturn();
 
-        // Возвращаем управление
         if (playerMovement != null)
         {
             playerMovement.enabled = true;

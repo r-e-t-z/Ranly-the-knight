@@ -6,7 +6,7 @@ public class TableCell : MonoBehaviour, IDropHandler
 {
     private Text numberText;
     public int currentValue;
-    public bool isLocked = false; // Добавили флаг блокировки
+    public bool isLocked = false; 
 
     void Start()
     {
@@ -15,7 +15,6 @@ public class TableCell : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        // Если ячейка заблокирована - ничего не делаем
         if (isLocked) return;
 
         GameObject draggedNumber = eventData.pointerDrag;

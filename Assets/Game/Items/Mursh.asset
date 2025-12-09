@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 6
   itemName: Mursh
   description: 
-  icon: {fileID: -855298285791758126, guid: 22bd9b5f2ee827742a107538008de5d1, type: 3}
+  icon: {fileID: -6464782698742576911, guid: 9b82bc23003c306498e4a8c982dbe108, type: 3}
   type: 0
   isStackable: 1
   maxStackSize: 1

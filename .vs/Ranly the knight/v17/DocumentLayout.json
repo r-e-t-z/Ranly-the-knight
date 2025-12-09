@@ -3,28 +3,148 @@
   "WorkspaceRootPath": "C:\\Users\\sdany\\Ranly the knight\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\SudokuMiniGame\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\SudokuMiniGameTrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\SudokuMiniGame\\SudokuMiniGameTrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\dialogues\\dialoguemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\dialogues\\dialoguemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\NPCData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Dialogues\\NPCData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\ItemPickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Inventory\\ItemPickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\ItemData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Inventory\\ItemData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\QuestsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\QuestsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Inventory\\InventoryItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\PuzzleActivationZone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\PlatesMiniGame\\PuzzleActivationZone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlatePuzzle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlatePuzzle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\FalsePlate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\PlatesMiniGame\\FalsePlate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Quests\\TriggerManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Quests\\TriggerManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Quests\\AnimationManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Quests\\AnimationManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Quests\\ActivateObject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Quests\\ActivateObject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\dialogues\\dialoguetrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\dialogues\\dialoguetrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\dialogues\\forestexittrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\dialogues\\forestexittrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\dialogues\\uiinteractprompt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\dialogues\\uiinteractprompt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\gamesave\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\gamesave\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\gamesave\\gameloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\gamesave\\gameloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\ui\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\ui\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\gamesave\\savesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\gamesave\\savesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\gamesave\\gamesavemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\gamesave\\gamesavemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\ui\\pausemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\ui\\pausemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\ui\\settingsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\ui\\settingsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Teleport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Teleport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\scenetransition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\scenetransition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\QuestsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\QuestsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\TableCell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\SudokuMiniGame\\TableCell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\DraggableNumber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\SudokuMiniGame\\DraggableNumber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\CutSceneTrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\UI\\CutSceneTrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GoToScene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\GoToScene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\ui\\panelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\ui\\panelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|c:\\users\\sdany\\ranly the knight\\assets\\game\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839671C5-5453-0531-21E1-13EB3F4CE866}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\ItemDBSO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Game\\Scripts\\Inventory\\ItemDBSO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +154,474 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DialogueTrigger.cs",
-              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
-              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
-              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
-              "RelativeToolTip": "Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 34,
+              "Title": "PlayerMovement.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlayerMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\PlayerMovement.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlayerMovement.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\PlayerMovement.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T20:54:57.488Z",
+              "WhenOpened": "2025-12-06T14:58:37.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "PanelController.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\PanelController.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\UI\\PanelController.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\PanelController.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\UI\\PanelController.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:43.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "GoToScene.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GoToScene.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\GoToScene.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GoToScene.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\GoToScene.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:08.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "CutSceneTrigger.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\CutSceneTrigger.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\UI\\CutSceneTrigger.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\CutSceneTrigger.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\UI\\CutSceneTrigger.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:13.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "DraggableNumber.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\DraggableNumber.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\SudokuMiniGame\\DraggableNumber.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\DraggableNumber.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\SudokuMiniGame\\DraggableNumber.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:27.034Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DialogueManager.cs",
-              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
-              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
-              "RelativeToolTip": "Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
-              "ViewState": "AgIAAFMBAAAAAAAAAAAAAGQBAAAlAAAAAAAAAA==",
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\SudokuMiniGame\\GameManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\SudokuMiniGame\\GameManager.cs",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAAI0AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T20:54:52.915Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "QuestsManager.cs",
-              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\QuestsManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\QuestsManager.cs",
-              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\QuestsManager.cs",
-              "RelativeToolTip": "Assets\\Game\\Scripts\\QuestsManager.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAAwD4AAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T20:56:57.205Z",
+              "WhenOpened": "2025-12-06T14:59:27.244Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "InventoryManager.cs",
-              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
-              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
-              "RelativeToolTip": "Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
-              "ViewState": "AgIAAJIAAAAAAAAAAAAAAKUAAAAIAAAAAAAAAA==",
+              "Title": "SudokuMiniGameTrigger.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\SudokuMiniGameTrigger.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\SudokuMiniGame\\SudokuMiniGameTrigger.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\SudokuMiniGameTrigger.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\SudokuMiniGame\\SudokuMiniGameTrigger.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T20:57:21.223Z",
+              "WhenOpened": "2025-12-06T14:59:27.403Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "InventorySlotUI.cs",
-              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs",
-              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs",
-              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs",
-              "RelativeToolTip": "Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAADQAAAAdAAAAAAAAAA==",
+              "DocumentIndex": 29,
+              "Title": "TableCell.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\TableCell.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\SudokuMiniGame\\TableCell.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SudokuMiniGame\\TableCell.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\SudokuMiniGame\\TableCell.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T21:07:33.004Z",
+              "WhenOpened": "2025-12-06T14:59:27.615Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 28,
+              "Title": "QuestsManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\QuestsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\QuestsManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\QuestsManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\QuestsManager.cs",
+              "ViewState": "AgIAAMwAAAAAAAAAAAAMwNAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:59.67Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "SceneTransition.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SceneTransition.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\SceneTransition.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\SceneTransition.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\SceneTransition.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:38.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Teleport.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Teleport.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Teleport.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Teleport.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Teleport.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:53.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "SettingsManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\SettingsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\UI\\SettingsManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\SettingsManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\UI\\SettingsManager.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:45.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "PauseManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\PauseManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\UI\\PauseManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\PauseManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\UI\\PauseManager.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:44.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MenuManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\MenuManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\UI\\MenuManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\UI\\MenuManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\UI\\MenuManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:43.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "SaveSystem.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GameSave\\SaveSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\GameSave\\SaveSystem.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GameSave\\SaveSystem.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\GameSave\\SaveSystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:32.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "GameSaveManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GameSave\\GameSaveManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\GameSave\\GameSaveManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GameSave\\GameSaveManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\GameSave\\GameSaveManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:31.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "GameLoader.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GameSave\\GameLoader.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\GameSave\\GameLoader.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GameSave\\GameLoader.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\GameSave\\GameLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:31.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Checkpoint.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GameSave\\Checkpoint.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\GameSave\\Checkpoint.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\GameSave\\Checkpoint.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\GameSave\\Checkpoint.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:30.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UIInteractPrompt.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\UIInteractPrompt.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Dialogues\\UIInteractPrompt.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\UIInteractPrompt.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Dialogues\\UIInteractPrompt.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAAAkAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:28.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ForestExitTrigger.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\ForestExitTrigger.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Dialogues\\ForestExitTrigger.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\ForestExitTrigger.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Dialogues\\ForestExitTrigger.cs",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:27.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DialogueTrigger.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Dialogues\\DialogueTrigger.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:27.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DialogueManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Dialogues\\DialogueManager.cs",
+              "ViewState": "AgIAAK8BAAAAAAAAAAAcwL0BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:58:25.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ActivateObject.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Quests\\ActivateObject.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Quests\\ActivateObject.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Quests\\ActivateObject.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Quests\\ActivateObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:40.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AnimationManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Quests\\AnimationManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Quests\\AnimationManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Quests\\AnimationManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Quests\\AnimationManager.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:40.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TriggerManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Quests\\TriggerManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Quests\\TriggerManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Quests\\TriggerManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Quests\\TriggerManager.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:40.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FalsePlate.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\FalsePlate.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\PlatesMiniGame\\FalsePlate.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\FalsePlate.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\PlatesMiniGame\\FalsePlate.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:47.158Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PressurePlate.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlate.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlate.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlate.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlate.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:47.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PressurePlatePuzzle.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlatePuzzle.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlatePuzzle.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlatePuzzle.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\PlatesMiniGame\\PressurePlatePuzzle.cs",
+              "ViewState": "AgIAACMBAAAAAAAAAAAAABkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:47.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PuzzleActivationZone.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\PuzzleActivationZone.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\PlatesMiniGame\\PuzzleActivationZone.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\PlatesMiniGame\\PuzzleActivationZone.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\PlatesMiniGame\\PuzzleActivationZone.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:47.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "InventoryItem.cs",
               "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryItem.cs",
               "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Inventory\\InventoryItem.cs",
               "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryItem.cs",
               "RelativeToolTip": "Assets\\Game\\Scripts\\Inventory\\InventoryItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T21:04:48.003Z",
+              "WhenOpened": "2025-12-06T14:59:55.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "InventoryManager.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Inventory\\InventoryManager.cs",
+              "ViewState": "AgIAADsBAAAAAAAAAAAAADMBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:55.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "InventorySlotUI.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Inventory\\InventorySlotUI.cs",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:55.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ItemData.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\ItemData.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Inventory\\ItemData.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\ItemData.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Inventory\\ItemData.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:56.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ItemDBSO.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\ItemDBSO.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Inventory\\ItemDBSO.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\ItemDBSO.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Inventory\\ItemDBSO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:56.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ItemPickup.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\ItemPickup.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Inventory\\ItemPickup.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Inventory\\ItemPickup.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Inventory\\ItemPickup.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T14:59:56.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NPCData.cs",
+              "DocumentMoniker": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\NPCData.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Dialogues\\NPCData.cs",
+              "ToolTip": "C:\\Users\\sdany\\Ranly the knight\\Assets\\Game\\Scripts\\Dialogues\\NPCData.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Dialogues\\NPCData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T15:00:13.791Z",
               "EditorCaption": ""
             }
           ]
