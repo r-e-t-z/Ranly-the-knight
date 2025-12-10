@@ -54,10 +54,13 @@ public class QuestsManager : MonoBehaviour
 
     private Quest trackedQuest;
 
+    private MonoBehaviour playerController;
+
     void Awake()
     {
         Instance = this;
         if (activeQuestHUD != null) activeQuestHUD.text = "";
+        playerController = FindObjectOfType<PlayerMovement>();
     }
 
     void Start()
@@ -72,10 +75,20 @@ public class QuestsManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (!DialogueManager.Instance.IsPlaying())
         {
-            ToggleQuestsList();
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                ToggleQuestsList();
+            }
         }
+
+        if (DialogueManager.Instance.IsPlaying() && questPanel.activeInHierarchy)
+        {
+            questPanel.SetActive(false);
+            DeleteQuestsList();
+        }
+
     }
 
     private void OnInventoryUpdate(InventorySlot[] slots)
@@ -108,14 +121,17 @@ public class QuestsManager : MonoBehaviour
         bool isActive = questPanel.activeInHierarchy;
         if (isActive)
         {
+            if (playerController != null) playerController.enabled = true;
             questPanel.SetActive(false);
             DeleteQuestsList();
         }
         else
         {
+            if (playerController != null) playerController.enabled = false;
             questPanel.SetActive(true);
             ShowQuestsInJournal();
         }
+
     }
 
     public void AddQuest(string id, string desc, string itemID = "", int amount = 0)

@@ -45,7 +45,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isPlaying) return;
 
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
             if (EventSystem.current.IsPointerOverGameObject()) return;
 

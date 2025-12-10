@@ -1,14 +1,15 @@
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Uu]ser[Ss]ettings/
-[Mm]emoryCaptures/
-[Aa]ssetPacks/
-[Pp]ackages/
-[Ll]ocal[Cc]ache/
+# --- Самое важное (чего не хватало) ---
+.vs/
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+
+# --- IDE и временные файлы ---
 *.csproj
 *.unityproj
 *.sln
@@ -22,6 +23,10 @@
 *.pdb
 *.opendb
 *.VC.db
+.gradle/
+.idea/
+
+# --- Системные файлы ---
 .DS_Store
 .DS_Store?
 ._*
@@ -29,10 +34,18 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-/AssetStoreTools*
-*.pidb.meta
-*.pdb.meta
+
+# --- Unity Specific ---
+/[Aa]ssets/[Aa]ssetStoreTools*
+/[Aa]ssets/AddressableAssetsData/*/*.bin*
 *.apk
 *.aab
 *.unitypackage
+
+# --- Важно: Игнорируем содержимое Packages, но НЕ манифест ---
+# (Твоя старая строчка [Pp]ackages/ была слишком агрессивной)
+/[Pp]ackages/vpm-manifest.json
+/[Pp]ackages/packages-lock.json
+
+# TextMesh Pro (Оставляем как было у тебя, если ты уверен)
 TextMesh Pro/

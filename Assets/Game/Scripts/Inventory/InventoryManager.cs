@@ -16,7 +16,9 @@ public class InventoryManager : MonoBehaviour
 
     [Header("UI Settings")]
     public GameObject inventoryPanel;
-    public GameObject activeSlotUI; 
+    public GameObject activeSlotUI;
+
+    private MonoBehaviour playerController;
 
     private void Awake()
     {
@@ -31,14 +33,23 @@ public class InventoryManager : MonoBehaviour
             return;
         }
 
+        playerController = FindObjectOfType<PlayerMovement>();
         InitializeInventory();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (!DialogueManager.Instance.IsPlaying())
         {
-            ToggleInventory();
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                ToggleInventory();
+            }
+        }
+
+        if (DialogueManager.Instance.IsPlaying() && inventoryPanel.activeInHierarchy)
+        {
+            inventoryPanel.SetActive(false);
         }
     }
 
@@ -58,7 +69,16 @@ public class InventoryManager : MonoBehaviour
         if (inventoryPanel != null)
         {
             bool newState = !inventoryPanel.activeInHierarchy;
-            inventoryPanel.SetActive(newState);
+            if (!newState)
+            {
+                if (playerController != null) playerController.enabled = true;
+            }
+            else
+            {
+                if (playerController != null) playerController.enabled = false;
+            }
+
+                inventoryPanel.SetActive(newState);
         }
     }
 
