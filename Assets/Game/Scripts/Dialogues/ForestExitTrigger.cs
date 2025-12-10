@@ -147,14 +147,15 @@ public class ForestExitTrigger : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            player.transform.position = quickTimeStartPosition;
+            player.transform.position = returnPoint.transform.position;
         }
 
 
         if (playerController != null)
             playerController.enabled = true;
 
-        StartAnDialogue();
+        exitAttempts --;
+        
     }
 
     IEnumerator ReturnPlayer(GameObject player)

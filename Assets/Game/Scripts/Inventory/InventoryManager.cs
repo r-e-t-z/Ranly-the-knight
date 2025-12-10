@@ -124,30 +124,44 @@ public class InventoryManager : MonoBehaviour
         ItemData itemToAdd = itemDatabase.GetItemByID(itemID);
         if (itemToAdd == null) return false;
 
-        if (itemToAdd.isStackable)
+        if (activeItemSlot.HasItem() && itemToAdd == activeItemSlot.Item.data && itemToAdd.isStackable)
         {
+            activeItemSlot.Item.AddToStack(amount);
+            OnActiveItemChanged?.Invoke(null);
+            return true;
+            Debug.Log("Added to active slot stack.");
+        }
+        else
+        {
+            if (itemToAdd.isStackable)
+            {
+                for (int i = 0; i < inventorySlots.Length; i++)
+                {
+                    if (inventorySlots[i].HasItem() && inventorySlots[i].Item.data == itemToAdd)
+                    {
+                        if (inventorySlots[i].Item.AddToStack(amount))
+                        {
+                            OnInventoryChanged?.Invoke(inventorySlots);
+                            return true;
+                        }
+                    }
+                }
+            }
+
             for (int i = 0; i < inventorySlots.Length; i++)
             {
-                if (inventorySlots[i].HasItem() && inventorySlots[i].Item.data == itemToAdd)
+                if (!inventorySlots[i].HasItem())
                 {
-                    if (inventorySlots[i].Item.AddToStack(amount))
-                    {
-                        OnInventoryChanged?.Invoke(inventorySlots);
-                        return true;
-                    }
+                    inventorySlots[i].SetItem(new InventoryItem(itemToAdd, amount));
+                    OnInventoryChanged?.Invoke(inventorySlots);
+                    return true;
                 }
             }
         }
 
-        for (int i = 0; i < inventorySlots.Length; i++)
-        {
-            if (!inventorySlots[i].HasItem())
-            {
-                inventorySlots[i].SetItem(new InventoryItem(itemToAdd, amount));
-                OnInventoryChanged?.Invoke(inventorySlots);
-                return true;
-            }
-        }
+        
+
+        
 
         Debug.Log("Inventory is full!");
         return false;
