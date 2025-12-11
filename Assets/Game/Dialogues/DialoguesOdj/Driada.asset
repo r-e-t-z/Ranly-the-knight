@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Driada
   portrait: {fileID: 0}
-  inkFile: {fileID: 4900000, guid: 81be086d97bf8874a897ecfcd465fca0, type: 3}
+  inkFile: {fileID: 4900000, guid: 69d15150d2393054cba9274fee1ea56d, type: 3}
