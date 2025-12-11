@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8681712843810066514}
   - component: {fileID: 1992327563752648412}
   - component: {fileID: 1875838085264852834}
+  - component: {fileID: -3393148659023245171}
   m_Layer: 0
   m_Name: Bush_Small_GreenLight
   m_TagString: Untagged
@@ -63,7 +64,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 918a9c3933d9ed34ca51cf673c78a1b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,3 +156,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.68, y: 0.054148823}
   m_EdgeRadius: 0
+--- !u!114 &-3393148659023245171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2660096236397125672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabf6fe4de173704389d513a1a75276c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZSorter
+  sortFactor: 0.01
+  offsetZ: 1

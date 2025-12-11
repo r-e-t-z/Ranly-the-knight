@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8643949103626660320}
   - component: {fileID: 114655154957207033}
   - component: {fileID: -5772334256230953003}
+  - component: {fileID: -4426711870941983535}
   m_Layer: 0
   m_Name: Bush_Big_Green
   m_TagString: Untagged
@@ -59,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 918a9c3933d9ed34ca51cf673c78a1b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,3 +152,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.54, y: 0.051841535}
   m_EdgeRadius: 0
+--- !u!114 &-4426711870941983535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4802607800796706560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabf6fe4de173704389d513a1a75276c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZSorter
+  sortFactor: 0.01
+  offsetZ: 1
