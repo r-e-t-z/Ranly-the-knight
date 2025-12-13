@@ -164,5 +164,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabf6fe4de173704389d513a1a75276c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZSorter
-  sortFactor: 0.01
-  offsetZ: 1
+  zOffset: -0.5
