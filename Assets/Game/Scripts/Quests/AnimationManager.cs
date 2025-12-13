@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Linq; // Нужно для поиска клипов
+using System.Linq;
 
 public class AnimationManager : MonoBehaviour
 {
@@ -11,10 +11,11 @@ public class AnimationManager : MonoBehaviour
         Instance = this;
     }
 
-    // Обычный запуск (без ожидания)
-    public void PlayAnimation(string animationName)
+    // --- НОВЫЕ МЕТОДЫ (С указанием объекта) ---
+
+    public void PlayAnimation(string objectName, string animationName)
     {
-        GameObject obj = GameObject.Find(animationName);
+        GameObject obj = GameObject.Find(objectName);
         if (obj != null)
         {
             Animator animator = obj.GetComponent<Animator>();
@@ -23,7 +24,40 @@ public class AnimationManager : MonoBehaviour
                 animator.enabled = true;
                 animator.Play(animationName);
             }
+            else
+            {
+                Debug.LogWarning($"На объекте {objectName} нет Аниматора!");
+            }
         }
+        else
+        {
+            Debug.LogWarning($"Не найден объект с именем: {objectName}");
+        }
+    }
+
+    public float GetAnimationLength(string objectName, string animationName)
+    {
+        GameObject obj = GameObject.Find(objectName);
+        if (obj != null)
+        {
+            Animator animator = obj.GetComponent<Animator>();
+            if (animator != null && animator.runtimeAnimatorController != null)
+            {
+                // Ищем клип в контроллере
+                AnimationClip clip = animator.runtimeAnimatorController.animationClips
+                    .FirstOrDefault(c => c.name == animationName);
+
+                if (clip != null) return clip.length;
+            }
+        }
+        return 0f;
+    }
+
+    // --- СТАРЫЕ МЕТОДЫ (Для совместимости, если где-то еще используются) ---
+    public void PlayAnimation(string animationName)
+    {
+        // Пытаемся найти объект с таким же именем, как анимация
+        PlayAnimation(animationName, animationName);
     }
 
     public void PlayMultipleAnimations(string[] animationNames)
@@ -40,23 +74,8 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
-    // НОВЫЙ МЕТОД: Возвращает длительность анимации
     public float GetAnimationLength(string animationName)
     {
-        GameObject obj = GameObject.Find(animationName);
-        if (obj != null)
-        {
-            Animator animator = obj.GetComponent<Animator>();
-            if (animator != null && animator.runtimeAnimatorController != null)
-            {
-                // Ищем клип с таким же именем в контроллере
-                AnimationClip clip = animator.runtimeAnimatorController.animationClips.FirstOrDefault(c => c.name == animationName);
-                if (clip != null)
-                {
-                    return clip.length;
-                }
-            }
-        }
-        return 0f; 
+        return GetAnimationLength(animationName, animationName);
     }
 }

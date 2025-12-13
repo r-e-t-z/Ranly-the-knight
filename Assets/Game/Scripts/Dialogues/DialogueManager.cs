@@ -234,23 +234,36 @@ public class DialogueManager : MonoBehaviour
     // #action:play_cutscene animation_name:KnightAttack
     private void PlayCutsceneAction(List<string> parameters)
     {
+        string targetName = GetParameterValue(parameters, "target");
         string animName = GetParameterValue(parameters, "animation_name");
-        if (!string.IsNullOrEmpty(animName))
+
+        // Если указали target, используем новую логику. 
+        // Если нет (старый диалог), используем animName как имя объекта.
+        if (string.IsNullOrEmpty(targetName))
         {
-            StartCoroutine(PlayCutsceneRoutine(animName));
+            targetName = animName;
+        }
+
+        if (!string.IsNullOrEmpty(targetName) && !string.IsNullOrEmpty(animName))
+        {
+            StartCoroutine(PlayCutsceneRoutine(targetName, animName));
         }
     }
 
-    private IEnumerator PlayCutsceneRoutine(string animName)
+    private IEnumerator PlayCutsceneRoutine(string targetName, string animName)
     {
         isWaiting = true;
         dialoguePanel.SetActive(false); // Скрываем диалог
 
-        AnimationManager.Instance.PlayAnimation(animName); // Запускаем анимацию
+        // Запускаем анимацию на конкретном объекте
+        AnimationManager.Instance.PlayAnimation(targetName, animName);
 
-        // Получаем длительность и ждем
-        float duration = AnimationManager.Instance.GetAnimationLength(animName);
-        if (duration <= 0) duration = 1f; // Защита от зависания
+        // Получаем длительность
+        float duration = AnimationManager.Instance.GetAnimationLength(targetName, animName);
+
+        // Если длительность 0 (вдруг ошибка или клип не найден), ждем 1.5 секунды дефолтно
+        if (duration <= 0) duration = 1.5f;
+
         yield return new WaitForSeconds(duration);
 
         dialoguePanel.SetActive(true); // Возвращаем диалог
@@ -324,8 +337,18 @@ public class DialogueManager : MonoBehaviour
 
     private void StartAnimationAction(List<string> parameters)
     {
-        string aName = GetParameterValue(parameters, "animation_name");
-        if (!string.IsNullOrEmpty(aName)) AnimationManager.Instance.PlayAnimation(aName);
+        string animationName = GetParameterValue(parameters, "animation_name");
+        string animationNames = GetParameterValue(parameters, "animation_names");
+
+        if (!string.IsNullOrEmpty(animationNames))
+        {
+            string[] names = animationNames.Split(',');
+            AnimationManager.Instance.PlayMultipleAnimations(names);
+        }
+        else if (!string.IsNullOrEmpty(animationName))
+        {
+            AnimationManager.Instance.PlayAnimation(animationName);
+        }
     }
 
     private void ChangeSceneAction(List<string> parameters)
