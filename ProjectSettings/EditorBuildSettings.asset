@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/MainMenu.unity
     guid: 87d23c5f39de4d340ad0a3ac20cc58ff
   - enabled: 1
-    path: Assets/Game/Scenes/Game1.unity
+    path: Assets/Game/Scenes/Scene 1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Game/Scenes/First Forest.unity
+    path: Assets/Game/Scenes/Scene 2.unity
     guid: b54022f74902a824da367b215582704f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
