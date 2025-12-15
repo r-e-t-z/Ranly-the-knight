@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
@@ -15,30 +14,22 @@ public class PressurePlate : MonoBehaviour
     private PressurePlatePuzzle puzzleController;
     private Animator animator;
 
-    public static PressurePlate Instance;
-
-    void Awake()
-    {
-        Instance = this;
-    }
-
     public void Initialize(PressurePlatePuzzle controller)
     {
         puzzleController = controller;
         animator = GetComponent<Animator>();
-
-        if (animator != null)
-        {
-            animator.enabled = false;
-        }
+        if (animator != null) animator.enabled = false;
     }
+
+    // --- ИСПРАВЛЕНИЕ: ПРИНУДИТЕЛЬНЫЙ ПЕРЕЗАПУСК АНИМАЦИИ ---
 
     public void PlayActivationAnimation()
     {
         if (animator != null && activationAnimation != null)
         {
             animator.enabled = true;
-            animator.Play(activationAnimation.name);
+            // Play(Имя, Слой, Время). 0f означает "начать с 0 секунды"
+            animator.Play(activationAnimation.name, -1, 0f);
         }
     }
 
@@ -47,7 +38,7 @@ public class PressurePlate : MonoBehaviour
         if (animator != null && rightStepAnimation != null)
         {
             animator.enabled = true;
-            animator.Play(rightStepAnimation.name);
+            animator.Play(rightStepAnimation.name, -1, 0f);
         }
     }
 
@@ -56,7 +47,7 @@ public class PressurePlate : MonoBehaviour
         if (animator != null && wrongStepAnimation != null)
         {
             animator.enabled = true;
-            animator.Play(wrongStepAnimation.name);
+            animator.Play(wrongStepAnimation.name, -1, 0f);
         }
     }
 

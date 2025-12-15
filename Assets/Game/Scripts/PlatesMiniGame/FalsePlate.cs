@@ -2,40 +2,22 @@ using UnityEngine;
 
 public class FalsePlate : MonoBehaviour
 {
-    [Header("False Plate Settings")]
-    public Transform resetPosition;
-    public bool usePuzzleStartPosition = true;
-
-    private Transform puzzleStartPosition;
-
-    public void Initialize(Transform puzzleStartPos)
+    // Метод инициализации теперь пустой, но оставим его для совместимости,
+    // если ты вызываешь его где-то еще.
+    public void Initialize(Transform unused = null)
     {
-        puzzleStartPosition = puzzleStartPos;
+        // Нам больше не нужно хранить позицию здесь, менеджер всё знает
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player stepped on false plate!");
-            ResetPlayer(other.gameObject);
-        }
-    }
-
-    private void ResetPlayer(GameObject player)
-    {
-        Transform targetPosition = usePuzzleStartPosition ? puzzleStartPosition : resetPosition;
-
-        if (targetPosition != null)
-        {
-            player.transform.position = targetPosition.position;
-            Debug.Log($"Player reset to position: {targetPosition.name}");
-        }
-
-        PressurePlatePuzzle puzzle = FindObjectOfType<PressurePlatePuzzle>();
-        if (puzzle != null)
-        {
-            puzzle.ResetPuzzle();
+            // Просто сообщаем боссу, что случилась беда
+            if (PressurePlatePuzzle.Instance != null)
+            {
+                PressurePlatePuzzle.Instance.OnFalsePlateStepped();
+            }
         }
     }
 }

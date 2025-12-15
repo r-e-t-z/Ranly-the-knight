@@ -232,13 +232,16 @@ public class DialogueManager : MonoBehaviour
     // --- РЕАЛИЗАЦИЯ ДЕЙСТВИЙ ---
 
     // #action:play_cutscene animation_name:KnightAttack
+    // #action:play_cutscene target:Player animation_name:Dissappear move_after:TeleportSpot_1
     private void PlayCutsceneAction(List<string> parameters)
     {
         string targetName = GetParameterValue(parameters, "target");
         string animName = GetParameterValue(parameters, "animation_name");
 
-        // Если указали target, используем новую логику. 
-        // Если нет (старый диалог), используем animName как имя объекта.
+        // Читаем новый параметр для телепортации
+        string moveAfterParams = GetParameterValue(parameters, "move_after");
+
+        // Если target не указан, пробуем старую логику
         if (string.IsNullOrEmpty(targetName))
         {
             targetName = animName;
@@ -246,30 +249,46 @@ public class DialogueManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(targetName) && !string.IsNullOrEmpty(animName))
         {
-            StartCoroutine(PlayCutsceneRoutine(targetName, animName));
+            // Передаем точку назначения в корутину
+            StartCoroutine(PlayCutsceneRoutine(targetName, animName, moveAfterParams));
         }
     }
 
-    private IEnumerator PlayCutsceneRoutine(string targetName, string animName)
+    // Обновленная корутина с аргументом destination
+    private IEnumerator PlayCutsceneRoutine(string targetName, string animName, string destination)
     {
         isWaiting = true;
-        dialoguePanel.SetActive(false); // Скрываем диалог
+        dialoguePanel.SetActive(false);
 
-        // Запускаем анимацию на конкретном объекте
+        // 1. Запускаем анимацию
         AnimationManager.Instance.PlayAnimation(targetName, animName);
 
-        // Получаем длительность
+        // 2. Ждем пока она закончится
         float duration = AnimationManager.Instance.GetAnimationLength(targetName, animName);
-
-        // Если длительность 0 (вдруг ошибка или клип не найден), ждем 1.5 секунды дефолтно
         if (duration <= 0) duration = 1.5f;
 
         yield return new WaitForSeconds(duration);
 
-        dialoguePanel.SetActive(true); // Возвращаем диалог
+        // 3. ТЕПЕРЬ, когда время вышло, выполняем телепортацию (если задана точка)
+        if (!string.IsNullOrEmpty(destination))
+        {
+            GameObject targetObj = GameObject.Find(targetName);
+            GameObject destObj = GameObject.Find(destination);
+
+            if (targetObj != null && destObj != null)
+            {
+                targetObj.transform.position = destObj.transform.position;
+            }
+            else
+            {
+                Debug.LogWarning($"Не удалось переместить {targetName} в {destination}");
+            }
+        }
+
+        dialoguePanel.SetActive(true);
         isWaiting = false;
 
-        ContinueDialogue(); // Авто-продолжение
+        ContinueDialogue();
     }
 
     // #action:camera_target target:Ranly
@@ -359,7 +378,33 @@ public class DialogueManager : MonoBehaviour
 
     // Заглушки для твоих методов (реализуй если нужно)
     private void QuestTextAction(List<string> parameters) { }
-    private void TeleportPlayerAction(List<string> parameters) { }
+
+    private void TeleportPlayerAction(List<string> parameters)
+    {
+        // Получаем имя точки назначения из параметров Ink
+        string destinationName = GetParameterValue(parameters, "destination");
+
+        // Получаем имя объекта, который нужно телепортировать (по умолчанию Player)
+        string targetName = GetParameterValue(parameters, "target");
+        if (string.IsNullOrEmpty(targetName)) targetName = "Player";
+
+        GameObject targetObj = GameObject.Find(targetName);
+        GameObject destinationObj = GameObject.Find(destinationName);
+
+        if (targetObj != null && destinationObj != null)
+        {
+            // ВАЖНО: Если на игроке есть Rigidbody2D, лучше использовать MovePosition или временно отключить физику
+            // Но для простого телепорта transform.position подойдет
+            targetObj.transform.position = destinationObj.transform.position;
+
+            Debug.Log($"Телепортация {targetName} в точку {destinationName}");
+        }
+        else
+        {
+            Debug.LogWarning($"Не удалось телепортировать. Цель: {targetObj}, Точка: {destinationObj}");
+        }
+    }
+
     private void UnlockAbilityAction(List<string> parameters) { }
 
     // --- ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ---
@@ -391,6 +436,7 @@ public class DialogueManager : MonoBehaviour
             else story.variablesState[varName] = value;
         }
     }
+
 
     private void ApplyVisualTags()
     {

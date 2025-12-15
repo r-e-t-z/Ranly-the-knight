@@ -36,7 +36,7 @@ public class ForestExitTrigger : MonoBehaviour
     void Start()
     {
         playerController = FindObjectOfType<PlayerMovement>();
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Visual");
         playerSprite = player.GetComponent<SpriteRenderer>();
 
         if (quickTimeText != null)

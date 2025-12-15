@@ -4,36 +4,37 @@ using UnityEngine;
 
 public class PressurePlatePuzzle : MonoBehaviour
 {
+    public static PressurePlatePuzzle Instance;
+
     [Header("Puzzle Settings")]
     public List<PressurePlate> puzzlePlates = new List<PressurePlate>();
     public float sequenceDelay = 1f;
     public Transform playerStartPosition;
 
-    [Header("Trigger Zone")]
-    public GameObject triggerZone;
+    [Header("Trigger Zone (Камень)")]
+    // Сюда перетащи объект камня, чтобы проверять дистанцию
+    public Transform triggerZoneObject;
+    public float interactionRadius = 3.0f; // Радиус, в котором работает кнопка E
 
-    [Header("False Plates Settings")]
+    [Header("False Plates")]
     public GameObject falsePlatesParent;
     public List<FalsePlate> falsePlates = new List<FalsePlate>();
 
     [Header("Camera Settings")]
     public Transform puzzleCameraPosition;
-    public float cameraMoveSpeed = 5f;
+    // ЧЕМ БОЛЬШЕ ЭТО ЧИСЛО, ТЕМ МЕДЛЕННЕЕ КАМЕРА (0.1 = быстро, 1.0 = очень медленно)
+    public float smoothTime = 0.8f;
+
+    private bool isPuzzleSolved = false;
+    private bool isShowingHint = false;
 
     private Camera mainCamera;
-    private MonoBehaviour cameraFollowScript;
-    private Vector3 cameraStartPosition;
-    private bool isCameraMovingToPuzzle = false;
-    private bool isCameraMovingBack = false;
-
-    private bool isSequencePlaying = false;
-    private bool isPuzzleActive = false;
-    private int currentStep = 0;
-    private PlayerMovement playerMovement;
+    private CameraController cameraController;
     private Transform playerTransform;
-    private Coroutine cameraReturnCoroutine;
+    private PlayerMovement playerMovement;
 
-    public static PressurePlatePuzzle Instance;
+    private Vector3 initialCameraOffset;
+    private Vector3 currentVelocity; // Для SmoothDamp
 
     void Awake()
     {
@@ -42,261 +43,156 @@ public class PressurePlatePuzzle : MonoBehaviour
 
     void Start()
     {
-        playerMovement = FindObjectOfType<PlayerMovement>();
-
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            playerTransform = player.transform;
-        }
-
         mainCamera = Camera.main;
         if (mainCamera != null)
         {
-            cameraFollowScript = mainCamera.GetComponent<MonoBehaviour>();
+            cameraController = mainCamera.GetComponent<CameraController>();
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                playerTransform = player.transform;
+                playerMovement = player.GetComponent<PlayerMovement>();
+                initialCameraOffset = mainCamera.transform.position - player.transform.position;
+            }
         }
 
-        foreach (PressurePlate plate in puzzlePlates)
-        {
-            plate.Initialize(this);
-        }
+        foreach (PressurePlate plate in puzzlePlates) plate.Initialize(this);
 
         if (falsePlatesParent != null && falsePlates.Count == 0)
         {
-            FindFalsePlatesAutomatically();
+            FalsePlate[] foundPlates = falsePlatesParent.GetComponentsInChildren<FalsePlate>();
+            falsePlates.AddRange(foundPlates);
         }
 
-        foreach (FalsePlate falsePlate in falsePlates)
-        {
-            falsePlate.Initialize(playerStartPosition);
-        }
+        foreach (FalsePlate falsePlate in falsePlates) falsePlate.Initialize();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && IsPlayerInTriggerZone() && !isSequencePlaying && !isPuzzleActive)
-        {
-            StartPuzzleSequence();
-        }
+        // Если пазл решен или мультик уже идет - ничего не делаем
+        if (isPuzzleSolved || isShowingHint) return;
 
-        if (isCameraMovingToPuzzle && puzzleCameraPosition != null)
+        // Если нажали E и мы рядом с камнем
+        if (Input.GetKeyDown(KeyCode.E) && IsPlayerNearStone())
         {
-            MoveCameraToPuzzle();
-        }
-
-        if (isCameraMovingBack && playerTransform != null)
-        {
-            MoveCameraBackToPlayer();
+            StartCoroutine(PlayHintRoutine());
         }
     }
 
-    void MoveCameraToPuzzle()
+    private bool IsPlayerNearStone()
     {
-        Vector3 targetPos = puzzleCameraPosition.position;
-        mainCamera.transform.position = Vector3.MoveTowards(
-            mainCamera.transform.position,
-            targetPos,
-            cameraMoveSpeed * Time.deltaTime
-        );
-
-        if (Vector3.Distance(mainCamera.transform.position, targetPos) < 0.01f)
-        {
-            mainCamera.transform.position = targetPos;
-            isCameraMovingToPuzzle = false;
-
-            StartCoroutine(PlayPlateSequence());
-        }
+        if (triggerZoneObject == null || playerTransform == null) return false;
+        return Vector2.Distance(triggerZoneObject.position, playerTransform.position) <= interactionRadius;
     }
 
-    void MoveCameraBackToPlayer()
+    private IEnumerator PlayHintRoutine()
     {
-        if (playerTransform == null) return;
+        isShowingHint = true;
 
-        Vector3 targetPos = new Vector3(
-            playerTransform.position.x,
-            playerTransform.position.y,
-            mainCamera.transform.position.z
-        );
+        if (playerMovement != null) playerMovement.enabled = false;
+        if (cameraController != null) cameraController.isLocked = true;
 
-        mainCamera.transform.position = Vector3.MoveTowards(
-            mainCamera.transform.position,
-            targetPos,
-            cameraMoveSpeed * Time.deltaTime
-        );
+        Vector3 targetCamPos = puzzleCameraPosition.position;
+        targetCamPos.z = mainCamera.transform.position.z;
 
-        if (Vector3.Distance(mainCamera.transform.position, targetPos) < 0.01f)
+        // --- ДВИЖЕНИЕ К ПАЗЛУ ---
+        // Двигаемся, пока дистанция больше 0.1
+        while (Vector3.Distance(mainCamera.transform.position, targetCamPos) > 0.1f)
         {
-            isCameraMovingBack = false;
-
-            if (cameraFollowScript != null)
-            {
-                cameraFollowScript.enabled = true;
-            }
-        }
-    }
-
-    private bool IsPlayerInTriggerZone()
-    {
-        if (triggerZone == null || playerTransform == null) return false;
-
-        Collider2D triggerCollider = triggerZone.GetComponent<Collider2D>();
-        if (triggerCollider != null)
-        {
-            return triggerCollider.OverlapPoint(playerTransform.position);
-        }
-        return false;
-    }
-
-    private void FindFalsePlatesAutomatically()
-    {
-        FalsePlate[] foundPlates = falsePlatesParent.GetComponentsInChildren<FalsePlate>();
-        falsePlates.AddRange(foundPlates);
-    }
-
-    private void StartPuzzleSequence()
-    {
-        isSequencePlaying = true;
-        isPuzzleActive = true;
-        currentStep = 0;
-
-        cameraStartPosition = mainCamera.transform.position;
-
-        if (cameraFollowScript != null)
-        {
-            cameraFollowScript.enabled = false;
+            mainCamera.transform.position = Vector3.SmoothDamp(
+                mainCamera.transform.position,
+                targetCamPos,
+                ref currentVelocity,
+                smoothTime
+            );
+            yield return null;
         }
 
-        isCameraMovingToPuzzle = true;
-        isCameraMovingBack = false;
-
-        if (playerMovement != null)
-        {
-            playerMovement.enabled = false;
-        }
-    }
-
-    private IEnumerator PlayPlateSequence()
-    {
-        yield return new WaitForSeconds(0.5f);
+        // --- АНИМАЦИЯ ---
+        currentVelocity = Vector3.zero; // Сброс скорости
+        yield return new WaitForSeconds(0.3f);
 
         for (int i = 0; i < puzzlePlates.Count; i++)
         {
-            float delayForThisPlate = sequenceDelay * i;
-            StartCoroutine(PlayPlateAnimationWithDelay(i, delayForThisPlate));
+            puzzlePlates[i].PlayActivationAnimation();
+            yield return new WaitForSeconds(sequenceDelay);
         }
 
-        float totalSequenceTime = sequenceDelay * puzzlePlates.Count;
-        yield return new WaitForSeconds(totalSequenceTime + 0.5f);
+        yield return new WaitForSeconds(0.5f);
 
-        StartCameraReturn();
+        // --- ДВИЖЕНИЕ ОБРАТНО ---
+        Vector3 returnPos = playerTransform.position + initialCameraOffset;
 
-        if (playerMovement != null)
+        while (Vector3.Distance(mainCamera.transform.position, returnPos) > 0.1f)
         {
-            playerMovement.enabled = true;
+            // Обновляем цель (если игрок чуть сдвинулся физикой)
+            returnPos = playerTransform.position + initialCameraOffset;
+
+            mainCamera.transform.position = Vector3.SmoothDamp(
+                mainCamera.transform.position,
+                returnPos,
+                ref currentVelocity,
+                smoothTime
+            );
+            yield return null;
         }
-        isSequencePlaying = false;
+
+        // Финальная доводка
+        mainCamera.transform.position = returnPos;
+
+        if (cameraController != null) cameraController.isLocked = false;
+        if (playerMovement != null) playerMovement.enabled = true;
+
+        isShowingHint = false;
     }
 
-    private IEnumerator PlayPlateAnimationWithDelay(int plateIndex, float delay)
+    public void OnPlateStepped(int plateIndex, bool isCorrectPlate)
     {
-        yield return new WaitForSeconds(delay);
-        puzzlePlates[plateIndex].PlayActivationAnimation();
+        if (isPuzzleSolved || isShowingHint) return;
+
+        if (isCorrectPlate)
+        {
+            puzzlePlates[plateIndex].PlayRightStepAnimation();
+            if (plateIndex == puzzlePlates.Count - 1) PuzzleCompleted();
+        }
+        else ResetPlayer();
     }
 
-    public void OnPlateStepped(int plateIndex, bool isCorrectStep)
-    {
-        if (!isPuzzleActive)
-        {
-            ReturnPlayerToStart();
-            PlayAllWrongStepAnimations();
-            ResetPuzzle();
-            return;
-        }
+    public void OnFalsePlateStepped() { if (!isPuzzleSolved) ResetPlayer(); }
 
-        if (isSequencePlaying)
-        {
-            return;
-        }
-
-        if (isCorrectStep)
-        {
-            if (plateIndex == currentStep)
-            {
-                puzzlePlates[plateIndex].PlayRightStepAnimation();
-                currentStep++;
-
-                if (currentStep >= puzzlePlates.Count)
-                {
-                    PuzzleCompleted();
-                }
-            }
-            else
-            {
-                ReturnPlayerToStart();
-                PlayAllWrongStepAnimations();
-                ResetPuzzle();
-            }
-        }
-        else
-        {
-            ReturnPlayerToStart();
-            PlayAllWrongStepAnimations();
-            ResetPuzzle();
-        }
-    }
-
-    private void ReturnPlayerToStart()
+    private void ResetPlayer()
     {
         if (playerTransform != null && playerStartPosition != null)
         {
+            Rigidbody2D rb = playerTransform.GetComponent<Rigidbody2D>();
+            if (rb != null) rb.linearVelocity = Vector2.zero;
             playerTransform.position = playerStartPosition.position;
         }
+        foreach (PressurePlate plate in puzzlePlates) plate.PlayWrongStepAnimation();
     }
 
     private void PuzzleCompleted()
     {
-        isPuzzleActive = false;
-        Invoke("StartCameraReturn", 1f);
-    }
+        isPuzzleSolved = true;
+        Debug.Log("✅ ГОЛОВОЛОМКА ПРОЙДЕНА!");
 
-    private void StartCameraReturn()
-    {
-        isCameraMovingBack = true;
-        isCameraMovingToPuzzle = false;
-    }
-
-    private void PlayAllWrongStepAnimations()
-    {
-        foreach (PressurePlate plate in puzzlePlates)
+        // Ищем скрипт зоны на объекте триггера
+        if (triggerZoneObject != null)
         {
-            plate.PlayWrongStepAnimation();
+            PuzzleActivationZone zoneScript = triggerZoneObject.GetComponent<PuzzleActivationZone>();
+
+            if (zoneScript != null)
+            {
+                zoneScript.DisableZone(); // Вызываем наш новый метод
+            }
+            else
+            {
+                // Если скрипт не найден, попробуем просто выключить объект
+                // (Если камень - это только триггер, а не декорация)
+                // triggerZoneObject.gameObject.SetActive(false); 
+
+                Debug.LogWarning("⚠️ Не найден скрипт PuzzleActivationZone на камне!");
+            }
         }
-    }
-
-    public void ResetPuzzle()
-    {
-        PlayAllWrongStepAnimations();
-        StopAllCoroutines();
-
-        StartCameraReturn();
-
-        if (playerMovement != null)
-        {
-            playerMovement.enabled = true;
-        }
-
-        isSequencePlaying = false;
-        isPuzzleActive = false;
-        currentStep = 0;
-    }
-
-    public bool IsPuzzleActive()
-    {
-        return isPuzzleActive;
-    }
-
-    public bool IsSequencePlaying()
-    {
-        return isSequencePlaying;
     }
 }
