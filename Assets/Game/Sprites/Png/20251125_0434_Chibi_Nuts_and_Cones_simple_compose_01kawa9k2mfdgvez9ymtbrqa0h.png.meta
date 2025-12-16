@@ -103,10 +103,10 @@ TextureImporter:
       name: 20251125_0434_Chibi_Nuts_and_Cones_simple_compose_01kawa9k2mfdgvez9ymtbrqa0h_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        x: 255
+        y: 449
+        width: 172
+        height: 211
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,6 +143,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 20251125_0434_Chibi_Nuts_and_Cones_simple_compose_01kawa9k2mfdgvez9ymtbrqa0h_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e6b50b5d91d00f4bb125f732eb8cd63
+      internalID: 681163028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -163,6 +185,7 @@ TextureImporter:
     nameFileIdTable:
       20251125_0434_Chibi_Nuts_and_Cones_simple_compose_01kawa9k2mfdgvez9ymtbrqa0h_0: -2144025809041631728
       20251125_0434_Chibi_Nuts_and_Cones_simple_compose_01kawa9k2mfdgvez9ymtbrqa0h_1: 1656450086
+      20251125_0434_Chibi_Nuts_and_Cones_simple_compose_01kawa9k2mfdgvez9ymtbrqa0h_2: 681163028
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

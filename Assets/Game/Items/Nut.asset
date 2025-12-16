@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 4
   itemName: Nut
   description: 
-  icon: {fileID: 1656450086, guid: 2b701813cafd86845aaca9aea7ed3fa6, type: 3}
+  icon: {fileID: -2144025809041631728, guid: 2b701813cafd86845aaca9aea7ed3fa6, type: 3}
   type: 3
   isStackable: 1
   maxStackSize: 10
