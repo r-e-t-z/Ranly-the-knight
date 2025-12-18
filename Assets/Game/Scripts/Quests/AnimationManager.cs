@@ -22,14 +22,6 @@ public class AnimationManager : MonoBehaviour
                 animator.enabled = true;
                 animator.Play(animationName);
             }
-            else
-            {
-                Debug.LogWarning($"На объекте {objectName} нет Аниматора!");
-            }
-        }
-        else
-        {
-            Debug.LogWarning($"Не найден объект с именем: {objectName}");
         }
     }
 
@@ -41,37 +33,20 @@ public class AnimationManager : MonoBehaviour
             Animator animator = obj.GetComponent<Animator>();
             if (animator != null && animator.runtimeAnimatorController != null)
             {
-                AnimationClip clip = animator.runtimeAnimatorController.animationClips
-                    .FirstOrDefault(c => c.name == animationName);
-
-                if (clip != null) return clip.length;
+                foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+                {
+                    if (clip.name == animationName || clip.name.EndsWith(animationName))
+                    {
+                        return clip.length;
+                    }
+                }
             }
         }
         return 0f;
     }
-    public void PlaySequenceOnObject(string objectName, string[] animationNames)
-    {
-        StartCoroutine(PlaySequenceRoutine(objectName, animationNames));
-    }
-
-    private IEnumerator PlaySequenceRoutine(string objectName, string[] anims)
-    {
-        foreach (string anim in anims)
-        {
-
-            PlayAnimation(objectName, anim);
-
-            float duration = GetAnimationLength(objectName, anim);
-            if (duration <= 0) duration = 0.5f; 
-
-            yield return new WaitForSeconds(duration);
-        }
-    }
-
 
     public void PlayAnimation(string animationName)
     {
-
         PlayAnimation(animationName, animationName);
     }
 
@@ -86,6 +61,22 @@ public class AnimationManager : MonoBehaviour
         {
             PlayAnimation(animationName);
             yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    public void PlaySequenceOnObject(string objectName, string[] animationNames)
+    {
+        StartCoroutine(PlaySequenceRoutine(objectName, animationNames));
+    }
+
+    private IEnumerator PlaySequenceRoutine(string objectName, string[] anims)
+    {
+        foreach (string anim in anims)
+        {
+            PlayAnimation(objectName, anim);
+            float duration = GetAnimationLength(objectName, anim);
+            if (duration <= 0) duration = 0.5f;
+            yield return new WaitForSeconds(duration);
         }
     }
 

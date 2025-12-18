@@ -26,8 +26,8 @@ public class DialogueManager : MonoBehaviour
     public GameObject choiceButtonPrefab;
 
     [Header("Audio & Typing")]
-    public AudioSource audioSource; 
-    public AudioClip defaultTypingSound; 
+    public AudioSource audioSource;
+    public AudioClip defaultTypingSound;
 
     private Coroutine typingCoroutine;
     private bool isTyping = false;
@@ -38,11 +38,17 @@ public class DialogueManager : MonoBehaviour
 
     private Story story;
     private bool isPlaying = false;
-    private bool isWaiting = false; // Флаг ожидания катсцены
+    private bool isWaiting = false;
     private NPCData currentNPC;
     private MonoBehaviour playerController;
 
     private Dictionary<string, object> globalVariables = new Dictionary<string, object>();
+
+    private class ActionData
+    {
+        public string name;
+        public List<string> paramsList;
+    }
 
     void Awake()
     {
@@ -55,7 +61,6 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        // Если диалог не идет ИЛИ мы ждем окончания катсцены - ничего не делаем
         if (!isPlaying || isWaiting) return;
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
@@ -72,27 +77,18 @@ public class DialogueManager : MonoBehaviour
         if (playerController != null)
         {
             playerController.enabled = false;
-
             Rigidbody2D rb = playerController.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
                 rb.linearVelocity = Vector2.zero;
                 rb.angularVelocity = 0f;
             }
-
             Animator anim = playerController.GetComponentInChildren<Animator>();
-
             if (anim != null)
             {
                 anim.SetFloat("Speed", 0f);
-
                 anim.Play("Idle");
-
                 anim.Update(0f);
-            }
-            else
-            {
-                Debug.LogWarning("DialogueManager: Аниматор игрока не найден");
             }
         }
 
@@ -102,15 +98,8 @@ public class DialogueManager : MonoBehaviour
         RestoreGlobalVariables();
         UpdatePlayerStateVariables();
 
-        if (!string.IsNullOrEmpty(startKnot))
-        {
-            story.ChoosePathString(startKnot);
-        }
-
-        if (npcData != null)
-        {
-            SetDefaultSpeaker(npcData);
-        }
+        if (!string.IsNullOrEmpty(startKnot)) story.ChoosePathString(startKnot);
+        if (npcData != null) SetDefaultSpeaker(npcData);
 
         dialoguePanel.SetActive(true);
         isPlaying = true;
@@ -118,27 +107,19 @@ public class DialogueManager : MonoBehaviour
         ContinueDialogue();
     }
 
-
     private void UpdatePlayerStateVariables()
     {
         if (story == null) return;
-
-        List<string> variableNames = new List<string>();
-        foreach (string varName in story.variablesState) variableNames.Add(varName);
-
+        List<string> variableNames = new List<string>(story.variablesState);
         foreach (string varName in variableNames)
         {
             if (varName.StartsWith("has_item_"))
             {
                 string[] parts = varName.Split('_');
-                if (parts.Length >= 4)
+                if (parts.Length >= 4 && int.TryParse(parts[3], out int amt))
                 {
-                    string itemId = parts[2];
-                    if (int.TryParse(parts[3], out int requiredAmount))
-                    {
-                        bool hasItem = CheckActiveSlotForItem(itemId, requiredAmount);
-                        story.variablesState[varName] = hasItem;
-                    }
+                    bool hasItem = CheckActiveSlotForItem(parts[2], amt);
+                    story.variablesState[varName] = hasItem;
                 }
             }
         }
@@ -147,8 +128,7 @@ public class DialogueManager : MonoBehaviour
     private bool CheckActiveSlotForItem(string itemId, int requiredAmount)
     {
         if (InventoryManager.Instance == null) return false;
-        int amountInHand = InventoryManager.Instance.GetActiveSlotItemCount(itemId);
-        return amountInHand >= requiredAmount;
+        return InventoryManager.Instance.GetActiveSlotItemCount(itemId) >= requiredAmount;
     }
 
     private void RestoreGlobalVariables()
@@ -156,28 +136,19 @@ public class DialogueManager : MonoBehaviour
         foreach (var variable in globalVariables)
         {
             if (story.variablesState.Contains(variable.Key))
-            {
                 try { story.variablesState[variable.Key] = variable.Value; } catch { }
-            }
         }
     }
 
     private void SaveGlobalVariables()
     {
         if (story == null) return;
-        List<string> variableNames = new List<string>();
-        foreach (string variableName in story.variablesState) variableNames.Add(variableName);
-
-        foreach (string variableName in variableNames)
-        {
+        foreach (string variableName in story.variablesState)
             globalVariables[variableName] = story.variablesState[variableName];
-        }
     }
-
 
     public void ContinueDialogue()
     {
-
         if (isWaiting) return;
 
         if (isTyping)
@@ -194,14 +165,7 @@ public class DialogueManager : MonoBehaviour
         {
             string text = story.Continue();
             currentFullLine = text.Trim();
-
-            ProcessAllTags();
-
-            if (!isWaiting)
-            {
-                ApplyVisualTags();
-                typingCoroutine = StartCoroutine(TypewriterRoutine(currentFullLine));
-            }
+            StartCoroutine(ProcessTagsRoutine());
         }
         else if (story.currentChoices.Count > 0)
         {
@@ -213,32 +177,47 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void ProcessAllTags()
+    private IEnumerator ProcessTagsRoutine()
     {
         List<string> currentTags = story.currentTags;
-        Dictionary<string, List<string>> actions = new Dictionary<string, List<string>>();
-        string currentAction = "";
+        List<ActionData> actionsToRun = new List<ActionData>();
+        ActionData currentAction = null;
 
         foreach (string tag in currentTags)
         {
-            if (tag.StartsWith("action:"))
+            string cleanTag = tag.Trim();
+            if (cleanTag.StartsWith("action:"))
             {
-                currentAction = tag.Substring(7).Trim();
-                actions[currentAction] = new List<string>();
+                currentAction = new ActionData();
+                currentAction.name = cleanTag.Substring(7).Trim();
+                currentAction.paramsList = new List<string>();
+                actionsToRun.Add(currentAction);
             }
-            else if (!string.IsNullOrEmpty(currentAction) && tag.Contains(":"))
+            else if (currentAction != null && cleanTag.Contains(":"))
             {
-                actions[currentAction].Add(tag);
+                currentAction.paramsList.Add(cleanTag);
             }
-            else if (tag.StartsWith("set_"))
+            else if (cleanTag.StartsWith("set_"))
             {
-                ProcessSetTag(tag);
+                ProcessSetTag(cleanTag);
             }
         }
 
-        foreach (var action in actions)
+        foreach (var action in actionsToRun)
         {
-            ExecuteAction(action.Key, action.Value);
+            ExecuteAction(action.name, action.paramsList);
+
+            while (isWaiting)
+            {
+                yield return null;
+            }
+        }
+
+        if (!isWaiting)
+        {
+            dialoguePanel.SetActive(true);
+            ApplyVisualTags();
+            typingCoroutine = StartCoroutine(TypewriterRoutine(currentFullLine));
         }
     }
 
@@ -246,28 +225,19 @@ public class DialogueManager : MonoBehaviour
     {
         isTyping = true;
         dialogueText.text = line;
-        dialogueText.maxVisibleCharacters = 0; 
-
+        dialogueText.maxVisibleCharacters = 0;
         yield return null;
 
         for (int i = 0; i < line.Length; i++)
         {
-            dialogueText.maxVisibleCharacters = i + 1; 
-
+            dialogueText.maxVisibleCharacters = i + 1;
             if (i % 2 == 0 && audioSource != null)
             {
-                AudioClip clipToPlay = currentVoiceSound != null ? currentVoiceSound : defaultTypingSound;
-
-                if (clipToPlay != null)
-                {
-                    audioSource.pitch = Random.Range(0.95f, 1.05f);
-                    audioSource.PlayOneShot(clipToPlay);
-                }
+                AudioClip clip = currentVoiceSound != null ? currentVoiceSound : defaultTypingSound;
+                if (clip != null) { audioSource.pitch = Random.Range(0.95f, 1.05f); audioSource.PlayOneShot(clip); }
             }
-
             yield return new WaitForSeconds(currentTypingSpeed);
         }
-
         isTyping = false;
     }
 
@@ -291,42 +261,31 @@ public class DialogueManager : MonoBehaviour
             case "unlock_ability": UnlockAbilityAction(parameters); break;
             case "text_speed": ChangeSpeedAction(parameters); break;
             case "play_animation_sequence": PlayAnimationSequenceAction(parameters); break;
-
-            default:
-                Debug.LogWarning($"Неизвестное действие: {actionType}");
-                break;
+            default: Debug.LogWarning($"Unknown action: {actionType}"); break;
         }
     }
 
     private void PlayCutsceneAction(List<string> parameters)
     {
-        string targetName = GetParameterValue(parameters, "target");     
-        string animName = GetParameterValue(parameters, "animation_name"); 
-        string destination = GetParameterValue(parameters, "move_after");  
-
+        string targetName = GetParameterValue(parameters, "target");
+        string animName = GetParameterValue(parameters, "animation_name");
+        string destination = GetParameterValue(parameters, "move_after");
         string moveTargetName = GetParameterValue(parameters, "move_target");
 
-        if (string.IsNullOrEmpty(targetName))
-        {
-            targetName = animName;
-        }
+        if (string.IsNullOrEmpty(targetName)) targetName = animName;
 
         if (!string.IsNullOrEmpty(targetName) && !string.IsNullOrEmpty(animName))
         {
-
+            isWaiting = true;
+            dialoguePanel.SetActive(false);
             StartCoroutine(PlayCutsceneRoutine(targetName, animName, destination, moveTargetName));
         }
     }
 
     private IEnumerator PlayCutsceneRoutine(string targetName, string animName, string destination, string moveTargetName)
     {
-        isWaiting = true;
-        dialoguePanel.SetActive(false);
-
         if (AnimationManager.Instance != null)
-        {
             AnimationManager.Instance.PlayAnimation(targetName, animName);
-        }
 
         float duration = 1.5f;
         if (AnimationManager.Instance != null)
@@ -340,173 +299,110 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(destination))
         {
             string actualObjectToMoveName = !string.IsNullOrEmpty(moveTargetName) ? moveTargetName : targetName;
-
             GameObject objToMove = GameObject.Find(actualObjectToMoveName);
             GameObject destObj = GameObject.Find(destination);
-
             if (objToMove != null && destObj != null)
-            {
                 objToMove.transform.position = destObj.transform.position;
-                Debug.Log($"Объект {actualObjectToMoveName} перемещен в {destination}");
-            }
-            else
-            {
-                Debug.LogWarning($"Не удалось переместить. Цель: {actualObjectToMoveName}, Точка: {destination}");
-            }
         }
 
-        dialoguePanel.SetActive(true);
         isWaiting = false;
-
-        ContinueDialogue();
     }
 
     private void PlayAnimationSequenceAction(List<string> parameters)
     {
         string target = GetParameterValue(parameters, "target");
-        string animationsStr = GetParameterValue(parameters, "animations");
-
-        if (!string.IsNullOrEmpty(target) && !string.IsNullOrEmpty(animationsStr) && AnimationManager.Instance != null)
-        {
-            string[] animationNames = animationsStr.Split(',');
-            AnimationManager.Instance.PlaySequenceOnObject(target, animationNames.Select(s => s.Trim()).ToArray());
-        }
+        string anims = GetParameterValue(parameters, "animations");
+        if (!string.IsNullOrEmpty(target) && !string.IsNullOrEmpty(anims) && AnimationManager.Instance != null)
+            AnimationManager.Instance.PlaySequenceOnObject(target, anims.Split(',').Select(s => s.Trim()).ToArray());
     }
 
     private void CameraTargetAction(List<string> parameters)
     {
         string target = GetParameterValue(parameters, "target");
         if (!string.IsNullOrEmpty(target) && CameraController.Instance != null)
-        {
             CameraController.Instance.SetTarget(target);
-        }
     }
 
     private void AddQuestAction(List<string> parameters)
     {
-        string id = GetParameterValue(parameters, "id");
-        string desc = GetParameterValue(parameters, "desc");
-        if (!string.IsNullOrEmpty(id) && QuestsManager.Instance != null)
-            QuestsManager.Instance.AddQuest(id, desc);
+        if (QuestsManager.Instance != null) QuestsManager.Instance.AddQuest(GetParameterValue(parameters, "id"), GetParameterValue(parameters, "desc"));
     }
 
     private void AddQuestItemAction(List<string> parameters)
     {
-        string id = GetParameterValue(parameters, "id");
-        string desc = GetParameterValue(parameters, "desc");
-        string itemId = GetParameterValue(parameters, "item_id");
-        int amount = GetIntParameterValue(parameters, "amount", 1);
-        if (!string.IsNullOrEmpty(id) && QuestsManager.Instance != null)
-            QuestsManager.Instance.AddQuest(id, desc, itemId, amount);
+        if (QuestsManager.Instance != null) QuestsManager.Instance.AddQuest(GetParameterValue(parameters, "id"), GetParameterValue(parameters, "desc"), GetParameterValue(parameters, "item_id"), GetIntParameterValue(parameters, "amount", 1));
     }
 
     private void CompleteQuestAction(List<string> parameters)
     {
-        string id = GetParameterValue(parameters, "id");
-        if (!string.IsNullOrEmpty(id) && QuestsManager.Instance != null)
-            QuestsManager.Instance.CompleteQuest(id);
+        if (QuestsManager.Instance != null) QuestsManager.Instance.CompleteQuest(GetParameterValue(parameters, "id"));
     }
 
     private void GiveItemAction(List<string> parameters)
     {
-        string itemId = GetParameterValue(parameters, "item_id");
-        int amount = GetIntParameterValue(parameters, "amount", 1);
-        if (!string.IsNullOrEmpty(itemId)) InventoryManager.Instance.AddItem(itemId, amount);
+        if (InventoryManager.Instance != null) InventoryManager.Instance.AddItem(GetParameterValue(parameters, "item_id"), GetIntParameterValue(parameters, "amount", 1));
     }
 
     private void TakeItemAction(List<string> parameters)
     {
-        string itemId = GetParameterValue(parameters, "item_id");
-        int amount = GetIntParameterValue(parameters, "amount", 1);
-        if (!string.IsNullOrEmpty(itemId)) InventoryManager.Instance.RemoveItemFromActiveSlot(itemId, amount);
+        if (InventoryManager.Instance != null) InventoryManager.Instance.RemoveItemFromActiveSlot(GetParameterValue(parameters, "item_id"), GetIntParameterValue(parameters, "amount", 1));
     }
 
     private void ActivateTriggerAction(List<string> parameters)
     {
-        string tName = GetParameterValue(parameters, "trigger_name");
-        GameObject trig = GameObject.Find(tName);
-        if (trig != null && trig.GetComponent<Collider2D>()) trig.GetComponent<Collider2D>().enabled = true;
+        GameObject g = GameObject.Find(GetParameterValue(parameters, "trigger_name"));
+        if (g != null && g.GetComponent<Collider2D>()) g.GetComponent<Collider2D>().enabled = true;
     }
 
     private void DeactivateObjectAction(List<string> parameters)
     {
-        string oName = GetParameterValue(parameters, "object_name");
-        GameObject obj = GameObject.Find(oName);
-        if (obj != null) obj.SetActive(false);
+        GameObject g = GameObject.Find(GetParameterValue(parameters, "object_name"));
+        if (g != null) g.SetActive(false);
     }
 
     private void StartAnimationAction(List<string> parameters)
     {
-        string animationName = GetParameterValue(parameters, "animation_name");
-        string animationNames = GetParameterValue(parameters, "animation_names");
-
-        if (!string.IsNullOrEmpty(animationNames))
-        {
-            string[] names = animationNames.Split(',');
-            AnimationManager.Instance.PlayMultipleAnimations(names);
-        }
-        else if (!string.IsNullOrEmpty(animationName))
-        {
-            AnimationManager.Instance.PlayAnimation(animationName);
-        }
+        string a = GetParameterValue(parameters, "animation_name");
+        string asq = GetParameterValue(parameters, "animation_names");
+        if (!string.IsNullOrEmpty(asq)) AnimationManager.Instance.PlayMultipleAnimations(asq.Split(','));
+        else if (!string.IsNullOrEmpty(a)) AnimationManager.Instance.PlayAnimation(a);
     }
 
     private void ChangeSceneAction(List<string> parameters)
     {
-        string sName = GetParameterValue(parameters, "scene_name");
-        if (!string.IsNullOrEmpty(sName)) UnityEngine.SceneManagement.SceneManager.LoadScene(sName);
+        string s = GetParameterValue(parameters, "scene_name");
+        if (!string.IsNullOrEmpty(s)) UnityEngine.SceneManagement.SceneManager.LoadScene(s);
     }
 
     private void QuestTextAction(List<string> parameters) { }
 
     private void TeleportPlayerAction(List<string> parameters)
     {
-        string destinationName = GetParameterValue(parameters, "destination");
-
-
-        string targetName = GetParameterValue(parameters, "target");
-        if (string.IsNullOrEmpty(targetName)) targetName = "Player";
-
-        GameObject targetObj = GameObject.Find(targetName);
-        GameObject destinationObj = GameObject.Find(destinationName);
-
-        if (targetObj != null && destinationObj != null)
-        {
-            targetObj.transform.position = destinationObj.transform.position;
-
-            Debug.Log($"Телепортация {targetName} в точку {destinationName}");
-        }
-        else
-        {
-            Debug.LogWarning($"Не удалось телепортировать. Цель: {targetObj}, Точка: {destinationObj}");
-        }
+        string dest = GetParameterValue(parameters, "destination");
+        string target = GetParameterValue(parameters, "target");
+        if (string.IsNullOrEmpty(target)) target = "Player";
+        GameObject tObj = GameObject.Find(target);
+        GameObject dObj = GameObject.Find(dest);
+        if (tObj != null && dObj != null) tObj.transform.position = dObj.transform.position;
     }
 
     private void ChangeSpeedAction(List<string> parameters)
     {
-        string val = GetParameterValue(parameters, "val");
-        if (float.TryParse(val, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float speed))
-        {
-            currentTypingSpeed = speed;
-        }
+        if (float.TryParse(GetParameterValue(parameters, "val"), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float s)) currentTypingSpeed = s;
     }
 
     private void UnlockAbilityAction(List<string> parameters) { }
 
-
     private string GetParameterValue(List<string> parameters, string key)
     {
         foreach (string param in parameters)
-        {
             if (param.Trim().StartsWith(key + ":")) return param.Trim().Substring(key.Length + 1).Trim();
-        }
         return "";
     }
 
     private int GetIntParameterValue(List<string> parameters, string key, int defaultValue)
     {
-        string value = GetParameterValue(parameters, key);
-        return int.TryParse(value, out int result) ? result : defaultValue;
+        return int.TryParse(GetParameterValue(parameters, key), out int result) ? result : defaultValue;
     }
 
     private void ProcessSetTag(string tag)
@@ -514,14 +410,12 @@ public class DialogueManager : MonoBehaviour
         string[] parts = tag.Split(' ');
         if (parts.Length == 2)
         {
-            string varName = parts[0].Substring(4);
-            string value = parts[1].ToLower();
-            if (value == "true") story.variablesState[varName] = true;
-            else if (value == "false") story.variablesState[varName] = false;
-            else story.variablesState[varName] = value;
+            string v = parts[1].ToLower();
+            if (v == "true") story.variablesState[parts[0].Substring(4)] = true;
+            else if (v == "false") story.variablesState[parts[0].Substring(4)] = false;
+            else story.variablesState[parts[0].Substring(4)] = parts[1];
         }
     }
-
 
     private void ApplyVisualTags()
     {
@@ -536,18 +430,17 @@ public class DialogueManager : MonoBehaviour
             else if (tag == "side:right") { portraitRight.gameObject.SetActive(true); nameRight.gameObject.SetActive(true); }
             else if (tag.StartsWith("speaker:"))
             {
-                string sName = tag.Substring(8).Trim();
-                if (portraitLeft.gameObject.activeSelf) nameLeft.text = sName;
-                if (portraitRight.gameObject.activeSelf) nameRight.text = sName;
+                string s = tag.Substring(8).Trim();
+                if (portraitLeft.gameObject.activeSelf) nameLeft.text = s;
+                if (portraitRight.gameObject.activeSelf) nameRight.text = s;
             }
             else if (tag.StartsWith("portrait:"))
             {
-                string pName = tag.Substring(9).Trim();
-                Sprite sprite = Resources.Load<Sprite>("Portraits/" + pName);
-                if (sprite != null)
+                Sprite sp = Resources.Load<Sprite>("Portraits/" + tag.Substring(9).Trim());
+                if (sp != null)
                 {
-                    if (portraitLeft.gameObject.activeSelf) portraitLeft.sprite = sprite;
-                    if (portraitRight.gameObject.activeSelf) portraitRight.sprite = sprite;
+                    if (portraitLeft.gameObject.activeSelf) portraitLeft.sprite = sp;
+                    if (portraitRight.gameObject.activeSelf) portraitRight.sprite = sp;
                 }
             }
         }
@@ -559,7 +452,6 @@ public class DialogueManager : MonoBehaviour
         nameLeft.gameObject.SetActive(true);
         nameLeft.text = npcData.npcName;
         if (npcData.portrait != null) portraitLeft.sprite = npcData.portrait;
-
         currentVoiceSound = npcData.voiceSound;
         currentTypingSpeed = npcData.typingSpeed > 0 ? npcData.typingSpeed : 0.04f;
     }
@@ -574,8 +466,8 @@ public class DialogueManager : MonoBehaviour
             TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
             buttonText.text = choice.text;
             Button btn = button.GetComponent<Button>();
-            int choiceIndex = i;
-            btn.onClick.AddListener(() => { story.ChooseChoiceIndex(choiceIndex); ContinueDialogue(); });
+            int idx = i;
+            btn.onClick.AddListener(() => { story.ChooseChoiceIndex(idx); ContinueDialogue(); });
         }
     }
 
@@ -586,11 +478,8 @@ public class DialogueManager : MonoBehaviour
         isWaiting = false;
         dialoguePanel.SetActive(false);
         choicesContainer.gameObject.SetActive(false);
-
         if (playerController != null) playerController.enabled = true;
-
         if (CameraController.Instance != null) CameraController.Instance.SetTarget("Player");
-
         currentNPC = null;
     }
 
