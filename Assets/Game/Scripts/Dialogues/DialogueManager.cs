@@ -58,7 +58,43 @@ public class DialogueManager : MonoBehaviour
     {
         if (isPlaying) return;
 
-        if (playerController != null) playerController.enabled = false;
+        if (playerController != null)
+        {
+            // 1. Отключаем управление
+            playerController.enabled = false;
+
+            // 2. Тормозим физику
+            Rigidbody2D rb = playerController.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+            }
+
+            // 3. Ищем Аниматор (ТЕПЕРЬ ИЩЕМ И В ДОЧЕРНИХ ОБЪЕКТАХ)
+            // Было: GetComponent<Animator>()
+            // Стало: GetComponentInChildren<Animator>()
+            Animator anim = playerController.GetComponentInChildren<Animator>();
+
+            if (anim != null)
+            {
+                // Сбрасываем скорость
+                anim.SetFloat("Speed", 0f);
+
+                // Если есть другие параметры бега, сбросьте их тоже:
+                // anim.SetBool("IsMoving", false);
+
+                // Принудительно включаем Idle, чтобы Blend Tree выбрало сторону
+                // Убедитесь, что стейт называется именно "Idle"
+                anim.Play("Idle");
+
+                anim.Update(0f);
+            }
+            else
+            {
+                Debug.LogWarning("DialogueManager: Аниматор игрока не найден! Проверьте, где висит компонент Animator.");
+            }
+        }
 
         story = new Story(inkJSON.text);
         currentNPC = npcData;
@@ -235,11 +271,12 @@ public class DialogueManager : MonoBehaviour
     // #action:play_cutscene target:Player animation_name:Dissappear move_after:TeleportSpot_1
     private void PlayCutsceneAction(List<string> parameters)
     {
-        string targetName = GetParameterValue(parameters, "target");
-        string animName = GetParameterValue(parameters, "animation_name");
+        string targetName = GetParameterValue(parameters, "target");       // Кто анимируется
+        string animName = GetParameterValue(parameters, "animation_name"); // Какая анимация
+        string destination = GetParameterValue(parameters, "move_after");  // Куда телепортироваться
 
-        // Читаем новый параметр для телепортации
-        string moveAfterParams = GetParameterValue(parameters, "move_after");
+        // НОВЫЙ ПАРАМЕТР: Кто именно должен телепортироваться
+        string moveTargetName = GetParameterValue(parameters, "move_target");
 
         // Если target не указан, пробуем старую логику
         if (string.IsNullOrEmpty(targetName))
@@ -249,39 +286,51 @@ public class DialogueManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(targetName) && !string.IsNullOrEmpty(animName))
         {
-            // Передаем точку назначения в корутину
-            StartCoroutine(PlayCutsceneRoutine(targetName, animName, moveAfterParams));
+            // Передаем все параметры, включая новый moveTargetName
+            StartCoroutine(PlayCutsceneRoutine(targetName, animName, destination, moveTargetName));
         }
     }
 
-    // Обновленная корутина с аргументом destination
-    private IEnumerator PlayCutsceneRoutine(string targetName, string animName, string destination)
+    // Обновленная корутина с отдельным аргументом для объекта перемещения
+    private IEnumerator PlayCutsceneRoutine(string targetName, string animName, string destination, string moveTargetName)
     {
         isWaiting = true;
         dialoguePanel.SetActive(false);
 
-        // 1. Запускаем анимацию
-        AnimationManager.Instance.PlayAnimation(targetName, animName);
+        // 1. Запускаем анимацию (на том объекте, который указан в target)
+        if (AnimationManager.Instance != null)
+        {
+            AnimationManager.Instance.PlayAnimation(targetName, animName);
+        }
 
         // 2. Ждем пока она закончится
-        float duration = AnimationManager.Instance.GetAnimationLength(targetName, animName);
-        if (duration <= 0) duration = 1.5f;
+        float duration = 1.5f;
+        if (AnimationManager.Instance != null)
+        {
+            duration = AnimationManager.Instance.GetAnimationLength(targetName, animName);
+            if (duration <= 0) duration = 1.5f;
+        }
 
         yield return new WaitForSeconds(duration);
 
-        // 3. ТЕПЕРЬ, когда время вышло, выполняем телепортацию (если задана точка)
+        // 3. ТЕЛЕПОРТАЦИЯ
         if (!string.IsNullOrEmpty(destination))
         {
-            GameObject targetObj = GameObject.Find(targetName);
+            // Логика выбора: если move_target указан явно -> берем его.
+            // Если нет -> берем объект, который проигрывал анимацию (targetName).
+            string actualObjectToMoveName = !string.IsNullOrEmpty(moveTargetName) ? moveTargetName : targetName;
+
+            GameObject objToMove = GameObject.Find(actualObjectToMoveName);
             GameObject destObj = GameObject.Find(destination);
 
-            if (targetObj != null && destObj != null)
+            if (objToMove != null && destObj != null)
             {
-                targetObj.transform.position = destObj.transform.position;
+                objToMove.transform.position = destObj.transform.position;
+                Debug.Log($"Объект {actualObjectToMoveName} перемещен в {destination}");
             }
             else
             {
-                Debug.LogWarning($"Не удалось переместить {targetName} в {destination}");
+                Debug.LogWarning($"Не удалось переместить. Цель: {actualObjectToMoveName}, Точка: {destination}");
             }
         }
 

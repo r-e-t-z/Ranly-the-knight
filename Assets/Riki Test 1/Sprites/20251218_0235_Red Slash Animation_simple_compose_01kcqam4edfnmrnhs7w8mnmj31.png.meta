@@ -1,0 +1,1313 @@
+fileFormatVersion: 2
+guid: c336fde68038b0b48be52fb7a8053aa5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6130714648417204032
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_0
+  - first:
+      213: 1208507635269914351
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_1
+  - first:
+      213: 3288447474853248077
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_2
+  - first:
+      213: -6706318527268047289
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_3
+  - first:
+      213: 1386531141822072125
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_4
+  - first:
+      213: -8261968524903133195
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_5
+  - first:
+      213: 7445159859531621015
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_6
+  - first:
+      213: -7752210927455103801
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_7
+  - first:
+      213: 6877042486824533948
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_8
+  - first:
+      213: 6118002585946160374
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_9
+  - first:
+      213: 8839809406992734637
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_10
+  - first:
+      213: 5001507271561855640
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_11
+  - first:
+      213: -2297826602821085300
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_12
+  - first:
+      213: 2683906861358288628
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_13
+  - first:
+      213: -7703390331164172723
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_14
+  - first:
+      213: -7923723344494437230
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_15
+  - first:
+      213: 4370987508972866111
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_16
+  - first:
+      213: 2010540528862378491
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_17
+  - first:
+      213: -5285248013210440718
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_18
+  - first:
+      213: 1844033290419213817
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_19
+  - first:
+      213: -322333406601601423
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_20
+  - first:
+      213: -1703010667891011083
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_21
+  - first:
+      213: 5842496126935990283
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_22
+  - first:
+      213: 6952464696302216551
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_23
+  - first:
+      213: 5361495136517974854
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_24
+  - first:
+      213: 3523420707662965919
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_25
+  - first:
+      213: 3485274561046799003
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_26
+  - first:
+      213: 3175618007299083286
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_27
+  - first:
+      213: -8467351979304466791
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_28
+  - first:
+      213: 6969117773575172971
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_29
+  - first:
+      213: 1272092713747804354
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_30
+  - first:
+      213: -1072201084210412173
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_31
+  - first:
+      213: -4561938519047889515
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_32
+  - first:
+      213: 7538147049857057533
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_33
+  - first:
+      213: 728735087895989305
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_34
+  - first:
+      213: 2443698214445153322
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_35
+  - first:
+      213: -2877479073678504452
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_36
+  - first:
+      213: 1374369289865428082
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_37
+  - first:
+      213: -1756355522205194352
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_38
+  - first:
+      213: -107555753299393846
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_39
+  - first:
+      213: 660515457200853984
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_40
+  - first:
+      213: 4269153452626127048
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_41
+  - first:
+      213: -4873039675993780413
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_42
+  - first:
+      213: -8733545848974149067
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_43
+  - first:
+      213: -882729058362345716
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_44
+  - first:
+      213: -2933456960701235122
+    second: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_45
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 6
+        width: 342
+        height: 1014
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 047f036ad7ca41550800000000000000
+      internalID: 6130714648417204032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_1
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 136
+        width: 204
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fee4c949a4b75c010800000000000000
+      internalID: 1208507635269914351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_2
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 452
+        width: 167
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4c78213e89e2ad20800000000000000
+      internalID: 3288447474853248077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_3
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 1
+        width: 198
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 746319fb4de5ee2a0800000000000000
+      internalID: -6706318527268047289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_4
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 349
+        width: 171
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3542523ab2fd3310800000000000000
+      internalID: 1386531141822072125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_5
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 649
+        width: 156
+        height: 371
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ffc0bf7667975d80800000000000000
+      internalID: -8261968524903133195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_6
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 143
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79221633275825760800000000000000
+      internalID: 7445159859531621015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 321
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c413250c3d9a6490800000000000000
+      internalID: -7752210927455103801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_8
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 389
+        width: 198
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbff174a4b9207f50800000000000000
+      internalID: 6877042486824533948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_9
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 93
+        width: 213
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fcfd36ffe287e450800000000000000
+      internalID: 6118002585946160374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_10
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 705
+        width: 179
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da955f102df4daa70800000000000000
+      internalID: 8839809406992734637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_11
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 303
+        width: 202
+        height: 348
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8924af64d5ce86540800000000000000
+      internalID: 5001507271561855640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_12
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 656
+        width: 196
+        height: 355
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c87186f01ea7c10e0800000000000000
+      internalID: -2297826602821085300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_13
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 321
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe8e7902172f3520800000000000000
+      internalID: 2683906861358288628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_14
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 310
+        width: 39
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4ed7c0ee4f081590800000000000000
+      internalID: -7703390331164172723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_15
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 1
+        width: 294
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29c50f09997490290800000000000000
+      internalID: -7923723344494437230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_16
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 277
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3a4ffd1bfdd8ac30800000000000000
+      internalID: 4370987508972866111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_17
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 307
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf93e5d65ffd6eb10800000000000000
+      internalID: 2010540528862378491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_18
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 151
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fba0c63fe607a6b0800000000000000
+      internalID: -5285248013210440718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_19
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 289
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f59e6de182579910800000000000000
+      internalID: 1844033290419213817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_20
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 312
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17e15487977d68bf0800000000000000
+      internalID: -322333406601601423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_21
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 295
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f1d7ab02d0bd58e0800000000000000
+      internalID: -1703010667891011083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_22
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 148
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b008d97c547b41150800000000000000
+      internalID: 5842496126935990283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_23
+      rect:
+        serializedVersion: 2
+        x: 1012
+        y: 290
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 765a9883ecd1c7060800000000000000
+      internalID: 6952464696302216551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_24
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 309
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64b63259b6bd76a40800000000000000
+      internalID: 5361495136517974854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_25
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 282
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9ca18a3774b5e030800000000000000
+      internalID: 3523420707662965919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_26
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 296
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9266eb5fbe2e5030800000000000000
+      internalID: 3485274561046799003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_27
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 333
+        width: 290
+        height: 327
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61c4563a0cf021c20800000000000000
+      internalID: 3175618007299083286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_28
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 673
+        width: 163
+        height: 327
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9964b5d9c3ced7a80800000000000000
+      internalID: -8467351979304466791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_29
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 301
+        width: 38
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b633fcbe0b747b060800000000000000
+      internalID: 6969117773575172971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_30
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 309
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c0fc44559167a110800000000000000
+      internalID: 1272092713747804354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_31
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 219
+        width: 61
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37589df6bc6ce11f0800000000000000
+      internalID: -1072201084210412173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_32
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 301
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59d9afc461db0b0c0800000000000000
+      internalID: -4561938519047889515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_33
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 145
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df283639dc0ec9860800000000000000
+      internalID: 7538147049857057533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_34
+      rect:
+        serializedVersion: 2
+        x: 1251
+        y: 311
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93c476193bcfc1a00800000000000000
+      internalID: 728735087895989305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_35
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 88
+        width: 30
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2c724a2492c9e120800000000000000
+      internalID: 2443698214445153322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_36
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 275
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfdc5cc27042118d0800000000000000
+      internalID: -2877479073678504452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_37
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 192
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27c72a0669db21310800000000000000
+      internalID: 1374369289865428082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_38
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 232
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 097e9a745fb20a7e0800000000000000
+      internalID: -1756355522205194352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_39
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 160
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac24a0bbc92e18ef0800000000000000
+      internalID: -107555753299393846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_40
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 289
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e39c1b0f4f9a2900800000000000000
+      internalID: 660515457200853984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_41
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 217
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c8a96b32741f3b30800000000000000
+      internalID: 4269153452626127048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_42
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 263
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34f8100bb3c7f5cb0800000000000000
+      internalID: -4873039675993780413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_43
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 181
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53afe4a92563cc680800000000000000
+      internalID: -8733545848974149067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_44
+      rect:
+        serializedVersion: 2
+        x: 1325
+        y: 254
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c07b56b299aefb3f0800000000000000
+      internalID: -882729058362345716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_45
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 222
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e408185bf644a47d0800000000000000
+      internalID: -2933456960701235122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_0: 6130714648417204032
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_1: 1208507635269914351
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_10: 8839809406992734637
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_11: 5001507271561855640
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_12: -2297826602821085300
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_13: 2683906861358288628
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_14: -7703390331164172723
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_15: -7923723344494437230
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_16: 4370987508972866111
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_17: 2010540528862378491
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_18: -5285248013210440718
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_19: 1844033290419213817
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_2: 3288447474853248077
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_20: -322333406601601423
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_21: -1703010667891011083
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_22: 5842496126935990283
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_23: 6952464696302216551
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_24: 5361495136517974854
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_25: 3523420707662965919
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_26: 3485274561046799003
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_27: 3175618007299083286
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_28: -8467351979304466791
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_29: 6969117773575172971
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_3: -6706318527268047289
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_30: 1272092713747804354
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_31: -1072201084210412173
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_32: -4561938519047889515
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_33: 7538147049857057533
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_34: 728735087895989305
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_35: 2443698214445153322
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_36: -2877479073678504452
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_37: 1374369289865428082
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_38: -1756355522205194352
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_39: -107555753299393846
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_4: 1386531141822072125
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_40: 660515457200853984
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_41: 4269153452626127048
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_42: -4873039675993780413
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_43: -8733545848974149067
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_44: -882729058362345716
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_45: -2933456960701235122
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_5: -8261968524903133195
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_6: 7445159859531621015
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_7: -7752210927455103801
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_8: 6877042486824533948
+      20251218_0235_Red Slash Animation_simple_compose_01kcqam4edfnmrnhs7w8mnmj31_9: 6118002585946160374
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
