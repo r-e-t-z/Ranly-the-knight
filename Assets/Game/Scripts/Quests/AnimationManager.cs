@@ -11,8 +11,6 @@ public class AnimationManager : MonoBehaviour
         Instance = this;
     }
 
-    // --- НОВЫЕ МЕТОДЫ (С указанием объекта) ---
-
     public void PlayAnimation(string objectName, string animationName)
     {
         GameObject obj = GameObject.Find(objectName);
@@ -43,7 +41,6 @@ public class AnimationManager : MonoBehaviour
             Animator animator = obj.GetComponent<Animator>();
             if (animator != null && animator.runtimeAnimatorController != null)
             {
-                // Ищем клип в контроллере
                 AnimationClip clip = animator.runtimeAnimatorController.animationClips
                     .FirstOrDefault(c => c.name == animationName);
 
@@ -52,11 +49,29 @@ public class AnimationManager : MonoBehaviour
         }
         return 0f;
     }
+    public void PlaySequenceOnObject(string objectName, string[] animationNames)
+    {
+        StartCoroutine(PlaySequenceRoutine(objectName, animationNames));
+    }
 
-    // --- СТАРЫЕ МЕТОДЫ (Для совместимости, если где-то еще используются) ---
+    private IEnumerator PlaySequenceRoutine(string objectName, string[] anims)
+    {
+        foreach (string anim in anims)
+        {
+
+            PlayAnimation(objectName, anim);
+
+            float duration = GetAnimationLength(objectName, anim);
+            if (duration <= 0) duration = 0.5f; 
+
+            yield return new WaitForSeconds(duration);
+        }
+    }
+
+
     public void PlayAnimation(string animationName)
     {
-        // Пытаемся найти объект с таким же именем, как анимация
+
         PlayAnimation(animationName, animationName);
     }
 

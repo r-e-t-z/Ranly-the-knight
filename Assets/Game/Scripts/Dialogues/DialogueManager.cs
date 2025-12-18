@@ -25,6 +25,17 @@ public class DialogueManager : MonoBehaviour
     public Transform choicesContainer;
     public GameObject choiceButtonPrefab;
 
+    [Header("Audio & Typing")]
+    public AudioSource audioSource; 
+    public AudioClip defaultTypingSound; 
+
+    private Coroutine typingCoroutine;
+    private bool isTyping = false;
+    private string currentFullLine = "";
+
+    private AudioClip currentVoiceSound;
+    private float currentTypingSpeed = 0.04f;
+
     private Story story;
     private bool isPlaying = false;
     private bool isWaiting = false; // Флаг ожидания катсцены
@@ -60,10 +71,8 @@ public class DialogueManager : MonoBehaviour
 
         if (playerController != null)
         {
-            // 1. Отключаем управление
             playerController.enabled = false;
 
-            // 2. Тормозим физику
             Rigidbody2D rb = playerController.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
@@ -71,28 +80,19 @@ public class DialogueManager : MonoBehaviour
                 rb.angularVelocity = 0f;
             }
 
-            // 3. Ищем Аниматор (ТЕПЕРЬ ИЩЕМ И В ДОЧЕРНИХ ОБЪЕКТАХ)
-            // Было: GetComponent<Animator>()
-            // Стало: GetComponentInChildren<Animator>()
             Animator anim = playerController.GetComponentInChildren<Animator>();
 
             if (anim != null)
             {
-                // Сбрасываем скорость
                 anim.SetFloat("Speed", 0f);
 
-                // Если есть другие параметры бега, сбросьте их тоже:
-                // anim.SetBool("IsMoving", false);
-
-                // Принудительно включаем Idle, чтобы Blend Tree выбрало сторону
-                // Убедитесь, что стейт называется именно "Idle"
                 anim.Play("Idle");
 
                 anim.Update(0f);
             }
             else
             {
-                Debug.LogWarning("DialogueManager: Аниматор игрока не найден! Проверьте, где висит компонент Animator.");
+                Debug.LogWarning("DialogueManager: Аниматор игрока не найден");
             }
         }
 
@@ -118,7 +118,6 @@ public class DialogueManager : MonoBehaviour
         ContinueDialogue();
     }
 
-    // --- СИНХРОНИЗАЦИЯ ПЕРЕМЕННЫХ ---
 
     private void UpdatePlayerStateVariables()
     {
@@ -175,24 +174,34 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // --- УПРАВЛЕНИЕ ДИАЛОГОМ ---
 
     public void ContinueDialogue()
     {
-        // Если ждем катсцену, не продолжаем
+
         if (isWaiting) return;
+
+        if (isTyping)
+        {
+            StopCoroutine(typingCoroutine);
+            dialogueText.maxVisibleCharacters = currentFullLine.Length;
+            isTyping = false;
+            return;
+        }
 
         foreach (Transform child in choicesContainer) Destroy(child.gameObject);
 
         if (story.canContinue)
         {
             string text = story.Continue();
-            dialogueText.text = text.Trim();
+            currentFullLine = text.Trim();
 
             ProcessAllTags();
 
-            // Обновляем визуал только если не ушли в режим ожидания
-            if (!isWaiting) ApplyVisualTags();
+            if (!isWaiting)
+            {
+                ApplyVisualTags();
+                typingCoroutine = StartCoroutine(TypewriterRoutine(currentFullLine));
+            }
         }
         else if (story.currentChoices.Count > 0)
         {
@@ -233,19 +242,41 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private IEnumerator TypewriterRoutine(string line)
+    {
+        isTyping = true;
+        dialogueText.text = line;
+        dialogueText.maxVisibleCharacters = 0; 
+
+        yield return null;
+
+        for (int i = 0; i < line.Length; i++)
+        {
+            dialogueText.maxVisibleCharacters = i + 1; 
+
+            if (i % 2 == 0 && audioSource != null)
+            {
+                AudioClip clipToPlay = currentVoiceSound != null ? currentVoiceSound : defaultTypingSound;
+
+                if (clipToPlay != null)
+                {
+                    audioSource.pitch = Random.Range(0.95f, 1.05f);
+                    audioSource.PlayOneShot(clipToPlay);
+                }
+            }
+
+            yield return new WaitForSeconds(currentTypingSpeed);
+        }
+
+        isTyping = false;
+    }
+
     private void ExecuteAction(string actionType, List<string> parameters)
     {
         switch (actionType)
         {
-            // === НОВЫЕ ДЕЙСТВИЯ ===
-            case "play_cutscene":
-                PlayCutsceneAction(parameters);
-                break;
-            case "camera_target":
-                CameraTargetAction(parameters);
-                break;
-            // =======================
-
+            case "play_cutscene": PlayCutsceneAction(parameters); break;
+            case "camera_target": CameraTargetAction(parameters); break;
             case "give_item": GiveItemAction(parameters); break;
             case "take_item": TakeItemAction(parameters); break;
             case "quest_add": AddQuestAction(parameters); break;
@@ -258,6 +289,8 @@ public class DialogueManager : MonoBehaviour
             case "change_scene": ChangeSceneAction(parameters); break;
             case "teleport_player": TeleportPlayerAction(parameters); break;
             case "unlock_ability": UnlockAbilityAction(parameters); break;
+            case "text_speed": ChangeSpeedAction(parameters); break;
+            case "play_animation_sequence": PlayAnimationSequenceAction(parameters); break;
 
             default:
                 Debug.LogWarning($"Неизвестное действие: {actionType}");
@@ -265,20 +298,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // --- РЕАЛИЗАЦИЯ ДЕЙСТВИЙ ---
-
-    // #action:play_cutscene animation_name:KnightAttack
-    // #action:play_cutscene target:Player animation_name:Dissappear move_after:TeleportSpot_1
     private void PlayCutsceneAction(List<string> parameters)
     {
-        string targetName = GetParameterValue(parameters, "target");       // Кто анимируется
-        string animName = GetParameterValue(parameters, "animation_name"); // Какая анимация
-        string destination = GetParameterValue(parameters, "move_after");  // Куда телепортироваться
+        string targetName = GetParameterValue(parameters, "target");     
+        string animName = GetParameterValue(parameters, "animation_name"); 
+        string destination = GetParameterValue(parameters, "move_after");  
 
-        // НОВЫЙ ПАРАМЕТР: Кто именно должен телепортироваться
         string moveTargetName = GetParameterValue(parameters, "move_target");
 
-        // Если target не указан, пробуем старую логику
         if (string.IsNullOrEmpty(targetName))
         {
             targetName = animName;
@@ -286,24 +313,21 @@ public class DialogueManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(targetName) && !string.IsNullOrEmpty(animName))
         {
-            // Передаем все параметры, включая новый moveTargetName
+
             StartCoroutine(PlayCutsceneRoutine(targetName, animName, destination, moveTargetName));
         }
     }
 
-    // Обновленная корутина с отдельным аргументом для объекта перемещения
     private IEnumerator PlayCutsceneRoutine(string targetName, string animName, string destination, string moveTargetName)
     {
         isWaiting = true;
         dialoguePanel.SetActive(false);
 
-        // 1. Запускаем анимацию (на том объекте, который указан в target)
         if (AnimationManager.Instance != null)
         {
             AnimationManager.Instance.PlayAnimation(targetName, animName);
         }
 
-        // 2. Ждем пока она закончится
         float duration = 1.5f;
         if (AnimationManager.Instance != null)
         {
@@ -313,11 +337,8 @@ public class DialogueManager : MonoBehaviour
 
         yield return new WaitForSeconds(duration);
 
-        // 3. ТЕЛЕПОРТАЦИЯ
         if (!string.IsNullOrEmpty(destination))
         {
-            // Логика выбора: если move_target указан явно -> берем его.
-            // Если нет -> берем объект, который проигрывал анимацию (targetName).
             string actualObjectToMoveName = !string.IsNullOrEmpty(moveTargetName) ? moveTargetName : targetName;
 
             GameObject objToMove = GameObject.Find(actualObjectToMoveName);
@@ -340,7 +361,18 @@ public class DialogueManager : MonoBehaviour
         ContinueDialogue();
     }
 
-    // #action:camera_target target:Ranly
+    private void PlayAnimationSequenceAction(List<string> parameters)
+    {
+        string target = GetParameterValue(parameters, "target");
+        string animationsStr = GetParameterValue(parameters, "animations");
+
+        if (!string.IsNullOrEmpty(target) && !string.IsNullOrEmpty(animationsStr) && AnimationManager.Instance != null)
+        {
+            string[] animationNames = animationsStr.Split(',');
+            AnimationManager.Instance.PlaySequenceOnObject(target, animationNames.Select(s => s.Trim()).ToArray());
+        }
+    }
+
     private void CameraTargetAction(List<string> parameters)
     {
         string target = GetParameterValue(parameters, "target");
@@ -425,15 +457,13 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(sName)) UnityEngine.SceneManagement.SceneManager.LoadScene(sName);
     }
 
-    // Заглушки для твоих методов (реализуй если нужно)
     private void QuestTextAction(List<string> parameters) { }
 
     private void TeleportPlayerAction(List<string> parameters)
     {
-        // Получаем имя точки назначения из параметров Ink
         string destinationName = GetParameterValue(parameters, "destination");
 
-        // Получаем имя объекта, который нужно телепортировать (по умолчанию Player)
+
         string targetName = GetParameterValue(parameters, "target");
         if (string.IsNullOrEmpty(targetName)) targetName = "Player";
 
@@ -442,8 +472,6 @@ public class DialogueManager : MonoBehaviour
 
         if (targetObj != null && destinationObj != null)
         {
-            // ВАЖНО: Если на игроке есть Rigidbody2D, лучше использовать MovePosition или временно отключить физику
-            // Но для простого телепорта transform.position подойдет
             targetObj.transform.position = destinationObj.transform.position;
 
             Debug.Log($"Телепортация {targetName} в точку {destinationName}");
@@ -454,9 +482,17 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void ChangeSpeedAction(List<string> parameters)
+    {
+        string val = GetParameterValue(parameters, "val");
+        if (float.TryParse(val, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float speed))
+        {
+            currentTypingSpeed = speed;
+        }
+    }
+
     private void UnlockAbilityAction(List<string> parameters) { }
 
-    // --- ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ---
 
     private string GetParameterValue(List<string> parameters, string key)
     {
@@ -523,6 +559,9 @@ public class DialogueManager : MonoBehaviour
         nameLeft.gameObject.SetActive(true);
         nameLeft.text = npcData.npcName;
         if (npcData.portrait != null) portraitLeft.sprite = npcData.portrait;
+
+        currentVoiceSound = npcData.voiceSound;
+        currentTypingSpeed = npcData.typingSpeed > 0 ? npcData.typingSpeed : 0.04f;
     }
 
     private void ShowChoices()
@@ -550,7 +589,6 @@ public class DialogueManager : MonoBehaviour
 
         if (playerController != null) playerController.enabled = true;
 
-        // Возвращаем камеру на игрока (если был CameraController)
         if (CameraController.Instance != null) CameraController.Instance.SetTarget("Player");
 
         currentNPC = null;
