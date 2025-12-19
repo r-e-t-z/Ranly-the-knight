@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: 
   portrait: {fileID: 0}
-  inkFile: {fileID: 4900000, guid: 60c34e905899c124680e154ed8e2abb1, type: 3}
+  voiceSound: {fileID: 0}
+  typingSpeed: 0.04
+  inkFile: {fileID: 4900000, guid: 8f1ea6a86d0993c4d8fcd640f13abf3c, type: 3}
