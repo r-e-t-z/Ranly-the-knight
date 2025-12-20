@@ -6,13 +6,17 @@ public class CameraController : MonoBehaviour
 
     [Header("Target")]
     public Transform target;
-    public float smoothSpeed = 5f;
+
+    [Tooltip("Примерное время долета до цели. Чем меньше, тем быстрее камера.")]
+    public float smoothTime = 0.25f;
 
     [Header("State")]
     public bool isLocked = false;
 
     // Смещение камеры относительно игрока
     private Vector3 offset;
+    // Служебная переменная для SmoothDamp (хранит текущую скорость камеры)
+    private Vector3 currentVelocity = Vector3.zero;
 
     void Awake()
     {
@@ -21,7 +25,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        // Запоминаем начальное расстояние между камерой и целью
+        // Запоминаем начальное смещение
         if (target != null)
         {
             offset = transform.position - target.position;
@@ -32,26 +36,34 @@ public class CameraController : MonoBehaviour
     {
         if (isLocked || target == null) return;
 
-        // Если цель - ИГРОК, используем жесткую привязку + сохраненный Offset
+        Vector3 targetPosition;
+
         if (target.CompareTag("Player"))
         {
-            // Целевая позиция = позиция игрока + смещение
-            Vector3 finalPosition = target.position + offset;
-
-            // Жестко ставим позицию (убирает лаги), но Z оставляем от камеры (на всякий случай)
-            transform.position = new Vector3(finalPosition.x, finalPosition.y, transform.position.z);
+            // Если игрок — учитываем смещение (offset)
+            targetPosition = target.position + offset;
         }
         else
         {
-            // Для катсцен (плавный полет к другим объектам)
-            // Тут offset обычно не нужен, так как мы центрируемся на NPC
-            Vector3 desiredPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+            // Если NPC или объект — центрируемся прямо на нем, сохраняя Z камеры
+            targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
         }
+
+        // Плавное движение через SmoothDamp
+        // currentVelocity обновляется движком автоматически
+        transform.position = Vector3.SmoothDamp(
+            transform.position,
+            targetPosition,
+            ref currentVelocity,
+            smoothTime
+        );
     }
 
     public void SetTarget(string targetName)
     {
+        // Сбрасываем скорость при смене цели, чтобы не было "инерционного рывка" от старой цели
+        currentVelocity = Vector3.zero;
+
         if (targetName.ToLower() == "player")
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
