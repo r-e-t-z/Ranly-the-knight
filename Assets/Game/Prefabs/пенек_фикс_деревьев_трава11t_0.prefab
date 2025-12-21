@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9116990159449527789}
   - component: {fileID: 6020925950063545171}
   - component: {fileID: 6241009772508894872}
+  - component: {fileID: 4539215284999607032}
   m_Layer: 0
   m_Name: "\u043F\u0435\u043D\u0435\u043A_\u0444\u0438\u043A\u0441_\u0434\u0435\u0440\u0435\u0432\u044C\u0435\u0432_\u0442\u0440\u0430\u0432\u043011t_0"
   m_TagString: Untagged
@@ -104,3 +105,17 @@ SortingGroup:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &4539215284999607032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4751881073596345406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabf6fe4de173704389d513a1a75276c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZSorter
+  zOffset: 0
+  activeInEditor: 0

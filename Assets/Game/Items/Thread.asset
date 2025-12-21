@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 2
   itemName: Thread
   description: 
-  icon: {fileID: 4267376707940855249, guid: c7df4db558110484c827254f371b9f01, type: 3}
+  icon: {fileID: 6199497340360364196, guid: bf653bf7bb81ba944844b31b4bcdb7a7, type: 3}
   type: 0
   isStackable: 1
   maxStackSize: 1
