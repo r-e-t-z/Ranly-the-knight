@@ -44,7 +44,6 @@ public class DialogueManager : MonoBehaviour
 
     private Dictionary<string, object> globalVariables = new Dictionary<string, object>();
 
-    // Счетчик для контроля параллельных/последовательных анимаций
     private int activeCutscenesCount = 0;
 
     private class ActionData
@@ -55,7 +54,17 @@ public class DialogueManager : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (choicesContainer != null) choicesContainer.gameObject.SetActive(false);
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
 

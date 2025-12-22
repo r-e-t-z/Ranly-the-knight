@@ -52,6 +52,7 @@ public class ItemPickup : MonoBehaviour
 
     void TryPickupItem()
     {
+        Debug.Log("Попытка подобрать: " + itemData.itemID);
         if (itemData == null)
         {
             return;
