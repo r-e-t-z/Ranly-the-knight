@@ -1,16 +1,15 @@
 using UnityEngine;
 using System.Collections;
-using TMPro;
 
 public class ForestExitTrigger : MonoBehaviour
 {
-    [Header("Точка возврата")]
+    [Header("Настройки возврата")]
     public Transform returnPoint;
 
-    [Header("Диалоги")]
+    [Header("Диалоги (по попыткам)")]
     public TextAsset[] dialogues;
 
-    [Header("Настройки выхода")]
+    [Header("Настройки сложности")]
     public float moveSpeed = 3f;
     public int maxAttempts = 3;
     public bool enableQuickTimeEvent = true;
@@ -20,12 +19,7 @@ public class ForestExitTrigger : MonoBehaviour
     public float moveDistancePerPress = 0.2f;
     public float timeLimit = 3f;
 
-    [Header("Визуал QTE")]
-    [Tooltip("Объект с анимацией кнопки 'A' (например, спрайт или UI Image)")]
-    public GameObject quickTimeAnimationObject;
-    public TextMeshProUGUI timerText; // Опционально: текст таймера/счетчика
-
-    [Header("Звуки")]
+    [Header("Аудио")]
     public AudioSource audioSource;
     public AudioClip successSound;
     public AudioClip failSound;
@@ -37,22 +31,22 @@ public class ForestExitTrigger : MonoBehaviour
     private bool quickTimeActive = false;
     private float currentPresses = 0f;
     private float quickTimeTimer = 0f;
-    private Vector3 quickTimeStartPosition;
+    private GameObject quickTimeAnimationObject;
 
     void Start()
     {
-        playerController = FindObjectOfType<PlayerMovement>();
-        if (playerController != null)
-        {
-            playerAnimator = playerController.GetComponentInChildren<Animator>();
-        }
-
-        // Если AudioSource не назначен, пробуем найти на этом объекте
+        RefreshPlayerReferences();
         if (audioSource == null) audioSource = GetComponent<AudioSource>();
+    }
 
-        // Скрываем анимацию и текст при старте
-        if (quickTimeAnimationObject != null) quickTimeAnimationObject.SetActive(false);
-        if (timerText != null) timerText.gameObject.SetActive(false);
+    void RefreshPlayerReferences()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerController = player.GetComponent<PlayerMovement>();
+            playerAnimator = player.GetComponentInChildren<Animator>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -74,16 +68,34 @@ public class ForestExitTrigger : MonoBehaviour
 
     void StartQuickTimeEvent(GameObject player)
     {
-        quickTimeActive = true;
-        currentPresses = 0f;
-        quickTimeTimer = timeLimit;
-        quickTimeStartPosition = player.transform.position;
+        RefreshPlayerReferences();
+        quickTimeAnimationObject = QTEButton.Instance;
 
-        // ВКЛЮЧАЕМ АНИМАЦИЮ
-        if (quickTimeAnimationObject != null) quickTimeAnimationObject.SetActive(true);
-        if (timerText != null) timerText.gameObject.SetActive(true);
+        if (quickTimeAnimationObject != null)
+        {
+            quickTimeActive = true;
+            currentPresses = 0f;
+            quickTimeTimer = timeLimit;
 
-        if (playerController != null) playerController.enabled = false;
+            // 1. Включаем сам объект
+            quickTimeAnimationObject.SetActive(true);
+
+            // 2. ПРИНУДИТЕЛЬНО запускаем аниматор
+            Animator anim = quickTimeAnimationObject.GetComponent<Animator>();
+            if (anim != null)
+            {
+                anim.enabled = true;
+                // Play(0, -1, 0f) — запускает анимацию в первом слое с самого начала
+                anim.Play(0, -1, 0f);
+            }
+
+            if (playerController != null) playerController.enabled = false;
+        }
+        else
+        {
+            Debug.LogError("Кнопка QTE не найдена!");
+            QuickTimeFail();
+        }
     }
 
     void Update()
@@ -96,8 +108,6 @@ public class ForestExitTrigger : MonoBehaviour
             {
                 OnQuickTimePress();
             }
-
-            UpdateQuickTimeUI();
 
             if (currentPresses >= requiredPresses)
             {
@@ -113,27 +123,16 @@ public class ForestExitTrigger : MonoBehaviour
     void OnQuickTimePress()
     {
         currentPresses++;
-
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             player.transform.position += Vector3.left * moveDistancePerPress;
-
             if (playerAnimator != null)
             {
                 playerAnimator.SetFloat("Horizontal", -1f);
                 playerAnimator.SetFloat("Vertical", 0f);
                 playerAnimator.SetFloat("Speed", 1f);
             }
-        }
-    }
-
-    void UpdateQuickTimeUI()
-    {
-        if (timerText != null)
-        {
-            // Показываем только таймер (или счетчик)
-            timerText.text = $"{quickTimeTimer:F1}";
         }
     }
 
@@ -154,35 +153,20 @@ public class ForestExitTrigger : MonoBehaviour
         {
             player.transform.position = returnPoint.transform.position;
         }
-
-        exitAttempts--; // Даем еще попытку
+        exitAttempts--;
     }
 
     void EndQuickTimeEvent()
     {
         quickTimeActive = false;
-        StopPlayerAnimation();
-
-        // СКРЫВАЕМ АНИМАЦИЮ
+        if (playerAnimator != null) playerAnimator.SetFloat("Speed", 0f);
         if (quickTimeAnimationObject != null) quickTimeAnimationObject.SetActive(false);
-        if (timerText != null) timerText.gameObject.SetActive(false);
-
         if (playerController != null) playerController.enabled = true;
     }
 
     void PlaySound(AudioClip clip)
     {
-        if (audioSource != null && clip != null)
-        {
-            audioSource.PlayOneShot(clip);
-        }
-    }
-
-    // --- Остальной код без изменений ---
-
-    void StopPlayerAnimation()
-    {
-        if (playerAnimator != null) playerAnimator.SetFloat("Speed", 0f);
+        if (audioSource != null && clip != null) audioSource.PlayOneShot(clip);
     }
 
     IEnumerator ReturnPlayer(GameObject player)
@@ -195,31 +179,27 @@ public class ForestExitTrigger : MonoBehaviour
         {
             Vector3 direction = (returnPoint.position - player.transform.position).normalized;
             player.transform.position += direction * moveSpeed * Time.deltaTime;
-            UpdatePlayerAnimation(direction);
+            if (playerAnimator != null)
+            {
+                playerAnimator.SetFloat("Horizontal", direction.x);
+                playerAnimator.SetFloat("Vertical", direction.y);
+                playerAnimator.SetFloat("Speed", 1f);
+            }
             yield return null;
         }
 
-        StopPlayerAnimation();
+        if (playerAnimator != null) playerAnimator.SetFloat("Speed", 0f);
         if (playerController != null) playerController.enabled = true;
         isReturning = false;
         StartAnDialogue();
     }
 
-    void UpdatePlayerAnimation(Vector3 direction)
-    {
-        if (playerAnimator == null) return;
-        playerAnimator.SetFloat("Horizontal", direction.x);
-        playerAnimator.SetFloat("Vertical", direction.y);
-        playerAnimator.SetFloat("Speed", 1f);
-    }
-
     void StartAnDialogue()
     {
         TextAsset dialogueToPlay = GetDialogue();
-        DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
-        if (dialogueManager != null && dialogueToPlay != null)
+        if (DialogueManager.Instance != null && dialogueToPlay != null)
         {
-            dialogueManager.StartDialogue(dialogueToPlay);
+            DialogueManager.Instance.StartDialogue(dialogueToPlay);
         }
     }
 

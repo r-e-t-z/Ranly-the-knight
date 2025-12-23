@@ -11,6 +11,7 @@ public class GameSaveManager : MonoBehaviour
     [Tooltip("Префаб, содержащий Игрока, Камеру, Канвасы и Менеджеры")]
     public GameObject gameSystemsPrefab;
 
+    public bool isNewGame = false;
     private HashSet<string> worldEvents = new HashSet<string>();
 
     void Awake()
@@ -226,12 +227,9 @@ public class GameSaveManager : MonoBehaviour
 
     public void PrepareNewGame()
     {
-        // 1. Очищаем список событий (чтобы предметы снова появились, а пазлы сбросились)
+        isNewGame = true; // Помечаем, что следующая загрузка — новая игра
         worldEvents.Clear();
-
-        // 2. Удаляем файл сохранения с диска
         SaveSystem.DeleteSave();
-
-        Debug.Log("Данные сброшены для новой игры.");
+        Debug.Log("Данные сброшены. Флаг Новой игры установлен.");
     }
 }

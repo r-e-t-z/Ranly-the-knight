@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - Visual
+  - QTE_Object
   layers:
   - Default
   - TransparentFX
