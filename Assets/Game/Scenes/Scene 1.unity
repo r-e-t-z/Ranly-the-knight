@@ -5900,7 +5900,7 @@ MonoBehaviour:
   requiredPresses: 10
   moveDistancePerPress: 0.5
   timeLimit: 3
-  quickTimeAnimationObject: {fileID: 0}
+  quickTimeAnimationObject: {fileID: 1735762488}
   timerText: {fileID: 0}
   audioSource: {fileID: 486203504}
   successSound: {fileID: 8300000, guid: 09f9b83616e19534e8ca87da52fd31f3, type: 3}
@@ -102369,6 +102369,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c2638206611a1246a933a9342dfee0d, type: 3}
+--- !u!1 &1735762488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 645037322357042902, guid: 8c2638206611a1246a933a9342dfee0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1735762487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1740478218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2889757303061619740, guid: 20dd255baaab5824cb96287efb543935,

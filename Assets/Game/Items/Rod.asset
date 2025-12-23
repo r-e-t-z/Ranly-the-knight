@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 3
   itemName: Rod
   description: 
-  icon: {fileID: 2749041441943056007, guid: 1570702a328f47d4192f5bc4758e5f71, type: 3}
+  icon: {fileID: -8884708765197955814, guid: 321917ce5624973448d829f1fd5c94b0, type: 3}
   type: 0
   isStackable: 1
   maxStackSize: 1

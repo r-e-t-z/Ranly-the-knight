@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 1
   itemName: Stick
   description: 
-  icon: {fileID: 2679148786355492579, guid: 8fbff22cc425b9e4fa18c4c61f226ab4, type: 3}
+  icon: {fileID: 5857475144674419265, guid: 67d6e01c29e03e947ac8664aaec107b0, type: 3}
   type: 0
   isStackable: 1
   maxStackSize: 1
