@@ -13,23 +13,20 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHa
     private InventorySlot assignedSlot;
     private GameObject dragObject;
     private float lastClickTime;
-    private const float doubleClickThreshold = 0.3f;
+    private CanvasGroup canvasGroup; // Компонент для управления видимостью
+
+    private void Awake()
+    {
+        // Ищем CanvasGroup на этом же объекте
+        canvasGroup = GetComponent<CanvasGroup>();
+    }
 
     private void Start()
     {
         InventoryManager.OnInventoryChanged += UpdateSlotUI;
         InventoryManager.OnActiveItemChanged += UpdateActiveSlotUI;
 
-        if (!isActiveItemSlot)
-        {
-            assignedSlot = InventoryManager.Instance.inventorySlots[SlotIndex];
-        }
-        else
-        {
-            assignedSlot = InventoryManager.Instance.activeItemSlot;
-            UpdateActiveSlotVisibility();
-        }
-        UpdateSlotDisplay();
+        AssignSlot();
     }
 
     private void OnDestroy()
@@ -38,124 +35,111 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         InventoryManager.OnActiveItemChanged -= UpdateActiveSlotUI;
     }
 
-    private void UpdateSlotUI(InventorySlot[] inventory)
+    private void AssignSlot()
     {
+        if (InventoryManager.Instance == null) return;
+
         if (!isActiveItemSlot)
         {
-            UpdateSlotDisplay();
+            if (InventoryManager.Instance.inventorySlots != null && SlotIndex < InventoryManager.Instance.inventorySlots.Length)
+            {
+                assignedSlot = InventoryManager.Instance.inventorySlots[SlotIndex];
+            }
         }
+        else
+        {
+            assignedSlot = InventoryManager.Instance.activeItemSlot;
+        }
+
+        UpdateSlotDisplay();
+    }
+
+    private void UpdateSlotUI(InventorySlot[] inventory)
+    {
+        if (!isActiveItemSlot) UpdateSlotDisplay();
     }
 
     private void UpdateActiveSlotUI(InventoryItem activeItem)
     {
-        if (isActiveItemSlot)
-        {
-            UpdateSlotDisplay();
-            UpdateActiveSlotVisibility();
-        }
+        if (isActiveItemSlot) UpdateSlotDisplay();
     }
 
     private void UpdateSlotDisplay()
     {
-        if (assignedSlot.HasItem())
+        bool hasItem = assignedSlot != null && assignedSlot.HasItem();
+
+        // ЛОГИКА ДЛЯ АКТИВНОГО СЛОТА: Скрываем/Показываем целиком
+        if (isActiveItemSlot && canvasGroup != null)
+        {
+            canvasGroup.alpha = hasItem ? 1f : 0f; // 1 = видно, 0 = невидимо
+            canvasGroup.blocksRaycasts = hasItem; // Чтобы нельзя было нажать на невидимый слот
+        }
+
+        // ОБНОВЛЕНИЕ ИКОНКИ И ТЕКСТА
+        if (itemIcon == null) return;
+
+        if (hasItem)
         {
             itemIcon.sprite = assignedSlot.Item.data.icon;
             itemIcon.color = Color.white;
-            stackCountText.text = assignedSlot.Item.stackSize > 1 ? assignedSlot.Item.stackSize.ToString() : "";
+            itemIcon.enabled = true;
+
+            if (stackCountText != null)
+            {
+                stackCountText.text = assignedSlot.Item.stackSize > 1 ? assignedSlot.Item.stackSize.ToString() : "";
+                stackCountText.enabled = true;
+            }
         }
         else
         {
             itemIcon.sprite = null;
             itemIcon.color = Color.clear;
-            stackCountText.text = "";
-        }
-    }
+            itemIcon.enabled = false;
 
-    private void UpdateActiveSlotVisibility()
-    {
-        if (isActiveItemSlot)
-        {
-            gameObject.SetActive(assignedSlot.HasItem());
+            if (stackCountText != null) stackCountText.text = "";
+
+            // Если это обычный слот и нет CanvasGroup, он просто покажет пустую рамку
         }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (assignedSlot == null || !assignedSlot.HasItem()) return;
+
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            float timeSinceLastClick = Time.time - lastClickTime;
-
-            if (timeSinceLastClick <= doubleClickThreshold)
+            if (Time.time - lastClickTime <= 0.3f)
             {
-                if (!isActiveItemSlot && assignedSlot.HasItem())
-                {
+                if (!isActiveItemSlot)
                     InventoryManager.Instance.MoveToActiveSlot(SlotIndex);
-                }
-                else if (isActiveItemSlot && assignedSlot.HasItem())
-                {
+                else
                     InventoryManager.Instance.MoveToInventoryFromActive();
-                }
             }
-
             lastClickTime = Time.time;
         }
     }
 
+    // --- Drag n Drop (без изменений) ---
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!assignedSlot.HasItem() || isActiveItemSlot) return;
-
+        if (assignedSlot == null || !assignedSlot.HasItem() || isActiveItemSlot) return;
         dragObject = new GameObject("DragIcon");
         dragObject.transform.SetParent(transform.root, false);
         dragObject.transform.SetAsLastSibling();
-
-        Image dragImage = dragObject.AddComponent<Image>();
-        dragImage.sprite = itemIcon.sprite;
-        dragImage.raycastTarget = false;
-
-        CanvasGroup canvasGroup = dragObject.AddComponent<CanvasGroup>();
-        canvasGroup.alpha = 0.7f;
-        canvasGroup.blocksRaycasts = false;
-
+        Image img = dragObject.AddComponent<Image>();
+        img.sprite = itemIcon.sprite;
+        img.raycastTarget = false;
         itemIcon.color = new Color(1, 1, 1, 0.3f);
     }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (dragObject != null)
-        {
-            dragObject.transform.position = eventData.position;
-        }
-    }
+    public void OnDrag(PointerEventData eventData) { if (dragObject != null) dragObject.transform.position = eventData.position; }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if (dragObject != null)
-        {
-            Destroy(dragObject);
-            dragObject = null;
-        }
-
-        if (assignedSlot.HasItem())
-        {
-            itemIcon.color = Color.white;
-        }
-    }
+    public void OnEndDrag(PointerEventData eventData) { if (dragObject != null) Destroy(dragObject); if (assignedSlot != null && assignedSlot.HasItem()) itemIcon.color = Color.white; }
 
     public void OnDrop(PointerEventData eventData)
     {
-        GameObject droppedObject = eventData.pointerDrag;
-        if (droppedObject == null) return;
-
-        InventorySlotUI fromSlotUI = droppedObject.GetComponent<InventorySlotUI>();
-        if (fromSlotUI == null || fromSlotUI.isActiveItemSlot) return;
-
-        int fromIndex = fromSlotUI.SlotIndex;
-        int toIndex = SlotIndex;
-
-        if (fromIndex != toIndex)
-        {
-            InventoryManager.Instance.TryCraftItems(fromIndex, toIndex);
-        }
+        var from = eventData.pointerDrag?.GetComponent<InventorySlotUI>();
+        if (from != null && from != this && !from.isActiveItemSlot && !this.isActiveItemSlot)
+            InventoryManager.Instance.TryCraftItems(from.SlotIndex, this.SlotIndex);
     }
 }

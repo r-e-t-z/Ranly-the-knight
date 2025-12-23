@@ -43,18 +43,37 @@ public class MenuManager : MonoBehaviour
     {
         if (SaveSystem.HasSaveData())
         {
-            SceneManager.LoadScene(gameSceneName);
-        }
-        else
-        {
-            UpdateContinueButton();
+            // Вместо обычной загрузки сцены вызываем ПОЛНУЮ загрузку
+            if (GameSaveManager.Instance != null)
+            {
+                GameSaveManager.Instance.LoadGame();
+            }
+            else
+            {
+                // Если менеджер не найден на сцене меню, попробуем найти его через Find
+                GameSaveManager manager = FindObjectOfType<GameSaveManager>();
+                if (manager != null)
+                {
+                    manager.LoadGame();
+                }
+                else
+                {
+                    Debug.LogError("Критическая ошибка: GameSaveManager не найден на сцене Главного меню!");
+                }
+            }
         }
     }
 
     public void OnNewGameButton()
     {
-        SaveSystem.DeleteSave();
-        SceneManager.LoadScene(gameSceneName);
+        if (GameSaveManager.Instance != null)
+        {
+            // Сбрасываем данные перед началом
+            GameSaveManager.Instance.PrepareNewGame();
+        }
+
+        // Загружаем начальную сцену
+        UnityEngine.SceneManagement.SceneManager.LoadScene(gameSceneName);
     }
 
     public void OnSettingsButton()

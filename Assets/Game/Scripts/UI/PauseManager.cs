@@ -50,6 +50,18 @@ public class PauseManager : MonoBehaviour
         }
     }
 
+    public void SaveGameButton()
+    {
+        if (GameSaveManager.Instance != null)
+        {
+            GameSaveManager.Instance.SaveGame();
+        }
+        else
+        {
+            Debug.LogError("Не удалось сохранить: GameSaveManager не найден на сцене!");
+        }
+    }
+
     void PauseGame()
     {
         isPaused = true;

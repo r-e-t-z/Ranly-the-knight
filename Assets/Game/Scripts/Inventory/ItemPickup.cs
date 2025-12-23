@@ -1,7 +1,11 @@
+using System.Xml;
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
+    [Header("Unique Settings")]
+    public string uniqueID;
+
     [Header("Item Settings")]
     public ItemData itemData;
     public int amount = 1;
@@ -10,6 +14,14 @@ public class ItemPickup : MonoBehaviour
     public KeyCode interactKey = KeyCode.E;
 
     private bool playerInRange = false;
+
+    void Awake()
+    {
+        if (GameSaveManager.Instance.IsEventDone(uniqueID))
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -52,15 +64,16 @@ public class ItemPickup : MonoBehaviour
 
     void TryPickupItem()
     {
+        if (InventoryManager.Instance.AddItem(itemData.itemID, amount))
+        {
+            GameSaveManager.Instance.RegisterEvent(uniqueID); 
+            Destroy(gameObject);
+        }
+
         Debug.Log("Попытка подобрать: " + itemData.itemID);
         if (itemData == null)
         {
             return;
-        }
-
-        if (InventoryManager.Instance.AddItem(itemData.itemID, amount))
-        {
-            Destroy(gameObject);
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public string puzzleID;
+
     [Header("Settings")]
     public int gridSize = 3;
     public int targetSum = 15;

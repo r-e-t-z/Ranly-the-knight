@@ -43,14 +43,61 @@ public class DialogueManager : MonoBehaviour
     private MonoBehaviour playerController;
 
     private Dictionary<string, object> globalVariables = new Dictionary<string, object>();
-
     private int activeCutscenesCount = 0;
 
+    // Вспомогательный класс для хранения данных о действиях из тегов
     private class ActionData
     {
         public string name;
         public List<string> paramsList = new List<string>();
     }
+
+    // --- МЕТОДЫ ДЛЯ СИСТЕМЫ СОХРАНЕНИЙ ---
+
+    public Dictionary<string, object> GetGlobalVariables()
+    {
+        SyncVariablesFromStory();
+        return globalVariables;
+    }
+
+    public void SetGlobalVariable(string key, string value)
+    {
+        if (bool.TryParse(value, out bool boolVal)) globalVariables[key] = boolVal;
+        else if (int.TryParse(value, out int intVal)) globalVariables[key] = intVal;
+        else if (float.TryParse(value, out float floatVal)) globalVariables[key] = floatVal;
+        else globalVariables[key] = value;
+    }
+
+    public void SyncVariablesFromStory()
+    {
+        if (story != null)
+        {
+            foreach (string varName in story.variablesState)
+            {
+                globalVariables[varName] = story.variablesState[varName];
+            }
+        }
+    }
+
+    private void ApplyVariablesToStory()
+    {
+        if (story != null)
+        {
+            foreach (var variable in globalVariables)
+            {
+                try
+                {
+                    story.variablesState[variable.Key] = variable.Value;
+                }
+                catch (System.Exception)
+                {
+                    // Игнорируем, если переменной нет в конкретном файле
+                }
+            }
+        }
+    }
+
+    // --- ОСНОВНАЯ ЛОГИКА ---
 
     void Awake()
     {
@@ -100,14 +147,15 @@ public class DialogueManager : MonoBehaviour
             {
                 anim.SetFloat("Speed", 0f);
                 anim.Play("Idle");
-                anim.Update(0f);
             }
         }
 
         story = new Story(inkJSON.text);
-        currentNPC = npcData;
 
-        RestoreGlobalVariables();
+        // Восстанавливаем переменные Ink
+        ApplyVariablesToStory();
+
+        currentNPC = npcData;
         UpdatePlayerStateVariables();
 
         if (!string.IsNullOrEmpty(startKnot)) story.ChoosePathString(startKnot);
@@ -183,15 +231,9 @@ public class DialogueManager : MonoBehaviour
         foreach (var act in actionsToExecute)
         {
             ExecuteAction(act.name, act.paramsList);
-
-            // Если действие включило режим ожидания (например, delay)
-            while (isWaiting)
-            {
-                yield return null;
-            }
+            while (isWaiting) yield return null;
         }
 
-        // Если мы не в режиме ожидания #delay, показываем панель и печатаем текст
         if (!isWaiting)
         {
             dialoguePanel.SetActive(true);
@@ -216,10 +258,8 @@ public class DialogueManager : MonoBehaviour
             case "deactivate_object": DeactivateObjectAction(parameters); break;
             case "activate_object": ActivateObjectAction(parameters); break;
             case "start_animation": StartAnimationAction(parameters); break;
-            case "quest_text": QuestTextAction(parameters); break;
             case "change_scene": ChangeSceneAction(parameters); break;
             case "teleport_player": TeleportPlayerAction(parameters); break;
-            case "unlock_ability": UnlockAbilityAction(parameters); break;
             case "text_speed": ChangeSpeedAction(parameters); break;
             case "play_animation_sequence": PlayAnimationSequenceAction(parameters); break;
             default: Debug.LogWarning($"Unknown action: {actionType}"); break;
@@ -238,7 +278,7 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(targetName) && !string.IsNullOrEmpty(animName))
         {
             activeCutscenesCount++;
-            dialoguePanel.SetActive(false); // Скрываем панель сразу при запуске анимации
+            dialoguePanel.SetActive(false);
             StartCoroutine(PlayCutsceneRoutine(targetName, animName, destination, moveTargetName));
         }
     }
@@ -274,9 +314,7 @@ public class DialogueManager : MonoBehaviour
         float time = -1f;
         string val = GetParameterValue(parameters, "time");
         if (!string.IsNullOrEmpty(val) && float.TryParse(val, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float t))
-        {
             time = t;
-        }
 
         StartCoroutine(WaitRoutine(time));
     }
@@ -286,30 +324,12 @@ public class DialogueManager : MonoBehaviour
         isWaiting = true;
         dialoguePanel.SetActive(false);
 
-        if (time > 0)
-        {
-            yield return new WaitForSeconds(time);
-        }
-        else
-        {
-            // Ждем, пока все запущенные катсцены закончатся
-            while (activeCutscenesCount > 0)
-            {
-                yield return null;
-            }
-        }
+        if (time > 0) yield return new WaitForSeconds(time);
+        else while (activeCutscenesCount > 0) yield return null;
 
         isWaiting = false;
-
-        // Показываем панель только если не осталось активных катсцен
-        if (activeCutscenesCount <= 0)
-        {
-            dialoguePanel.SetActive(true);
-        }
+        if (activeCutscenesCount <= 0) dialoguePanel.SetActive(true);
     }
-
-    // --- ОСТАЛЬНЫЕ МЕТОДЫ (Typewriter, Inventory, etc.) ---
-    // Они остались без изменений, я включил их, чтобы скрипт был целым
 
     private IEnumerator TypewriterRoutine(string line)
     {
@@ -349,17 +369,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (InventoryManager.Instance == null) return false;
         return InventoryManager.Instance.GetActiveSlotItemCount(id) >= amt;
-    }
-
-    private void RestoreGlobalVariables()
-    {
-        foreach (var v in globalVariables) { try { story.variablesState[v.Key] = v.Value; } catch { } }
-    }
-
-    private void SaveGlobalVariables()
-    {
-        if (story == null) return;
-        foreach (string v in story.variablesState) globalVariables[v] = story.variablesState[v];
     }
 
     private void PlayAnimationSequenceAction(List<string> p)
@@ -416,41 +425,19 @@ public class DialogueManager : MonoBehaviour
     private void ActivateObjectAction(List<string> p)
     {
         string objName = GetParameterValue(p, "object_name");
-        string parentName = GetParameterValue(p, "parent_name"); // Опциональный параметр
-
+        string parentName = GetParameterValue(p, "parent_name");
         GameObject target = null;
-
-        // ВАРИАНТ 1: Если указан родитель (Самый надежный способ для выключенных объектов)
         if (!string.IsNullOrEmpty(parentName))
         {
             GameObject parent = GameObject.Find(parentName);
             if (parent != null)
             {
-                // transform.Find находит даже выключенные дочерние объекты!
                 Transform child = parent.transform.Find(objName);
                 if (child != null) target = child.gameObject;
-                else Debug.LogWarning($"Родитель '{parentName}' найден, но внутри нет '{objName}'");
-            }
-            else
-            {
-                Debug.LogWarning($"Родитель '{parentName}' не найден на сцене (он должен быть активен)");
             }
         }
-        // ВАРИАНТ 2: Пытаемся найти просто по имени (Сработает ТОЛЬКО если объект уже активен, что редко имеет смысл)
-        else
-        {
-            target = GameObject.Find(objName);
-        }
-
-        if (target != null)
-        {
-            target.SetActive(true);
-            Debug.Log($"Объект '{objName}' активирован.");
-        }
-        else
-        {
-            Debug.LogWarning($"Не удалось найти объект '{objName}' для активации. Совет: если объект выключен, укажите его родителя через parent_name.");
-        }
+        else target = GameObject.Find(objName);
+        if (target != null) target.SetActive(true);
     }
 
     private void StartAnimationAction(List<string> p)
@@ -467,8 +454,6 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(s)) UnityEngine.SceneManagement.SceneManager.LoadScene(s);
     }
 
-    private void QuestTextAction(List<string> p) { }
-
     private void TeleportPlayerAction(List<string> p)
     {
         string dest = GetParameterValue(p, "destination");
@@ -483,8 +468,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (float.TryParse(GetParameterValue(p, "val"), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float s)) currentTypingSpeed = s;
     }
-
-    private void UnlockAbilityAction(List<string> p) { }
 
     private string GetParameterValue(List<string> p, string k)
     {
@@ -561,7 +544,7 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        SaveGlobalVariables();
+        SyncVariablesFromStory();
         isPlaying = false;
         isWaiting = false;
         dialoguePanel.SetActive(false);

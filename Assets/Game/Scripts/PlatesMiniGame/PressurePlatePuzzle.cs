@@ -6,6 +6,8 @@ public class PressurePlatePuzzle : MonoBehaviour
 {
     public static PressurePlatePuzzle Instance;
 
+    public string puzzleID;
+
     [Header("Puzzle Settings")]
     public List<PressurePlate> puzzlePlates = new List<PressurePlate>();
     public float sequenceDelay = 1f;
