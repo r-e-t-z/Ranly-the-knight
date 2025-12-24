@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 5
   itemName: Key
   description: 
-  icon: {fileID: -2267718087689802235, guid: 7d5632e9f0a0bae41a6576c6aeae6a67, type: 3}
+  icon: {fileID: 2671296903867414657, guid: d1ce1d1beaa92be4e80e6fbf0f023d38, type: 3}
   type: 0
   isStackable: 1
   maxStackSize: 1
