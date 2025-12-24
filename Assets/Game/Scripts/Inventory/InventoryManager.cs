@@ -10,13 +10,13 @@ public class InventoryManager : MonoBehaviour
     public static event Action<InventorySlot[]> OnInventoryChanged;
     public static event Action<InventoryItem> OnActiveItemChanged;
 
+    [Header("Настройки")]
     [SerializeField] private int inventorySize = 9;
     public InventorySlot[] inventorySlots;
     public InventorySlot activeItemSlot;
 
+    [Header("Ссылки")]
     [SerializeField] private ItemDBSO itemDatabase;
-
-    [Header("UI Settings")]
     public GameObject inventoryPanel;
 
     private MonoBehaviour playerController;
@@ -53,12 +53,20 @@ public class InventoryManager : MonoBehaviour
 
     private void InitializeInventory()
     {
-        if (inventorySlots == null || inventorySlots.Length == 0)
+        // Если массив не создан или его размер изменился в инспекторе - пересоздаем
+        if (inventorySlots == null || inventorySlots.Length != inventorySize)
         {
             inventorySlots = new InventorySlot[inventorySize];
             for (int i = 0; i < inventorySlots.Length; i++)
                 inventorySlots[i] = new InventorySlot();
         }
+
+        // Проверка на случай если объекты внутри массива пустые
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i] == null) inventorySlots[i] = new InventorySlot();
+        }
+
         if (activeItemSlot == null) activeItemSlot = new InventorySlot();
     }
 
@@ -66,8 +74,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying())
         {
-            if (inventoryPanel != null && inventoryPanel.activeInHierarchy)
-                inventoryPanel.SetActive(false);
+            if (inventoryPanel != null && inventoryPanel.activeInHierarchy) inventoryPanel.SetActive(false);
             return;
         }
 
@@ -89,73 +96,85 @@ public class InventoryManager : MonoBehaviour
         ItemData itemToAdd = itemDatabase.GetItemByID(itemID);
         if (itemToAdd == null) return false;
 
-        // 1. Сначала пробуем стакнуть в АКТИВНЫЙ слот (твоя логика)
+        // 1. Стакаем в руках
         if (activeItemSlot.HasItem() && activeItemSlot.Item.data.itemID == itemID && itemToAdd.isStackable)
         {
             activeItemSlot.Item.AddToStack(amount);
             ForceInventoryUpdate();
             return true;
         }
-        else
+
+        // 2. Стакаем в инвентаре
+        if (itemToAdd.isStackable)
         {
-            // 2. Пробуем стакнуть в инвентаре
-            if (itemToAdd.isStackable)
+            for (int i = 0; i < inventorySlots.Length; i++)
             {
-                for (int i = 0; i < inventorySlots.Length; i++)
+                if (inventorySlots[i].HasItem() && inventorySlots[i].Item.data.itemID == itemID)
                 {
-                    if (inventorySlots[i].HasItem() && inventorySlots[i].Item.data == itemToAdd)
+                    if (inventorySlots[i].Item.AddToStack(amount))
                     {
-                        if (inventorySlots[i].Item.AddToStack(amount))
-                        {
-                            ForceInventoryUpdate();
-                            return true;
-                        }
+                        ForceInventoryUpdate();
+                        return true;
                     }
                 }
             }
+        }
 
-            // 3. Ищем пустой слот
-            for (int i = 0; i < inventorySlots.Length; i++)
+        // 3. Ищем ПЕРВЫЙ ПУСТОЙ слот
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (!inventorySlots[i].HasItem())
             {
-                if (!inventorySlots[i].HasItem())
-                {
-                    inventorySlots[i].SetItem(new InventoryItem(itemToAdd, amount));
-                    ForceInventoryUpdate();
-                    return true;
-                }
+                inventorySlots[i].SetItem(new InventoryItem(itemToAdd, amount));
+                ForceInventoryUpdate();
+                return true;
             }
         }
+
+        Debug.Log($"Инвентарь полон! Проверено слотов: {inventorySlots.Length}");
         return false;
     }
 
-    public void TryCraftItems(int from, int to)
+    public void TryCraftItems(int fromSlotIndex, int toSlotIndex)
     {
-        if (from == to) return;
-        InventoryItem itemA = inventorySlots[from].Item;
-        InventoryItem itemB = inventorySlots[to].Item;
+        if (fromSlotIndex == toSlotIndex) return;
+
+        InventoryItem itemA = inventorySlots[fromSlotIndex].Item;
+        InventoryItem itemB = inventorySlots[toSlotIndex].Item;
+
         if (itemA == null || itemB == null) return;
 
-        foreach (ItemData res in itemDatabase.allItems)
+        ItemData resultItem = FindCraftingResult(itemA.data, itemB.data);
+        if (resultItem != null)
         {
-            if (res.craftingRecipes == null) continue;
-            foreach (var recipe in res.craftingRecipes)
+            inventorySlots[fromSlotIndex].ClearSlot();
+            inventorySlots[toSlotIndex].ClearSlot();
+            AddItem(resultItem.itemID);
+        }
+    }
+
+    private ItemData FindCraftingResult(ItemData ingredient1, ItemData ingredient2)
+    {
+        foreach (ItemData potentialResult in itemDatabase.allItems)
+        {
+            if (potentialResult.craftingRecipes != null)
             {
-                if ((recipe.item1 == itemA.data && recipe.item2 == itemB.data) ||
-                    (recipe.item1 == itemB.data && recipe.item2 == itemA.data))
+                foreach (CraftingRecipe recipe in potentialResult.craftingRecipes)
                 {
-                    inventorySlots[from].ClearSlot();
-                    inventorySlots[to].ClearSlot();
-                    AddItem(res.itemID);
-                    return;
+                    if ((recipe.item1 == ingredient1 && recipe.item2 == ingredient2) ||
+                        (recipe.item1 == ingredient2 && recipe.item2 == ingredient1))
+                    {
+                        return potentialResult;
+                    }
                 }
             }
         }
+        return null;
     }
 
     public void MoveToActiveSlot(int fromSlotIndex)
     {
-        if (fromSlotIndex < 0 || fromSlotIndex >= inventorySlots.Length) return;
-        if (!inventorySlots[fromSlotIndex].HasItem()) return;
+        if (fromSlotIndex < 0 || fromSlotIndex >= inventorySlots.Length || !inventorySlots[fromSlotIndex].HasItem()) return;
 
         if (activeItemSlot.HasItem())
         {
@@ -243,15 +262,12 @@ public class InventoryManager : MonoBehaviour
     public int GetItemCount(string itemID)
     {
         int total = (activeItemSlot.HasItem() && activeItemSlot.Item.data.itemID == itemID) ? activeItemSlot.Item.stackSize : 0;
-        foreach (var slot in inventorySlots) if (slot.HasItem() && slot.Item.data.itemID == itemID) total += slot.Item.stackSize;
+        foreach (var slot in inventorySlots)
+            if (slot.HasItem() && slot.Item.data.itemID == itemID) total += slot.Item.stackSize;
         return total;
     }
 
-    public int GetActiveSlotItemCount(string itemID)
-    {
-        if (activeItemSlot.HasItem() && activeItemSlot.Item.data.itemID == itemID) return activeItemSlot.Item.stackSize;
-        return 0;
-    }
+    public int GetActiveSlotItemCount(string itemID) => (activeItemSlot.HasItem() && activeItemSlot.Item.data.itemID == itemID) ? activeItemSlot.Item.stackSize : 0;
 
     public void ForceInventoryUpdate()
     {
