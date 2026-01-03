@@ -49,7 +49,7 @@ public class ItemPickup : MonoBehaviour
         {
             playerInRange = true;
         }
-        UIInteractPrompt.Instance.Show("Нажми E, чтобы поднять");
+        UIInteractPrompt.Instance.Show("Нажми E, чтобы поднять", this.transform);
     }
 
     void OnTriggerExit2D(Collider2D other)

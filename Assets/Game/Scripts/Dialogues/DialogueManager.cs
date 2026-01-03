@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -532,14 +533,38 @@ public class DialogueManager : MonoBehaviour
     private void ShowChoices()
     {
         choicesContainer.gameObject.SetActive(true);
+        List<GameObject> buttons = new List<GameObject>();
+        
         for (int i = 0; i < story.currentChoices.Count; i++)
         {
             Choice c = story.currentChoices[i];
             GameObject b = Instantiate(choiceButtonPrefab, choicesContainer);
             b.GetComponentInChildren<TMP_Text>().text = c.text;
+            Button btn = b.GetComponent<Button>();
             int idx = i;
-            b.GetComponent<Button>().onClick.AddListener(() => { story.ChooseChoiceIndex(idx); ContinueDialogue(); });
+
+            btn.onClick.AddListener(() =>
+            {
+                story.ChooseChoiceIndex(idx);
+                ContinueDialogue();
+            });
+
+            buttons.Add(b);
         }
+
+        if(buttons.Count > 0)
+        {
+            StartCoroutine(SelectFirstChoice(buttons[0]));
+        }
+    }
+
+    private IEnumerator SelectFirstChoice(GameObject firstButton)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        // Ждем конец кадра
+        yield return new WaitForEndOfFrame();
+        // Выделяем нашу кнопку
+        EventSystem.current.SetSelectedGameObject(firstButton);
     }
 
     private void EndDialogue()

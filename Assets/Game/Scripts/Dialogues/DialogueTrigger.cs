@@ -24,7 +24,7 @@ public class DialogueTrigger : MonoBehaviour
             if (startOnEnter && !requirePressE)
                 StartDialogue();
             else if (requirePressE)
-                UIInteractPrompt.Instance.Show("Нажми E");
+                UIInteractPrompt.Instance.Show("Нажми E", this.transform);
         }
     }
 

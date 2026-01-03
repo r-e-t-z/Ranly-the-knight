@@ -17,7 +17,7 @@ public class SudokuMiniGameTrigger : MonoBehaviour
         {
             inRange = true;
             if (startOnEnter && !requirePressE) StartGame();
-            else if (requirePressE) UIInteractPrompt.Instance.Show("ֽאזלטעו E");
+            else if (requirePressE) UIInteractPrompt.Instance.Show("ֽאזלטעו E", this.transform);
 
         }
     }
